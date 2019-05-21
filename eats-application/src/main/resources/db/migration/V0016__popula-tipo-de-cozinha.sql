@@ -1,0 +1,10 @@
+INSERT INTO tipo_de_cozinha (nome) values ('Chinesa');
+INSERT INTO tipo_de_cozinha (nome) values ('Japonesa');
+INSERT INTO tipo_de_cozinha (nome) values ('Mexicana');
+INSERT INTO tipo_de_cozinha (nome) values ('Mineira');
+INSERT INTO tipo_de_cozinha (nome) values ('Baiana');
+INSERT INTO tipo_de_cozinha (nome) values ('Lanches');
+INSERT INTO tipo_de_cozinha (nome) values ('Variada');
+INSERT INTO tipo_de_cozinha (nome) values ('Hambúrger');
+INSERT INTO tipo_de_cozinha (nome) values ('Árabe');
+INSERT INTO tipo_de_cozinha (nome) values ('Italiana');
