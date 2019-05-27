@@ -3,6 +3,7 @@ package br.com.caelum.eats.restaurante;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,10 +60,11 @@ class RestauranteController {
 
 	@GetMapping("/admin/restaurantes/em-aprovacao")
 	public List<RestauranteDto> emAprovacao() {
-		return restauranteRepo.findAllByAprovado(false).stream().map(r -> new RestauranteDto(r))
+		return restauranteRepo.findAllByAprovado(false).stream().map(RestauranteDto::new)
 				.collect(Collectors.toList());
 	}
 
+	@Transactional
 	@PatchMapping("/admin/restaurantes/{id}")
 	public void aprova(@PathVariable("id") Long id) {
 		restauranteRepo.aprovaPorId(id);

@@ -2,8 +2,6 @@ package br.com.caelum.eats.restaurante;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,7 +22,6 @@ interface RestauranteRepository extends JpaRepository<Restaurante, Long> {
 
 	Restaurante findByUser(User user);
 
-	@Transactional
 	@Modifying(clearAutomatically = true)
 	@Query("update Restaurante r set r.aprovado = true where r.id = :id")
 	void aprovaPorId(@Param("id") Long id);
