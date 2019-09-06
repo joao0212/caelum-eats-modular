@@ -16,7 +16,7 @@
 		</dependency>
 		<dependency>
 			<groupId>br.com.caelum</groupId>
-			<artifactId>eats-admin</artifactId>
+			<artifactId>eats-administrativo</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
