@@ -1,7 +1,5 @@
 package br.com.caelum.eats.seguranca;
 
-import java.util.List;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,7 +21,6 @@ class AuthenticationController {
 	private AuthenticationManager authManager;
 	private JwtTokenManager jwtTokenManager;
 	private UserService userService;
-	private List<AuthorizationTargetService> authorizationServices;
 
 	@PostMapping
 	public ResponseEntity<AuthenticationDto> authenticate(@RequestBody UserInfoDto login) {
@@ -34,8 +31,7 @@ class AuthenticationController {
 			Authentication authentication = authManager.authenticate(authenticationToken);
 			User user = (User) authentication.getPrincipal();
 			String jwt = jwtTokenManager.generateToken(user);
-			Long targetId = getTargetIdFor(user);
-			AuthenticationDto tokenResponse = new AuthenticationDto(user, jwt, targetId);
+			AuthenticationDto tokenResponse = new AuthenticationDto(user, jwt);
 			return ResponseEntity.ok(tokenResponse);
 		} catch (AuthenticationException e) {
 			return ResponseEntity.badRequest().build();
@@ -49,16 +45,6 @@ class AuthenticationController {
 		user.addRole(Role.ROLES.PARCEIRO);
 		User salvo = userService.save(user);
 		return salvo.getId();
-	}
-
-	private Long getTargetIdFor(User user) {
-		for (AuthorizationTargetService authorizationTargetService : authorizationServices) {
-			Long targetId = authorizationTargetService.getTargetIdByUser(user);
-			if (targetId != null) {
-				return targetId;
-			}
-		}
-		return null;
 	}
 
 }

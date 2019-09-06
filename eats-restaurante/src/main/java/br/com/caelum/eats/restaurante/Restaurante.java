@@ -14,16 +14,16 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-import br.com.caelum.eats.admin.TipoDeCozinha;
+import br.com.caelum.eats.administrativo.TipoDeCozinha;
 import br.com.caelum.eats.seguranca.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 public class Restaurante {
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)

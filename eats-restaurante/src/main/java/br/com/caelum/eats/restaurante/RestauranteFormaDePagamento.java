@@ -9,15 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
-import br.com.caelum.eats.admin.FormaDePagamento;
+import br.com.caelum.eats.administrativo.FormaDePagamento;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 class RestauranteFormaDePagamento {
 
 	@EmbeddedId
@@ -32,10 +32,10 @@ class RestauranteFormaDePagamento {
 	private FormaDePagamento formaDePagamento;
 
 	@Embeddable
+	@Data
 	@NoArgsConstructor
 	@AllArgsConstructor
-	@Data
-	public static class RestauranteFormaDePagamentoId implements Serializable {
+	static class RestauranteFormaDePagamentoId implements Serializable {
 		private static final long serialVersionUID = 1L;
 
 		@Column(name = "restaurante_id")

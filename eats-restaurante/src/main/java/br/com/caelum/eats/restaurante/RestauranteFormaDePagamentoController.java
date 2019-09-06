@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.caelum.eats.admin.FormaDePagamento;
+import br.com.caelum.eats.administrativo.FormaDePagamento;
 import br.com.caelum.eats.restaurante.RestauranteFormaDePagamento.RestauranteFormaDePagamentoId;
 import lombok.AllArgsConstructor;
 
@@ -20,7 +20,7 @@ class RestauranteFormaDePagamentoController {
 	private RestauranteFormaDePagamentoRepository restauranteFormaDePagamentoRepo;
 
 	@PostMapping("/parceiros/restaurantes/{idRestaurante}/formas-de-pagamento")
-	public void adiciona(@PathVariable("idRestaurante") Long idRestaurante, @RequestBody FormaDePagamento formaDePagamento) {
+	void adiciona(@PathVariable("idRestaurante") Long idRestaurante, @RequestBody FormaDePagamento formaDePagamento) {
 		RestauranteFormaDePagamentoId id = new RestauranteFormaDePagamentoId(idRestaurante, formaDePagamento.getId());
 		Restaurante restaurante = new Restaurante();
 		restaurante.setId(idRestaurante);
@@ -30,13 +30,13 @@ class RestauranteFormaDePagamentoController {
 	}
 
 	@DeleteMapping("/parceiros/restaurantes/{idRestaurante}/formas-de-pagamento/{idFormaDePagamento}")
-	public void removeDoRestaurante(@PathVariable("idRestaurante") Long idRestaurante, @PathVariable("idFormaDePagamento") Long idFormaDePagamento) {
+	void removeDoRestaurante(@PathVariable("idRestaurante") Long idRestaurante, @PathVariable("idFormaDePagamento") Long idFormaDePagamento) {
 		RestauranteFormaDePagamentoId id = new RestauranteFormaDePagamentoId(idRestaurante, idFormaDePagamento);
 		restauranteFormaDePagamentoRepo.deleteById(id);
 	}
 
 	@GetMapping("/restaurantes/{idRestaurante}/formas-de-pagamento")
-	public List<FormaDePagamento> lista(@PathVariable("idRestaurante") Long idRestaurante) {
+	List<FormaDePagamento> lista(@PathVariable("idRestaurante") Long idRestaurante) {
 		Restaurante restaurante = new Restaurante();
 		restaurante.setId(idRestaurante);
 		return restauranteFormaDePagamentoRepo.findAllByRestauranteOrderByNomeAsc(restaurante);

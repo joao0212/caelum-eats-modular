@@ -2,8 +2,10 @@ package br.com.caelum.eats.pedido;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 class AvaliacaoDto {
 
@@ -11,7 +13,7 @@ class AvaliacaoDto {
 	private Integer nota;
 	private String comentario;
 
-	public AvaliacaoDto(Avaliacao avaliacao) {
+	AvaliacaoDto(Avaliacao avaliacao) {
 		this(avaliacao.getId(), avaliacao.getNota(), avaliacao.getComentario());
 	}
 }

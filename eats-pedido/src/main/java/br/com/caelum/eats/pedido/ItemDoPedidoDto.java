@@ -3,8 +3,10 @@ package br.com.caelum.eats.pedido;
 import br.com.caelum.eats.restaurante.ItemDoCardapioDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 class ItemDoPedidoDto {
 

@@ -1,4 +1,4 @@
-package br.com.caelum.eats.admin;
+package br.com.caelum.eats.administrativo;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,12 +15,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 public class FormaDePagamento {
 
-	public static enum Tipo {
+	static enum Tipo {
 		CARTAO_CREDITO, CARTAO_DEBITO, VALE_REFEICAO;
 	}
 

@@ -15,9 +15,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 class Cardapio {
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)

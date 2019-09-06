@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.caelum.eats.exception.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -16,15 +15,15 @@ class CategoriaDoCardapioController {
 	private CategoriaDoCardapioRepository repo;
 
 	@GetMapping("/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}")
-	public CategoriaDoCardapioDto categoriaPorId(@PathVariable("idCategoria") Long idCategoria) {
+	CategoriaDoCardapioDto categoriaPorId(@PathVariable("idCategoria") Long idCategoria) {
 		CategoriaDoCardapio categoria = repo.findById(idCategoria).orElseThrow(() -> new ResourceNotFoundException());
 		return new CategoriaDoCardapioDto(categoria);
 	}
 
 	@PostMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria")
-	public CategoriaDoCardapio cardapioDoRestaurante(@PathVariable("idCardapio") Long idCardapio,
+	CategoriaDoCardapioDto cardapioDoRestaurante(@PathVariable("idCardapio") Long idCardapio,
 			@RequestBody CategoriaDoCardapio categoria) {
-		return repo.save(categoria);
+		return new CategoriaDoCardapioDto(repo.save(categoria));
 	}
 
 }

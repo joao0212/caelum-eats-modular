@@ -10,9 +10,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Embeddable
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 class Cliente {
 
 	@NotBlank

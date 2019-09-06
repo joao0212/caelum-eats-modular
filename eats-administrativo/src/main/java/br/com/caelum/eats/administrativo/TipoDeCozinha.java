@@ -1,4 +1,4 @@
-package br.com.caelum.eats.admin;
+package br.com.caelum.eats.administrativo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,9 +12,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 public class TipoDeCozinha {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)

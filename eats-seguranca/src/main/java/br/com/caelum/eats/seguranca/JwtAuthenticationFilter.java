@@ -21,15 +21,13 @@ import lombok.AllArgsConstructor;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	private JwtTokenManager tokenManager;
-	private UserService usersService;
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
 		String jwt = getTokenFromRequest(request);
 		if (tokenManager.isValid(jwt)) {
-			Long userId = tokenManager.getUserIdFromToken(jwt);
-			UserDetails userDetails = usersService.loadUserById(userId);
+			UserDetails userDetails = tokenManager.getUserFromToken(jwt);
 			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,
 					null, userDetails.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(authentication);

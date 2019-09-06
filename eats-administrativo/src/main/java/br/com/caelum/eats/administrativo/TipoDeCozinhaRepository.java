@@ -1,4 +1,4 @@
-package br.com.caelum.eats.admin;
+package br.com.caelum.eats.administrativo;
 
 import java.util.List;
 

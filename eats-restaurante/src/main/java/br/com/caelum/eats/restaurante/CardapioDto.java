@@ -6,15 +6,17 @@ import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 class CardapioDto {
 
 	private Long id;
 	private List<CategoriaDoCardapioDto> categorias = new ArrayList<>();
 
-	public CardapioDto(Cardapio cardapio) {
+	CardapioDto(Cardapio cardapio) {
 		this(cardapio.getId(), trataCategorias(cardapio.getCategorias()));
 	}
 

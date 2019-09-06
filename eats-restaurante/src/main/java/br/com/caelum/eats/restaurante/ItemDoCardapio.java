@@ -17,9 +17,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 public class ItemDoCardapio {
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)

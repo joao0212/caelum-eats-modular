@@ -8,8 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.caelum.eats.admin.TipoDeCozinha;
-import br.com.caelum.eats.exception.ResourceNotFoundException;
+import br.com.caelum.eats.administrativo.TipoDeCozinha;
 import br.com.caelum.eats.restaurante.Restaurante;
 import br.com.caelum.eats.restaurante.RestauranteService;
 import lombok.AllArgsConstructor;
@@ -27,19 +26,19 @@ class DistanciaService {
 
 	private RestauranteService restaurantes;
 
-	public List<RestauranteComDistanciaDto> restaurantesMaisProximosAoCep(String cep) {
+	List<RestauranteComDistanciaDto> restaurantesMaisProximosAoCep(String cep) {
 		List<Restaurante> aprovados = restaurantes.findAllByAprovado(true, LIMIT).getContent();
 		return calculaDistanciaParaOsRestaurantes(aprovados, cep);
 	}
 
-	public List<RestauranteComDistanciaDto> restaurantesDoTipoDeCozinhaMaisProximosAoCep(Long tipoDeCozinhaId, String cep) {
+	List<RestauranteComDistanciaDto> restaurantesDoTipoDeCozinhaMaisProximosAoCep(Long tipoDeCozinhaId, String cep) {
 		TipoDeCozinha tipo = new TipoDeCozinha();
 		tipo.setId(tipoDeCozinhaId);
 		List<Restaurante> aprovadosDoTipoDeCozinha = restaurantes.findAllByAprovadoAndTipoDeCozinha(true, tipo, LIMIT).getContent();
 		return calculaDistanciaParaOsRestaurantes(aprovadosDoTipoDeCozinha, cep);
 	}
 
-	public RestauranteComDistanciaDto restauranteComDistanciaDoCep(Long restauranteId, String cep) {
+	RestauranteComDistanciaDto restauranteComDistanciaDoCep(Long restauranteId, String cep) {
 		Restaurante restaurante = restaurantes.findById(restauranteId).orElseThrow(() -> new ResourceNotFoundException());
 		String cepDoRestaurante = restaurante.getCep();
 		BigDecimal distancia = distanciaDoCep(cepDoRestaurante, cep);

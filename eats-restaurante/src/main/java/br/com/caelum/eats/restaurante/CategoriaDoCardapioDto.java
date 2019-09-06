@@ -6,8 +6,10 @@ import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 class CategoriaDoCardapioDto {
 
@@ -15,7 +17,7 @@ class CategoriaDoCardapioDto {
 	private String nome;
 	private List<ItemDoCardapioDto> itens = new ArrayList<>();
 
-	public CategoriaDoCardapioDto(CategoriaDoCardapio categoria) {
+	CategoriaDoCardapioDto(CategoriaDoCardapio categoria) {
 		this(categoria.getId(), categoria.getNome(), trataItens(categoria.getItens()));
 	}
 

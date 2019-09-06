@@ -23,9 +23,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 public class User implements UserDetails {
 
 	private static final long serialVersionUID = 1L;

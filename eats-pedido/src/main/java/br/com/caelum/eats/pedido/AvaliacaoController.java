@@ -21,7 +21,7 @@ class AvaliacaoController {
 	private AvaliacaoRepository repo;
 
 	@GetMapping("/restaurantes/{restauranteId}/avaliacoes")
-	public List<AvaliacaoDto> listaDoRestaurante(@PathVariable("restauranteId") Long restauranteId) {
+	List<AvaliacaoDto> listaDoRestaurante(@PathVariable("restauranteId") Long restauranteId) {
 		Restaurante restaurante = new Restaurante();
 		restaurante.setId(restauranteId);
 		return repo.findAllByRestaurante(restaurante).stream().map(a -> new AvaliacaoDto(a))
@@ -29,13 +29,13 @@ class AvaliacaoController {
 	}
 
 	@PostMapping("/restaurantes/{restauranteId}/avaliacoes")
-	public AvaliacaoDto adiciona(@RequestBody Avaliacao avaliacao) {
+	AvaliacaoDto adiciona(@RequestBody Avaliacao avaliacao) {
 		Avaliacao salvo = repo.save(avaliacao);
 		return new AvaliacaoDto(salvo);
 	}
 
 	@GetMapping("/restaurantes/media-avaliacoes")
-	public List<MediaAvaliacoesDto> mediaDasAvaliacoesDosRestaurantes(@RequestParam List<Long> idsDosRestaurantes) {
+	List<MediaAvaliacoesDto> mediaDasAvaliacoesDosRestaurantes(@RequestParam("idsDosRestaurantes") List<Long> idsDosRestaurantes) {
 		List<MediaAvaliacoesDto> medias = new ArrayList<>();
 		for (Long restauranteId : idsDosRestaurantes) {
 			Double media = repo.mediaDoRestaurantePeloId(restauranteId);
