@@ -31,7 +31,7 @@ public class PedidoDto {
 		return itens.stream().map(ItemDoPedidoDto::new).collect(Collectors.toList());
 	}
 
-	BigDecimal getTotal() {
+	public BigDecimal getTotal() {
 		BigDecimal total = restaurante.getTaxaDeEntregaEmReais() != null ? restaurante.getTaxaDeEntregaEmReais() : BigDecimal.ZERO;
 		for (ItemDoPedidoDto item : itens) {
 			BigDecimal preco = item.getItemDoCardapio().getPrecoPromocional() != null ? item.getItemDoCardapio().getPrecoPromocional() : item.getItemDoCardapio().getPreco() ;
