@@ -2,7 +2,7 @@ package br.com.caelum.eats.pagamento;
 
 import java.math.BigDecimal;
 
-import br.com.caelum.eats.administrativo.FormaDePagamento;
+import br.com.caelum.eats.administrativo.FormaDePagamentoDto;
 import br.com.caelum.eats.pedido.PedidoDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,11 +20,11 @@ class PagamentoDto {
 	private String expiracao;
 	private String codigo;
 	private Pagamento.Status status;
-	private FormaDePagamento formaDePagamento;
+	private FormaDePagamentoDto formaDePagamento;
 	private PedidoDto pedido;
 
 	PagamentoDto(Pagamento p) {
-		this(p.getId(), p.getValor(), p.getNome(), p.getNumero(), p.getExpiracao(), p.getCodigo(), p.getStatus(), p.getFormaDePagamento(), new PedidoDto(p.getPedido()));
+		this(p.getId(), p.getValor(), p.getNome(), p.getNumero(), p.getExpiracao(), p.getCodigo(), p.getStatus(), new FormaDePagamentoDto(p.getFormaDePagamento()), new PedidoDto(p.getPedido()));
 	}
 
 }

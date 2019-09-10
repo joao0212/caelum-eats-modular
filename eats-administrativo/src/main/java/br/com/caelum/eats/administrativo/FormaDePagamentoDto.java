@@ -8,13 +8,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-class FormaDePagamentoDto {
+public class FormaDePagamentoDto {
 
 	private Long id;
 	private Tipo tipo;
 	private String nome;
 
-	FormaDePagamentoDto(FormaDePagamento forma) {
+	public FormaDePagamentoDto(FormaDePagamento forma) {
 		this(forma.getId(), forma.getTipo(), forma.getNome());
 	}
 	

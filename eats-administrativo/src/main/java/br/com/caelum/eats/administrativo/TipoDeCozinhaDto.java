@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-class TipoDeCozinhaDto {
+public class TipoDeCozinhaDto {
 
 	private Long id;
 	private String nome;
 	
-	TipoDeCozinhaDto(TipoDeCozinha tipo) {
+	public TipoDeCozinhaDto(TipoDeCozinha tipo) {
 		this(tipo.getId(), tipo.getNome());
 	}
 
