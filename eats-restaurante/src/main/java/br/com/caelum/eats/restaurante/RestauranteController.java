@@ -71,7 +71,7 @@ class RestauranteController {
 
 	@Transactional
 	@PatchMapping("/admin/restaurantes/{id}")
-	void aprova(@PathVariable("id") Long id) {
+	public void aprova(@PathVariable("id") Long id) {
 		restauranteRepo.aprovaPorId(id);
 	}
 }
