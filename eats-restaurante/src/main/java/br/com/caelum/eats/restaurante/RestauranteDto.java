@@ -41,4 +41,16 @@ public class RestauranteDto {
 				new TipoDeCozinhaDto(restaurante.getTipoDeCozinha()));
 	}
 
+  public void populaRestaurante(Restaurante restaurante) {
+    restaurante.setCnpj(cnpj);
+    restaurante.setNome(nome);
+    restaurante.setDescricao(descricao);
+    restaurante.setCep(cep);
+    restaurante.setEndereco(endereco);
+    restaurante.setTaxaDeEntregaEmReais(taxaDeEntregaEmReais);
+    restaurante.setTempoDeEntregaMinimoEmMinutos(tempoDeEntregaMinimoEmMinutos);
+    restaurante.setTempoDeEntregaMaximoEmMinutos(tempoDeEntregaMaximoEmMinutos);
+    restaurante.setTipoDeCozinha(tipoDeCozinha.toTipoDeCozinha());
+  }
+
 }

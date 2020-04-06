@@ -27,13 +27,13 @@ class RestauranteController {
 		Restaurante restaurante = restauranteRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException());
 		return new RestauranteDto(restaurante);
 	}
-	
+
 	@GetMapping("/parceiros/restaurantes/do-usuario/{username}")
 	public RestauranteDto detalhaParceiro(@PathVariable("username") String username) {
 		Restaurante restaurante = restauranteRepo.findByUsername(username);
 		return new RestauranteDto(restaurante);
 	}
-	
+
 	@GetMapping("/restaurantes")
 	List<RestauranteDto> detalhePorIds(@RequestParam("ids") List<Long> ids) {
 		return restauranteRepo.findAllById(ids).stream().map(RestauranteDto::new).collect(Collectors.toList());
@@ -55,15 +55,15 @@ class RestauranteController {
 		return restauranteSalvo;
 	}
 
-	@PutMapping("/parceiros/restaurantes/{id}")
-	Restaurante atualiza(@RequestBody Restaurante restaurante) {
-		Restaurante doBD = restauranteRepo.getOne(restaurante.getId());
-		restaurante.setUser(doBD.getUser());
-		restaurante.setAprovado(doBD.getAprovado());
-		return restauranteRepo.save(restaurante);
-	}
+  @PutMapping("/parceiros/restaurantes/{id}")
+  public RestauranteDto atualiza(@RequestBody RestauranteDto restaurante) {
+    Restaurante doBD = restauranteRepo.getOne(restaurante.getId());
+    restaurante.populaRestaurante(doBD);
+    return new RestauranteDto(restauranteRepo.save(doBD));
+  }
 
-	@GetMapping("/admin/restaurantes/em-aprovacao")
+
+  @GetMapping("/admin/restaurantes/em-aprovacao")
 	List<RestauranteDto> emAprovacao() {
 		return restauranteRepo.findAllByAprovado(false).stream().map(RestauranteDto::new)
 				.collect(Collectors.toList());

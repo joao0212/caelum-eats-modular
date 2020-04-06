@@ -11,9 +11,12 @@ public class TipoDeCozinhaDto {
 
 	private Long id;
 	private String nome;
-	
+
 	public TipoDeCozinhaDto(TipoDeCozinha tipo) {
 		this(tipo.getId(), tipo.getNome());
 	}
 
+	public TipoDeCozinha toTipoDeCozinha() {
+    return new TipoDeCozinha(id, nome);
+	}
 }
