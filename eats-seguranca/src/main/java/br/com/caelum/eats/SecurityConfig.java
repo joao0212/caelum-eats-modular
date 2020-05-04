@@ -13,10 +13,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import br.com.caelum.eats.seguranca.JwtAuthenticationEntryPoint;
-import br.com.caelum.eats.seguranca.JwtAuthenticationFilter;
-import br.com.caelum.eats.seguranca.Role;
-import br.com.caelum.eats.seguranca.UserService;
+import br.com.caelum.eats.seguranca.entidade.Role;
+import br.com.caelum.eats.seguranca.service.UserService;
 import lombok.AllArgsConstructor;
 
 @Configuration
@@ -32,21 +30,18 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/restaurantes/**", "/pedidos/**", "/pagamentos/**", "/tipos-de-cozinha/**", "/formas-de-pagamento/**").permitAll()
-				.antMatchers("/socket/**").permitAll()
-				.antMatchers("/auth/**").permitAll()
-				.antMatchers("/actuator/**").permitAll()
-				.antMatchers("/admin/**").hasRole(Role.ROLES.ADMIN.name())
+				.antMatchers("/restaurantes/**", "/pedidos/**", "/pagamentos/**", "/tipos-de-cozinha/**",
+						"/formas-de-pagamento/**")
+				.permitAll().antMatchers("/socket/**").permitAll().antMatchers("/auth/**").permitAll()
+				.antMatchers("/actuator/**").permitAll().antMatchers("/admin/**").hasRole(Role.ROLES.ADMIN.name())
 				.antMatchers(HttpMethod.POST, "/parceiros/restaurantes").permitAll()
-				.antMatchers("/parceiros/restaurantes/do-usuario/{username}").access("@restauranteAuthorizationService.checaUsername(authentication,#username)")
-				.antMatchers("/parceiros/restaurantes/{restauranteId}/**").access("@restauranteAuthorizationService.checaId(authentication,#restauranteId)")
-				.antMatchers("/parceiros/**").hasRole(Role.ROLES.PARCEIRO.name())
-				.anyRequest().authenticated()
-				.and().cors()
-				.and().csrf().disable()
-				.formLogin().disable()
-				.httpBasic().disable()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+				.antMatchers("/parceiros/restaurantes/do-usuario/{username}")
+				.access("@restauranteAuthorizationService.checaUsername(authentication,#username)")
+				.antMatchers("/parceiros/restaurantes/{restauranteId}/**")
+				.access("@restauranteAuthorizationService.checaId(authentication,#restauranteId)")
+				.antMatchers("/parceiros/**").hasRole(Role.ROLES.PARCEIRO.name()).anyRequest().authenticated().and()
+				.cors().and().csrf().disable().formLogin().disable().httpBasic().disable().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
 				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);
 	}
