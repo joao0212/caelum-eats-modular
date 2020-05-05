@@ -1,4 +1,4 @@
-package br.com.caelum.eats;
+package br.com.caelum.eats.seguranca;
 
 import java.util.Date;
 import java.util.List;

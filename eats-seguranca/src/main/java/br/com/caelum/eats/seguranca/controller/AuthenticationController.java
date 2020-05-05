@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.caelum.eats.JwtTokenManager;
+import br.com.caelum.eats.seguranca.JwtTokenManager;
 import br.com.caelum.eats.seguranca.dto.AuthenticationDto;
 import br.com.caelum.eats.seguranca.dto.UserInfoDto;
 import br.com.caelum.eats.seguranca.entidade.Role;
