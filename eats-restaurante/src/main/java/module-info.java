@@ -15,8 +15,11 @@ module br.com.caelum.eats.restaurante {
 	requires transitive spring.security.core;
 	requires spring.tx;
 	requires spring.web;
+	requires net.bytebuddy;
+	requires com.fasterxml.classmate;
+	requires java.xml.bind;
 
 	opens br.com.caelum.eats.restaurante.controller to spring.beans, spring.context, spring.core;
 	opens br.com.caelum.eats.restaurante.service to spring.beans, spring.context, spring.core;
-	opens br.com.caelum.eats.restaurante.entidade to org.hibernate.orm.core, spring.core;
+	opens br.com.caelum.eats.restaurante.entidade to org.hibernate.orm.core, spring.core, org.hibernate.validator;
 }
