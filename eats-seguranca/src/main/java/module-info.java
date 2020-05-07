@@ -1,4 +1,4 @@
-open module br.com.caelum.eats.seguranca {
+module br.com.caelum.eats.seguranca {
 	exports br.com.caelum.eats.seguranca.entidade;
 	exports br.com.caelum.eats.seguranca.dto;
 	exports br.com.caelum.eats.seguranca.controller;
@@ -18,4 +18,12 @@ open module br.com.caelum.eats.seguranca {
 	requires transitive spring.security.core;
 	requires spring.security.web;
 	requires spring.web;
+	requires net.bytebuddy;
+	requires com.fasterxml.classmate;
+	requires java.xml.bind;
+
+	opens br.com.caelum.eats.seguranca to spring.context, spring.beans, spring.core;
+	opens br.com.caelum.eats.seguranca.entidade to org.hibernate.orm.core, spring.core, org.hibernate.validator;
+	opens br.com.caelum.eats.seguranca.controller to spring.core;
+	opens br.com.caelum.eats.seguranca.service to spring.beans;
 }
