@@ -14,10 +14,8 @@ import br.com.caelum.eats.restaurante.entidade.Restaurante;
 import br.com.caelum.eats.restaurante.entidade.RestauranteFormaDePagamento;
 import br.com.caelum.eats.restaurante.entidade.RestauranteFormaDePagamento.RestauranteFormaDePagamentoId;
 import br.com.caelum.eats.restaurante.repository.RestauranteFormaDePagamentoRepository;
-import lombok.AllArgsConstructor;
 
 @RestController
-@AllArgsConstructor
 class RestauranteFormaDePagamentoController {
 
 	private RestauranteFormaDePagamentoRepository restauranteFormaDePagamentoRepo;

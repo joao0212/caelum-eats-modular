@@ -7,10 +7,8 @@ import br.com.caelum.eats.restaurante.entidade.Restaurante;
 import br.com.caelum.eats.restaurante.repository.RestauranteRepository;
 import br.com.caelum.eats.seguranca.entidade.Role;
 import br.com.caelum.eats.seguranca.entidade.User;
-import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class RestauranteAuthorizationService {
 
 	private RestauranteRepository restauranteRepo;
@@ -30,5 +28,4 @@ public class RestauranteAuthorizationService {
 		User user = (User) authentication.getPrincipal();
 		return user.isInRole(Role.ROLES.PARCEIRO) && user.getName().equals(username);
 	}
-
 }

@@ -9,15 +9,21 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Entrega {
+
+	public Entrega(Long id, Cliente cliente, @NotBlank @Size(max = 9) String cep,
+			@NotBlank @Size(max = 255) String endereco, @Size(max = 255) String complemento, Pedido pedido) {
+		this.id = id;
+		this.cliente = cliente;
+		this.cep = cep;
+		this.endereco = endereco;
+		this.complemento = complemento;
+		this.pedido = pedido;
+	}
+
+	public Entrega() {
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,4 +46,31 @@ public class Entrega {
 	@OneToOne(optional = false)
 	private Pedido pedido;
 
+	public Long getId() {
+		return id;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+	
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
 }

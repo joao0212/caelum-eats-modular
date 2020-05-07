@@ -16,10 +16,8 @@ import br.com.caelum.eats.restaurante.entidade.HorarioDeFuncionamento;
 import br.com.caelum.eats.restaurante.entidade.Restaurante;
 import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
 import br.com.caelum.eats.restaurante.repository.HorarioDeFuncionamentoRepository;
-import lombok.AllArgsConstructor;
 
 @RestController
-@AllArgsConstructor
 class HorarioDeFuncionamentoController {
 
 	private HorarioDeFuncionamentoRepository repo;

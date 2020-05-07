@@ -8,9 +8,12 @@ module br.com.caelum.eats.pedido {
 	requires java.persistence;
 	requires java.transaction;
 	requires java.validation;
-	requires lombok;
 	requires spring.context;
 	requires spring.data.commons;
 	requires spring.data.jpa;
 	requires spring.web;
+
+	opens br.com.caelum.eats.pedido.entidade to org.hibernate.orm.core, spring.core;
+	opens br.com.caelum.eats.pedido.controller to spring.beans, spring.context, spring.core;
+	opens br.com.caelum.eats.pedido.service to spring.beans, spring.context, spring.core;
 }

@@ -2,13 +2,7 @@ package br.com.caelum.eats.administrativo.dto;
 
 import br.com.caelum.eats.administrativo.entidade.FormaDePagamento;
 import br.com.caelum.eats.administrativo.entidade.FormaDePagamento.Tipo;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class FormaDePagamentoDto {
 
 	private Long id;
@@ -19,4 +13,25 @@ public class FormaDePagamentoDto {
 		this(forma.getId(), forma.getTipo(), forma.getNome());
 	}
 
+	public FormaDePagamentoDto() {
+	}
+
+	public FormaDePagamentoDto(Long id, Tipo tipo, String nome) {
+		super();
+		this.id = id;
+		this.tipo = tipo;
+		this.nome = nome;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
 }

@@ -5,15 +5,20 @@ import javax.persistence.Embeddable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Embeddable
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Cliente {
+
+	public Cliente(@NotBlank @Size(max = 100) String nome, @NotBlank @Size(max = 14) String cpf,
+			@NotBlank @Size(max = 100) String email, @NotBlank @Size(max = 16) String telefone) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.telefone = telefone;
+	}
+
+	public Cliente() {
+		super();
+	}
 
 	@NotBlank
 	@Size(max = 100)
@@ -35,4 +40,19 @@ public class Cliente {
 	@Column(name = "telefone_do_cliente")
 	private String telefone;
 
+	public String getNome() {
+		return nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
 }

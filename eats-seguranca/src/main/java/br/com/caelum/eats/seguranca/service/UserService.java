@@ -10,10 +10,8 @@ import org.springframework.stereotype.Service;
 
 import br.com.caelum.eats.seguranca.entidade.User;
 import br.com.caelum.eats.seguranca.repository.UserRepository;
-import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class UserService implements UserDetailsService {
 
 	private UserRepository userRepository;
@@ -29,5 +27,4 @@ public class UserService implements UserDetailsService {
 		user.setPassword(encoder.encode(user.getPassword()));
 		return userRepository.save(user);
 	}
-
 }

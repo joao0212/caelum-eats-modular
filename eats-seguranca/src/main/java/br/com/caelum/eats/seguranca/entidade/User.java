@@ -18,15 +18,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class User implements UserDetails {
+
+	public User(Long id, @NotBlank String name, @NotBlank String password, List<Role> authorities) {
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.authorities = authorities;
+	}
+
+	public User() {
+	}
 
 	private static final long serialVersionUID = 1L;
 
@@ -34,13 +37,25 @@ public class User implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	@NotBlank
 	@JsonIgnore
 	private String name;
 
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	@NotBlank
 	@JsonIgnore
 	private String password;
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JsonIgnore
@@ -98,4 +113,11 @@ public class User implements UserDetails {
 		this.authorities.add(new Role(role.asAuthority()));
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
 }

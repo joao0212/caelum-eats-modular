@@ -7,8 +7,10 @@ module br.com.caelum.eats.pagamento {
 	requires transitive br.com.caelum.eats.pedido;
 	requires java.persistence;
 	requires java.validation;
-	requires lombok;
 	requires spring.data.commons;
 	requires spring.data.jpa;
 	requires spring.web;
+
+	opens br.com.caelum.eats.pagamento.controller to spring.beans, spring.context, spring.core;
+	opens br.com.caelum.eats.pagamento.entidade to org.hibernate.orm.core, spring.core;
 }

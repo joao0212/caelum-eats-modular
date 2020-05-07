@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.caelum.eats.administrativo.dto.TipoDeCozinhaDto;
 import br.com.caelum.eats.administrativo.entidade.TipoDeCozinha;
 import br.com.caelum.eats.administrativo.repository.TipoDeCozinhaRepository;
-import lombok.AllArgsConstructor;
 
 @RestController
-@AllArgsConstructor
 class TipoDeCozinhaController {
 
 	private TipoDeCozinhaRepository repo;

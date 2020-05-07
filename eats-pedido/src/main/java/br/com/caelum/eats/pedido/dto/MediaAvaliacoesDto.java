@@ -1,15 +1,24 @@
 package br.com.caelum.eats.pedido.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class MediaAvaliacoesDto {
+
+	public MediaAvaliacoesDto(Long restauranteId, Double media) {
+		this.restauranteId = restauranteId;
+		this.media = media;
+	}
+
+	public MediaAvaliacoesDto() {
+		super();
+	}
 
 	private Long restauranteId;
 	private Double media;
 
+	public Long getRestauranteId() {
+		return restauranteId;
+	}
+
+	public Double getMedia() {
+		return media;
+	}
 }

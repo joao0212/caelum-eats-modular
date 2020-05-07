@@ -9,10 +9,8 @@ import br.com.caelum.eats.restaurante.entidade.Cardapio;
 import br.com.caelum.eats.restaurante.entidade.Restaurante;
 import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
 import br.com.caelum.eats.restaurante.repository.CardapioRepository;
-import lombok.AllArgsConstructor;
 
 @RestController
-@AllArgsConstructor
 class CardapioController {
 
 	private CardapioRepository repo;

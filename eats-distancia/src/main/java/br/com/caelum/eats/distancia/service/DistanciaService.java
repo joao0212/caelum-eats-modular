@@ -13,7 +13,6 @@ import br.com.caelum.eats.distancia.dto.RestauranteComDistanciaDto;
 import br.com.caelum.eats.restaurante.entidade.Restaurante;
 import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
 import br.com.caelum.eats.restaurante.service.RestauranteService;
-import lombok.AllArgsConstructor;
 
 /*
  * Serviço que simula a obtenção dos restaurantes mais próximos a um dado CEP.
@@ -21,7 +20,6 @@ import lombok.AllArgsConstructor;
  * 
  */
 @Service
-@AllArgsConstructor
 public class DistanciaService {
 
 	private static final Pageable LIMIT = PageRequest.of(0, 5);

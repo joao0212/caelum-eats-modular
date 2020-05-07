@@ -17,15 +17,23 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import br.com.caelum.eats.restaurante.entidade.Restaurante;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Pedido {
+
+	public Pedido(Long id, @NotNull LocalDateTime dataHora, @NotNull Status status, Restaurante restaurante,
+			Entrega entrega, List<ItemDoPedido> itens) {
+		this.id = id;
+		this.dataHora = dataHora;
+		this.status = status;
+		this.restaurante = restaurante;
+		this.entrega = entrega;
+		this.itens = itens;
+	}
+
+	public Pedido() {
+		super();
+	}
 
 	public static enum Status {
 		REALIZADO, PAGO, CONFIRMADO, PRONTO, SAIU_PARA_ENTREGA, ENTREGUE;
@@ -51,4 +59,35 @@ public class Pedido {
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pedido")
 	private List<ItemDoPedido> itens = new ArrayList<>();
 
+	public Long getId() {
+		return id;
+	}
+
+	public LocalDateTime getDataHora() {
+		return dataHora;
+	}
+	
+	public void setDataHora(LocalDateTime dataHora) {
+		this.dataHora = dataHora;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+	
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public Restaurante getRestaurante() {
+		return restaurante;
+	}
+
+	public Entrega getEntrega() {
+		return entrega;
+	}
+
+	public List<ItemDoPedido> getItens() {
+		return itens;
+	}
 }

@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.caelum.eats.administrativo.dto.FormaDePagamentoDto;
 import br.com.caelum.eats.administrativo.entidade.FormaDePagamento;
 import br.com.caelum.eats.administrativo.repository.FormaDePagamentoRepository;
-import lombok.AllArgsConstructor;
 
 @RestController
-@AllArgsConstructor
 class FormaDePagamentoController {
 
 	private FormaDePagamentoRepository formaRepo;
@@ -47,5 +45,4 @@ class FormaDePagamentoController {
 	void remove(@PathVariable("id") Long id) {
 		formaRepo.deleteById(id);
 	}
-
 }

@@ -15,11 +15,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import br.com.caelum.eats.seguranca.entidade.Role;
 import br.com.caelum.eats.seguranca.service.UserService;
-import lombok.AllArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
-@AllArgsConstructor
 class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private UserService userService;

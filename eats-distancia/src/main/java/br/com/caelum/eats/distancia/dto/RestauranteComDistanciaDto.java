@@ -2,17 +2,24 @@ package br.com.caelum.eats.distancia.dto;
 
 import java.math.BigDecimal;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class RestauranteComDistanciaDto {
 
-	private Long restauranteId;
+	public RestauranteComDistanciaDto() {
+	}
 
+	public RestauranteComDistanciaDto(Long restauranteId, BigDecimal distancia) {
+		this.restauranteId = restauranteId;
+		this.distancia = distancia;
+	}
+
+	private Long restauranteId;
 	private BigDecimal distancia;
 
+	public Long getRestauranteId() {
+		return restauranteId;
+	}
+
+	public BigDecimal getDistancia() {
+		return distancia;
+	}
 }

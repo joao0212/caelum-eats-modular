@@ -7,7 +7,6 @@ open module br.com.caelum.eats.seguranca {
 	requires java.persistence;
 	requires java.validation;
 	requires jjwt;
-	requires lombok;
 	requires org.apache.tomcat.embed.core;
 	requires org.slf4j;
 	requires spring.beans;
@@ -16,7 +15,7 @@ open module br.com.caelum.eats.seguranca {
 	requires spring.data.commons;
 	requires spring.data.jpa;
 	requires spring.security.config;
-	requires spring.security.core;
+	requires transitive spring.security.core;
 	requires spring.security.web;
 	requires spring.web;
 }

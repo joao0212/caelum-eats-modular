@@ -19,11 +19,9 @@ import br.com.caelum.eats.pagamento.repository.PagamentoRepository;
 import br.com.caelum.eats.pedido.entidade.Pedido;
 import br.com.caelum.eats.pedido.service.PedidoService;
 import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
-import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/pagamentos")
-@AllArgsConstructor
 class PagamentoController {
 
 	private PagamentoRepository pagamentoRepo;

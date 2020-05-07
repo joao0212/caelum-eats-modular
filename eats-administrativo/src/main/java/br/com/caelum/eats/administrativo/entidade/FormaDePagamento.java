@@ -10,15 +10,18 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class FormaDePagamento {
+
+	public FormaDePagamento() {
+
+	}
+
+	public FormaDePagamento(Long id, @NotNull Tipo tipo, @NotBlank @Size(max = 100) String nome) {
+		this.id = id;
+		this.tipo = tipo;
+		this.nome = nome;
+	}
 
 	public static enum Tipo {
 		CARTAO_CREDITO, CARTAO_DEBITO, VALE_REFEICAO;
@@ -36,4 +39,15 @@ public class FormaDePagamento {
 	@Size(max = 100)
 	private String nome;
 
+	public Long getId() {
+		return id;
+	}
+
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
 }

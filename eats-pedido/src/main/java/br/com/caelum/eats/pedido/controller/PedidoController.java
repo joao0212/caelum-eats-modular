@@ -16,10 +16,8 @@ import br.com.caelum.eats.pedido.dto.PedidoDto;
 import br.com.caelum.eats.pedido.entidade.Pedido;
 import br.com.caelum.eats.pedido.repository.PedidoRepository;
 import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
-import lombok.AllArgsConstructor;
 
 @RestController
-@AllArgsConstructor
 class PedidoController {
 
 	private PedidoRepository repo;

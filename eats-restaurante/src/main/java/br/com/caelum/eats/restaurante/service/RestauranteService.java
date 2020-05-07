@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 import br.com.caelum.eats.administrativo.entidade.TipoDeCozinha;
 import br.com.caelum.eats.restaurante.entidade.Restaurante;
 import br.com.caelum.eats.restaurante.repository.RestauranteRepository;
-import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class RestauranteService {
 
 	private RestauranteRepository repo;
@@ -28,5 +26,4 @@ public class RestauranteService {
 	public Optional<Restaurante> findById(Long id) {
 		return repo.findById(id);
 	}
-
 }

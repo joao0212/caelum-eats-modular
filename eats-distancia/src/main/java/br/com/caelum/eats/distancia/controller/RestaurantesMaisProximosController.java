@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.caelum.eats.distancia.dto.RestauranteComDistanciaDto;
 import br.com.caelum.eats.distancia.service.DistanciaService;
-import lombok.AllArgsConstructor;
 
 @RestController
-@AllArgsConstructor
 class RestaurantesMaisProximosController {
 
 	private DistanciaService distanciaService;
@@ -32,5 +30,4 @@ class RestaurantesMaisProximosController {
 			@PathVariable("restauranteId") Long restauranteId) {
 		return distanciaService.restauranteComDistanciaDoCep(restauranteId, cep);
 	}
-
 }

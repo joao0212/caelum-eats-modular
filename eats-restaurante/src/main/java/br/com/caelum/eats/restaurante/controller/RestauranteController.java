@@ -19,10 +19,8 @@ import br.com.caelum.eats.restaurante.entidade.Restaurante;
 import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
 import br.com.caelum.eats.restaurante.repository.CardapioRepository;
 import br.com.caelum.eats.restaurante.repository.RestauranteRepository;
-import lombok.AllArgsConstructor;
 
 @RestController
-@AllArgsConstructor
 class RestauranteController {
 
 	private RestauranteRepository restauranteRepo;

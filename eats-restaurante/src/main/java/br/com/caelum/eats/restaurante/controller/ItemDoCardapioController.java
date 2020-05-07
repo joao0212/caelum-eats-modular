@@ -12,10 +12,8 @@ import br.com.caelum.eats.restaurante.dto.ItemDoCardapioDto;
 import br.com.caelum.eats.restaurante.entidade.ItemDoCardapio;
 import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
 import br.com.caelum.eats.restaurante.repository.ItemDoCardapioRepository;
-import lombok.AllArgsConstructor;
 
 @RestController
-@AllArgsConstructor
 class ItemDoCardapioController {
 
 	private ItemDoCardapioRepository repo;
@@ -40,5 +38,4 @@ class ItemDoCardapioController {
 	public void removeItem(@PathVariable("idItem") Long idItem) {
 		repo.deleteById(idItem);
 	}
-
 }

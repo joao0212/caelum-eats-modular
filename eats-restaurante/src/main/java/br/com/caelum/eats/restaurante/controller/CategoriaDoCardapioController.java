@@ -10,10 +10,8 @@ import br.com.caelum.eats.restaurante.dto.CategoriaDoCardapioDto;
 import br.com.caelum.eats.restaurante.entidade.CategoriaDoCardapio;
 import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
 import br.com.caelum.eats.restaurante.repository.CategoriaDoCardapioRepository;
-import lombok.AllArgsConstructor;
 
 @RestController
-@AllArgsConstructor
 class CategoriaDoCardapioController {
 
 	private CategoriaDoCardapioRepository repo;

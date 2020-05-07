@@ -3,14 +3,17 @@ package br.com.caelum.eats.seguranca.dto;
 import java.util.List;
 
 import br.com.caelum.eats.seguranca.entidade.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class AuthenticationDto {
+
+	public AuthenticationDto(String username, List<String> roles, String token) {
+		this.username = username;
+		this.roles = roles;
+		this.token = token;
+	}
+
+	public AuthenticationDto() {
+	}
 
 	private String username;
 	private List<String> roles;
@@ -20,4 +23,15 @@ public class AuthenticationDto {
 		this(user.getName(), user.getRoles(), jwtToken);
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public String getToken() {
+		return token;
+	}
 }

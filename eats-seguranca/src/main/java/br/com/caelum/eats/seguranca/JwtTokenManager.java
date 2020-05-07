@@ -3,7 +3,6 @@ package br.com.caelum.eats.seguranca;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import br.com.caelum.eats.seguranca.entidade.User;
@@ -18,11 +17,6 @@ public class JwtTokenManager {
 
 	private String secret;
 	private long expirationInMillis;
-
-	public JwtTokenManager(@Value("${jwt.secret}") String secret, @Value("${jwt.expiration}") long expirationInMillis) {
-		this.secret = secret;
-		this.expirationInMillis = expirationInMillis;
-	}
 
 	public String generateToken(User user) {
 		final Date now = new Date();

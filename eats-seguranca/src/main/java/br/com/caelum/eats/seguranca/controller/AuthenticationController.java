@@ -16,11 +16,9 @@ import br.com.caelum.eats.seguranca.dto.UserInfoDto;
 import br.com.caelum.eats.seguranca.entidade.Role;
 import br.com.caelum.eats.seguranca.entidade.User;
 import br.com.caelum.eats.seguranca.service.UserService;
-import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/auth")
-@AllArgsConstructor
 class AuthenticationController {
 
 	private AuthenticationManager authManager;

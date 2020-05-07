@@ -12,15 +12,20 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class HorarioDeFuncionamento {
+
+	public HorarioDeFuncionamento(Long id, @NotNull DayOfWeek diaDaSemana, @NotNull LocalTime horarioDeAbertura,
+			@NotNull LocalTime horarioDeFechamento, Restaurante restaurante) {
+		this.id = id;
+		this.diaDaSemana = diaDaSemana;
+		this.horarioDeAbertura = horarioDeAbertura;
+		this.horarioDeFechamento = horarioDeFechamento;
+		this.restaurante = restaurante;
+	}
+
+	public HorarioDeFuncionamento() {
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,4 +44,23 @@ public class HorarioDeFuncionamento {
 	@ManyToOne
 	private Restaurante restaurante;
 
+	public Long getId() {
+		return id;
+	}
+
+	public DayOfWeek getDiaDaSemana() {
+		return diaDaSemana;
+	}
+
+	public LocalTime getHorarioDeAbertura() {
+		return horarioDeAbertura;
+	}
+
+	public LocalTime getHorarioDeFechamento() {
+		return horarioDeFechamento;
+	}
+
+	public Restaurante getRestaurante() {
+		return restaurante;
+	}
 }

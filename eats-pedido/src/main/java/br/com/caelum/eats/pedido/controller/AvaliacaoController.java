@@ -16,10 +16,8 @@ import br.com.caelum.eats.pedido.dto.MediaAvaliacoesDto;
 import br.com.caelum.eats.pedido.entidade.Avaliacao;
 import br.com.caelum.eats.pedido.repository.AvaliacaoRepository;
 import br.com.caelum.eats.restaurante.entidade.Restaurante;
-import lombok.AllArgsConstructor;
 
 @RestController
-@AllArgsConstructor
 class AvaliacaoController {
 
 	private AvaliacaoRepository repo;
@@ -48,5 +46,4 @@ class AvaliacaoController {
 		}
 		return medias;
 	}
-
 }

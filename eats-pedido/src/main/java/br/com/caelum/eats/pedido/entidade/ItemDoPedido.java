@@ -9,15 +9,21 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 import br.com.caelum.eats.restaurante.entidade.ItemDoCardapio;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class ItemDoPedido {
+
+	public ItemDoPedido() {
+	}
+
+	public ItemDoPedido(Long id, @NotNull @Positive Integer quantidade, String observacao, Pedido pedido,
+			ItemDoCardapio itemDoCardapio) {
+		this.id = id;
+		this.quantidade = quantidade;
+		this.observacao = observacao;
+		this.pedido = pedido;
+		this.itemDoCardapio = itemDoCardapio;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,4 +41,27 @@ public class ItemDoPedido {
 	@ManyToOne(optional = false)
 	private ItemDoCardapio itemDoCardapio;
 
+	public Long getId() {
+		return id;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+	
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+
+	public ItemDoCardapio getItemDoCardapio() {
+		return itemDoCardapio;
+	}
 }

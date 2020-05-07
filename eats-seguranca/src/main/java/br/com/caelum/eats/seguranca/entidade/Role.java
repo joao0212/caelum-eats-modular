@@ -5,15 +5,15 @@ import javax.persistence.Id;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Role implements GrantedAuthority {
+
+	public Role(String authority) {
+		this.authority = authority;
+	}
+
+	public Role() {
+	}
 
 	private static final long serialVersionUID = 1L;
 
@@ -30,5 +30,9 @@ public class Role implements GrantedAuthority {
 
 	public String getRole() {
 		return authority.replace("ROLE_", "");
+	}
+
+	public String getAuthority() {
+		return authority;
 	}
 }

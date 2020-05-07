@@ -4,8 +4,10 @@ module br.com.caelum.eats.distancia {
 
 	requires transitive br.com.caelum.eats.administrativo;
 	requires transitive br.com.caelum.eats.restaurante;
-	requires lombok;
 	requires spring.context;
 	requires spring.data.commons;
 	requires spring.web;
+
+	opens br.com.caelum.eats.distancia.controller to spring.context, spring.beans, spring.core;
+	opens br.com.caelum.eats.distancia.service to spring.context, spring.beans, spring.core;
 }

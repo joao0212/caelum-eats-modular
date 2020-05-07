@@ -10,15 +10,20 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Avaliacao {
+
+	public Avaliacao(Long id, @NotNull @PositiveOrZero @Max(5) Integer nota, @Size(max = 255) String comentario,
+			Pedido pedido) {
+		this.id = id;
+		this.nota = nota;
+		this.comentario = comentario;
+		this.pedido = pedido;
+	}
+
+	public Avaliacao() {
+		super();
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,4 +40,19 @@ public class Avaliacao {
 	@OneToOne(optional = false)
 	private Pedido pedido;
 
+	public Long getId() {
+		return id;
+	}
+
+	public Integer getNota() {
+		return nota;
+	}
+
+	public String getComentario() {
+		return comentario;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
 }
