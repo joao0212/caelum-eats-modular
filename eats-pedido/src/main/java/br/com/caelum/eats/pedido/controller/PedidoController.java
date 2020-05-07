@@ -18,7 +18,7 @@ import br.com.caelum.eats.pedido.repository.PedidoRepository;
 import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
 
 @RestController
-class PedidoController {
+public class PedidoController {
 
 	private PedidoRepository repo;
 

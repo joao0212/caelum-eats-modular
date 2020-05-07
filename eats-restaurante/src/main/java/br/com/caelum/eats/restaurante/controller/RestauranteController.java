@@ -21,7 +21,7 @@ import br.com.caelum.eats.restaurante.repository.CardapioRepository;
 import br.com.caelum.eats.restaurante.repository.RestauranteRepository;
 
 @RestController
-class RestauranteController {
+public class RestauranteController {
 
 	private RestauranteRepository restauranteRepo;
 	private CardapioRepository cardapioRepo;

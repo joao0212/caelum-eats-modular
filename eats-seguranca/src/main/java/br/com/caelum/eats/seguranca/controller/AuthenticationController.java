@@ -19,7 +19,7 @@ import br.com.caelum.eats.seguranca.service.UserService;
 
 @RestController
 @RequestMapping("/auth")
-class AuthenticationController {
+public class AuthenticationController {
 
 	private AuthenticationManager authManager;
 	private JwtTokenManager jwtTokenManager;

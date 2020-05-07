@@ -14,7 +14,7 @@ import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
 import br.com.caelum.eats.restaurante.repository.ItemDoCardapioRepository;
 
 @RestController
-class ItemDoCardapioController {
+public class ItemDoCardapioController {
 
 	private ItemDoCardapioRepository repo;
 

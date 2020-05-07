@@ -16,7 +16,7 @@ import br.com.caelum.eats.administrativo.entidade.TipoDeCozinha;
 import br.com.caelum.eats.administrativo.repository.TipoDeCozinhaRepository;
 
 @RestController
-class TipoDeCozinhaController {
+public class TipoDeCozinhaController {
 
 	private TipoDeCozinhaRepository repo;
 

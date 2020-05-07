@@ -18,7 +18,7 @@ import br.com.caelum.eats.pedido.repository.AvaliacaoRepository;
 import br.com.caelum.eats.restaurante.entidade.Restaurante;
 
 @RestController
-class AvaliacaoController {
+public class AvaliacaoController {
 
 	private AvaliacaoRepository repo;
 

@@ -18,7 +18,7 @@ import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
 import br.com.caelum.eats.restaurante.repository.HorarioDeFuncionamentoRepository;
 
 @RestController
-class HorarioDeFuncionamentoController {
+public class HorarioDeFuncionamentoController {
 
 	private HorarioDeFuncionamentoRepository repo;
 

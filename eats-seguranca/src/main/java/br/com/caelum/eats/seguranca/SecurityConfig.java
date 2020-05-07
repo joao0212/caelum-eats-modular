@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -24,6 +23,16 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private UserService userService;
 	private JwtAuthenticationFilter jwtAuthenticationFilter;
 	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+	private PasswordEncoder passwordEncoder;
+
+	public SecurityConfig(UserService userService, JwtAuthenticationFilter jwtAuthenticationFilter,
+			JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint, PasswordEncoder passwordEncoder) {
+		super();
+		this.userService = userService;
+		this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+		this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
+		this.passwordEncoder = passwordEncoder;
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -46,16 +55,12 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
+		auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
 	}
 
 	@Override
 	@Bean(BeanIds.AUTHENTICATION_MANAGER)
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
-	}
-
-	private PasswordEncoder bCryptPasswordEncoder() {
-		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 }

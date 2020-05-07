@@ -10,7 +10,7 @@ import br.com.caelum.eats.distancia.dto.RestauranteComDistanciaDto;
 import br.com.caelum.eats.distancia.service.DistanciaService;
 
 @RestController
-class RestaurantesMaisProximosController {
+public class RestaurantesMaisProximosController {
 
 	private DistanciaService distanciaService;
 

@@ -17,7 +17,7 @@ import br.com.caelum.eats.administrativo.entidade.FormaDePagamento;
 import br.com.caelum.eats.administrativo.repository.FormaDePagamentoRepository;
 
 @RestController
-class FormaDePagamentoController {
+public class FormaDePagamentoController {
 
 	private FormaDePagamentoRepository formaRepo;
 
