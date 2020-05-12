@@ -16,6 +16,7 @@ module br.com.caelum.eats.administrativo {
 	requires java.xml.bind;
 	requires spring.beans;
 
+	opens br.com.caelum.eats.administrativo.dto to com.fasterxml.jackson.databind;
 	opens br.com.caelum.eats.administrativo.entidade
 			to org.hibernate.orm.core, spring.core, org.hibernate.validator, com.fasterxml.jackson.databind;
 	opens br.com.caelum.eats.administrativo.controller to spring.context, spring.core, spring.beans;

@@ -22,6 +22,7 @@ module br.com.caelum.eats.restaurante {
 	requires java.xml.bind;
 	requires spring.beans;
 
+	opens br.com.caelum.eats.restaurante.dto to com.fasterxml.jackson.databind;
 	opens br.com.caelum.eats.restaurante.controller to spring.beans, spring.context, spring.core;
 	opens br.com.caelum.eats.restaurante.service to spring.beans, spring.context, spring.core;
 	opens br.com.caelum.eats.restaurante.entidade
