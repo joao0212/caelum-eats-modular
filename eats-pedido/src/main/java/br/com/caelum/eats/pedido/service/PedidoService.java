@@ -1,5 +1,6 @@
 package br.com.caelum.eats.pedido.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.caelum.eats.pedido.entidade.Pedido;
@@ -9,6 +10,10 @@ import br.com.caelum.eats.pedido.repository.PedidoRepository;
 @Service
 public class PedidoService {
 
+	public PedidoService() {
+	}
+
+	@Autowired
 	private PedidoRepository repo;
 
 	public Pedido porIdComItens(Long pedidoId) {

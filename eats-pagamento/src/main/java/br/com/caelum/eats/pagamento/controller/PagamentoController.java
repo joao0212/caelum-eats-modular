@@ -2,6 +2,7 @@ package br.com.caelum.eats.pagamento.controller;
 
 import java.net.URI;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,12 @@ import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
 @RequestMapping("/pagamentos")
 public class PagamentoController {
 
+	public PagamentoController() {
+	}
+
+	@Autowired
 	private PagamentoRepository pagamentoRepo;
+	@Autowired
 	private PedidoService pedidos;
 
 	@GetMapping("/{id}")

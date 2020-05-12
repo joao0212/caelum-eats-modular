@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ public class DistanciaService {
 
 	private static final Pageable LIMIT = PageRequest.of(0, 5);
 
+	@Autowired
 	private RestauranteService restaurantes;
 
 	public List<RestauranteComDistanciaDto> restaurantesMaisProximosAoCep(String cep) {

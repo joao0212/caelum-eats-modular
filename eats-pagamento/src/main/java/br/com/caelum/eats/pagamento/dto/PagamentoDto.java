@@ -23,7 +23,6 @@ public class PagamentoDto {
 	}
 
 	public PagamentoDto() {
-		super();
 	}
 
 	private Long id;

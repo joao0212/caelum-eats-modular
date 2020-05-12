@@ -12,8 +12,11 @@ module br.com.caelum.eats.pagamento {
 	requires spring.web;
 	requires net.bytebuddy;
 	requires com.fasterxml.classmate;
+	requires com.fasterxml.jackson.databind;
 	requires java.xml.bind;
+	requires spring.beans;
 
 	opens br.com.caelum.eats.pagamento.controller to spring.beans, spring.context, spring.core;
-	opens br.com.caelum.eats.pagamento.entidade to org.hibernate.orm.core, spring.core, org.hibernate.validator;
+	opens br.com.caelum.eats.pagamento.entidade
+			to org.hibernate.orm.core, spring.core, org.hibernate.validator, com.fasterxml.jackson.databind;
 }

@@ -20,10 +20,12 @@ module br.com.caelum.eats.seguranca {
 	requires spring.web;
 	requires net.bytebuddy;
 	requires com.fasterxml.classmate;
+	requires com.fasterxml.jackson.databind;
 	requires java.xml.bind;
 
 	opens br.com.caelum.eats.seguranca to spring.context, spring.beans, spring.core;
 	opens br.com.caelum.eats.seguranca.entidade to org.hibernate.orm.core, spring.core, org.hibernate.validator;
 	opens br.com.caelum.eats.seguranca.controller to spring.core;
-	opens br.com.caelum.eats.seguranca.service to spring.beans;
+	opens br.com.caelum.eats.seguranca.service to spring.beans, spring.core;
+	opens br.com.caelum.eats.seguranca.dto to com.fasterxml.jackson.databind;
 }

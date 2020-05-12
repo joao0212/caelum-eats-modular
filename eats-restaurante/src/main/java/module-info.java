@@ -4,6 +4,7 @@ module br.com.caelum.eats.restaurante {
 	exports br.com.caelum.eats.restaurante.controller;
 	exports br.com.caelum.eats.restaurante.exception;
 	exports br.com.caelum.eats.restaurante.service;
+	exports br.com.caelum.eats.restaurante.repository;
 
 	requires transitive br.com.caelum.eats.administrativo;
 	requires transitive br.com.caelum.eats.seguranca;
@@ -17,9 +18,12 @@ module br.com.caelum.eats.restaurante {
 	requires spring.web;
 	requires net.bytebuddy;
 	requires com.fasterxml.classmate;
+	requires com.fasterxml.jackson.databind;
 	requires java.xml.bind;
+	requires spring.beans;
 
 	opens br.com.caelum.eats.restaurante.controller to spring.beans, spring.context, spring.core;
 	opens br.com.caelum.eats.restaurante.service to spring.beans, spring.context, spring.core;
-	opens br.com.caelum.eats.restaurante.entidade to org.hibernate.orm.core, spring.core, org.hibernate.validator;
+	opens br.com.caelum.eats.restaurante.entidade
+			to org.hibernate.orm.core, spring.core, org.hibernate.validator, com.fasterxml.jackson.databind;
 }

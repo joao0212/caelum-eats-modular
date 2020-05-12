@@ -27,7 +27,6 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	public SecurityConfig(UserService userService, JwtAuthenticationFilter jwtAuthenticationFilter,
 			JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint, PasswordEncoder passwordEncoder) {
-		super();
 		this.userService = userService;
 		this.jwtAuthenticationFilter = jwtAuthenticationFilter;
 		this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;

@@ -1,5 +1,6 @@
 package br.com.caelum.eats.restaurante.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,10 @@ import br.com.caelum.eats.restaurante.repository.CardapioRepository;
 @RestController
 public class CardapioController {
 
+	public CardapioController() {
+	}
+
+	@Autowired
 	private CardapioRepository repo;
 
 	@GetMapping("/restaurantes/{idRestaurante}/cardapio")

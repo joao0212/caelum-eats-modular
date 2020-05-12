@@ -1,5 +1,6 @@
 package br.com.caelum.eats.restaurante.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,10 @@ import br.com.caelum.eats.seguranca.entidade.User;
 @Service
 public class RestauranteAuthorizationService {
 
+	public RestauranteAuthorizationService() {
+	}
+
+	@Autowired
 	private RestauranteRepository restauranteRepo;
 
 	public boolean checaId(Authentication authentication, long id) {

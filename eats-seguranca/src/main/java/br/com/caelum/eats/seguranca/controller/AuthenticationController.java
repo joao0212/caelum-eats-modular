@@ -1,5 +1,6 @@
 package br.com.caelum.eats.seguranca.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,8 +22,11 @@ import br.com.caelum.eats.seguranca.service.UserService;
 @RequestMapping("/auth")
 public class AuthenticationController {
 
+	@Autowired
 	private AuthenticationManager authManager;
+	@Autowired
 	private JwtTokenManager jwtTokenManager;
+	@Autowired
 	private UserService userService;
 
 	@PostMapping
@@ -49,5 +53,4 @@ public class AuthenticationController {
 		User salvo = userService.save(user);
 		return salvo.getId();
 	}
-
 }

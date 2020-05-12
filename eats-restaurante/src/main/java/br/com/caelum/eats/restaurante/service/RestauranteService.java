@@ -2,6 +2,7 @@ package br.com.caelum.eats.restaurante.service;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,10 @@ import br.com.caelum.eats.restaurante.repository.RestauranteRepository;
 @Service
 public class RestauranteService {
 
+	public RestauranteService() {
+	}
+
+	@Autowired
 	private RestauranteRepository repo;
 
 	public Page<Restaurante> findAllByAprovado(boolean aprovado, Pageable limit) {

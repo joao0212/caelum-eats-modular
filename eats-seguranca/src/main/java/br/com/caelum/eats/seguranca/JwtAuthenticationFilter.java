@@ -19,6 +19,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	private JwtTokenManager tokenManager;
 
+	public JwtAuthenticationFilter(JwtTokenManager tokenManager) {
+		this.tokenManager = tokenManager;
+	}
+
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {

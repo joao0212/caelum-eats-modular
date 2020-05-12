@@ -8,7 +8,9 @@ module br.com.caelum.eats.distancia {
 	requires spring.data.commons;
 	requires spring.web;
 	requires com.fasterxml.classmate;
+	requires com.fasterxml.jackson.databind;
 	requires java.xml.bind;
+	requires spring.beans;
 
 	opens br.com.caelum.eats.distancia.controller to spring.context, spring.beans, spring.core;
 	opens br.com.caelum.eats.distancia.service to spring.context, spring.beans, spring.core;
