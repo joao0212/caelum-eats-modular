@@ -10,9 +10,6 @@ import br.com.caelum.eats.pedido.repository.PedidoRepository;
 @Service
 public class PedidoService {
 
-	public PedidoService() {
-	}
-
 	@Autowired
 	private PedidoRepository repo;
 

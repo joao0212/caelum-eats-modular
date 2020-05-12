@@ -14,7 +14,6 @@ import javax.validation.constraints.Size;
 public class FormaDePagamento {
 
 	public FormaDePagamento() {
-
 	}
 
 	public FormaDePagamento(Long id, @NotNull Tipo tipo, @NotBlank @Size(max = 100) String nome) {

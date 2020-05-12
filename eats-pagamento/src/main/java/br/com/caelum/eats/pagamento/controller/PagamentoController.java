@@ -25,9 +25,6 @@ import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
 @RequestMapping("/pagamentos")
 public class PagamentoController {
 
-	public PagamentoController() {
-	}
-
 	@Autowired
 	private PagamentoRepository pagamentoRepo;
 	@Autowired

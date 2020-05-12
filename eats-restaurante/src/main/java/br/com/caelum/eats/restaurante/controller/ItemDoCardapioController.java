@@ -17,9 +17,6 @@ import br.com.caelum.eats.restaurante.repository.ItemDoCardapioRepository;
 @RestController
 public class ItemDoCardapioController {
 
-	public ItemDoCardapioController() {
-	}
-
 	@Autowired
 	private ItemDoCardapioRepository repo;
 

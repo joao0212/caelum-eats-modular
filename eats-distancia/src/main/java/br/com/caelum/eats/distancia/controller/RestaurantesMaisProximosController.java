@@ -16,9 +16,6 @@ public class RestaurantesMaisProximosController {
 	@Autowired
 	private DistanciaService distanciaService;
 
-	public RestaurantesMaisProximosController() {
-	}
-
 	@GetMapping("/restaurantes/mais-proximos/{cep}")
 	List<RestauranteComDistanciaDto> maisProximos(@PathVariable("cep") String cep) {
 		return distanciaService.restaurantesMaisProximosAoCep(cep);

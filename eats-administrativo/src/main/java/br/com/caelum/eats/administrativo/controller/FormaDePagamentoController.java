@@ -23,9 +23,6 @@ public class FormaDePagamentoController {
 	@Autowired
 	private FormaDePagamentoRepository formaRepo;
 
-	public FormaDePagamentoController() {
-	}
-
 	@GetMapping("/formas-de-pagamento")
 	List<FormaDePagamentoDto> lista() {
 		return formaRepo.findAllByOrderByNomeAsc().stream().map(FormaDePagamentoDto::new).collect(Collectors.toList());

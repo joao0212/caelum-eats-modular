@@ -24,9 +24,6 @@ public class PedidoController {
 	@Autowired
 	private PedidoRepository repo;
 
-	public PedidoController() {
-	}
-
 	@GetMapping("/pedidos")
 	List<PedidoDto> lista() {
 		return repo.findAll().stream().map(pedido -> new PedidoDto(pedido)).collect(Collectors.toList());

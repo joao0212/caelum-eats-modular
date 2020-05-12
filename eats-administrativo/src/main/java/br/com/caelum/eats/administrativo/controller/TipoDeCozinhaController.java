@@ -19,9 +19,6 @@ import br.com.caelum.eats.administrativo.repository.TipoDeCozinhaRepository;
 @RestController
 public class TipoDeCozinhaController {
 
-	public TipoDeCozinhaController() {
-	}
-
 	@Autowired
 	private TipoDeCozinhaRepository repo;
 

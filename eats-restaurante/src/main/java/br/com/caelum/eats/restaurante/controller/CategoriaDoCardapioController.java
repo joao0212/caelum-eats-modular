@@ -15,9 +15,6 @@ import br.com.caelum.eats.restaurante.repository.CategoriaDoCardapioRepository;
 @RestController
 public class CategoriaDoCardapioController {
 
-	public CategoriaDoCardapioController() {
-	}
-
 	@Autowired
 	private CategoriaDoCardapioRepository repo;
 

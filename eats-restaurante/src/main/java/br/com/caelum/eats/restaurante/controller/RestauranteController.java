@@ -24,8 +24,6 @@ import br.com.caelum.eats.restaurante.repository.RestauranteRepository;
 @RestController
 public class RestauranteController {
 
-	public RestauranteController() { }
-
 	@Autowired
 	private RestauranteRepository restauranteRepo;
 	@Autowired

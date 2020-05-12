@@ -21,9 +21,6 @@ import br.com.caelum.eats.restaurante.repository.HorarioDeFuncionamentoRepositor
 @RestController
 public class HorarioDeFuncionamentoController {
 
-	public HorarioDeFuncionamentoController() {
-	}
-
 	@Autowired
 	private HorarioDeFuncionamentoRepository repo;
 

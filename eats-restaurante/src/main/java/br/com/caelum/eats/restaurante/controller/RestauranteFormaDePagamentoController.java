@@ -19,9 +19,6 @@ import br.com.caelum.eats.restaurante.repository.RestauranteFormaDePagamentoRepo
 @RestController
 public class RestauranteFormaDePagamentoController {
 
-	public RestauranteFormaDePagamentoController() {
-	}
-
 	@Autowired
 	private RestauranteFormaDePagamentoRepository restauranteFormaDePagamentoRepo;
 

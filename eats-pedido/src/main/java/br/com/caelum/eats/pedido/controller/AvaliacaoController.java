@@ -21,9 +21,6 @@ import br.com.caelum.eats.restaurante.entidade.Restaurante;
 @RestController
 public class AvaliacaoController {
 
-	public AvaliacaoController() {
-	}
-
 	@Autowired
 	private AvaliacaoRepository repo;
 

@@ -14,9 +14,6 @@ import br.com.caelum.eats.restaurante.repository.RestauranteRepository;
 @Service
 public class RestauranteService {
 
-	public RestauranteService() {
-	}
-
 	@Autowired
 	private RestauranteRepository repo;
 

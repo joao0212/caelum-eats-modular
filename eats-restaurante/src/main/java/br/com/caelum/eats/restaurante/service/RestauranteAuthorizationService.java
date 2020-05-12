@@ -12,9 +12,6 @@ import br.com.caelum.eats.seguranca.entidade.User;
 @Service
 public class RestauranteAuthorizationService {
 
-	public RestauranteAuthorizationService() {
-	}
-
 	@Autowired
 	private RestauranteRepository restauranteRepo;
 
