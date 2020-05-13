@@ -1,8 +1,8 @@
 module br.com.caelum.eats.pedido {
-	exports br.com.caelum.eats.pedido.dto;
-	exports br.com.caelum.eats.pedido.controller;
-	exports br.com.caelum.eats.pedido.entidade;
-	exports br.com.caelum.eats.pedido.service;
+	exports br.com.caelum.eats.pedido.dto to br.com.caelum.eats.pagamento, com.fasterxml.jackson.databind;
+	exports br.com.caelum.eats.pedido.controller to br.com.caelum.eats.pagamento;
+	exports br.com.caelum.eats.pedido.entidade to br.com.caelum.eats.pagamento, spring.beans;
+	exports br.com.caelum.eats.pedido.service to br.com.caelum.eats.pagamento;
 
 	requires transitive br.com.caelum.eats.restaurante;
 	requires java.persistence;

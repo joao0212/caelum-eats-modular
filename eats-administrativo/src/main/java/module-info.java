@@ -1,8 +1,11 @@
 module br.com.caelum.eats.administrativo {
 
-	exports br.com.caelum.eats.administrativo.dto;
-	exports br.com.caelum.eats.administrativo.controller;
-	exports br.com.caelum.eats.administrativo.entidade;
+	exports br.com.caelum.eats.administrativo.dto
+			to br.com.caelum.eats.distancia, br.com.caelum.eats.pagamento, br.com.caelum.eats.restaurante;
+	exports br.com.caelum.eats.administrativo.controller
+			to br.com.caelum.eats.distancia, br.com.caelum.eats.pagamento, br.com.caelum.eats.restaurante;
+	exports br.com.caelum.eats.administrativo.entidade
+			to br.com.caelum.eats.distancia, br.com.caelum.eats.pagamento, br.com.caelum.eats.restaurante, spring.beans;
 
 	requires java.persistence;
 	requires java.validation;

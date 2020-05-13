@@ -1,10 +1,14 @@
 module br.com.caelum.eats.restaurante {
-	exports br.com.caelum.eats.restaurante.dto;
-	exports br.com.caelum.eats.restaurante.entidade;
-	exports br.com.caelum.eats.restaurante.controller;
-	exports br.com.caelum.eats.restaurante.exception;
-	exports br.com.caelum.eats.restaurante.service;
-	exports br.com.caelum.eats.restaurante.repository;
+	exports br.com.caelum.eats.restaurante.dto to br.com.caelum.eats.distancia, br.com.caelum.eats.pedido;
+	exports br.com.caelum.eats.restaurante.entidade
+			to br.com.caelum.eats.distancia, br.com.caelum.eats.pedido, spring.beans;
+	exports br.com.caelum.eats.restaurante.controller
+			to br.com.caelum.eats.distancia, br.com.caelum.eats.pedido, spring.web;
+	exports br.com.caelum.eats.restaurante.exception
+			to br.com.caelum.eats.distancia, br.com.caelum.eats.pedido, br.com.caelum.eats.pagamento;
+	exports br.com.caelum.eats.restaurante.service
+			to br.com.caelum.eats.distancia, br.com.caelum.eats.pedido, spring.expression;
+	exports br.com.caelum.eats.restaurante.repository to br.com.caelum.eats.distancia, br.com.caelum.eats.pedido;
 
 	requires transitive br.com.caelum.eats.administrativo;
 	requires transitive br.com.caelum.eats.seguranca;
@@ -23,7 +27,7 @@ module br.com.caelum.eats.restaurante {
 	requires spring.beans;
 
 	opens br.com.caelum.eats.restaurante.dto to com.fasterxml.jackson.databind;
-	opens br.com.caelum.eats.restaurante.controller to spring.beans, spring.context, spring.core;
+	opens br.com.caelum.eats.restaurante.controller to spring.beans, spring.context, spring.core, spring.aop;
 	opens br.com.caelum.eats.restaurante.service to spring.beans, spring.context, spring.core;
 	opens br.com.caelum.eats.restaurante.entidade
 			to org.hibernate.orm.core, spring.core, org.hibernate.validator, com.fasterxml.jackson.databind;

@@ -1,7 +1,7 @@
 module br.com.caelum.eats.pagamento {
-	exports br.com.caelum.eats.pagamento.controller;
-	exports br.com.caelum.eats.pagamento.entidade;
-	exports br.com.caelum.eats.pagamento.dto;
+	exports br.com.caelum.eats.pagamento.controller to br.com.caelum.eats;
+	exports br.com.caelum.eats.pagamento.entidade to br.com.caelum.eats, spring.beans;
+	exports br.com.caelum.eats.pagamento.dto to br.com.caelum.eats, com.fasterxml.jackson.databind;
 
 	requires transitive br.com.caelum.eats.administrativo;
 	requires transitive br.com.caelum.eats.pedido;

@@ -1,6 +1,6 @@
 module br.com.caelum.eats.distancia {
-	exports br.com.caelum.eats.distancia.dto;
-	exports br.com.caelum.eats.distancia.controller;
+	exports br.com.caelum.eats.distancia.dto to br.com.caelum.eats, com.fasterxml.jackson.databind;
+	exports br.com.caelum.eats.distancia.controller to br.com.caelum.eats;
 
 	requires transitive br.com.caelum.eats.administrativo;
 	requires transitive br.com.caelum.eats.restaurante;
