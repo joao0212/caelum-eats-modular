@@ -1,27 +1,12 @@
 package br.com.caelum.eats.administrativo.dto;
 
-import br.com.caelum.eats.administrativo.entidade.FormaDePagamento;
-import br.com.caelum.eats.administrativo.entidade.FormaDePagamento.Tipo;
+import br.com.caelum.eats.administrativo.enums.Tipo;
 
 public class FormaDePagamentoDto {
 
 	private Long id;
 	private Tipo tipo;
 	private String nome;
-
-	public FormaDePagamentoDto(FormaDePagamento forma) {
-		this(forma.getId(), forma.getTipo(), forma.getNome());
-	}
-
-	public FormaDePagamentoDto() {
-	}
-
-	public FormaDePagamentoDto(Long id, Tipo tipo, String nome) {
-		super();
-		this.id = id;
-		this.tipo = tipo;
-		this.nome = nome;
-	}
 
 	public Long getId() {
 		return id;
@@ -33,5 +18,17 @@ public class FormaDePagamentoDto {
 
 	public String getNome() {
 		return nome;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
 	}
 }

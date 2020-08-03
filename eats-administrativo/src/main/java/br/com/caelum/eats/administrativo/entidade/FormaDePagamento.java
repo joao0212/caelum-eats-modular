@@ -10,21 +10,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import br.com.caelum.eats.administrativo.enums.Tipo;
+
 @Entity
 public class FormaDePagamento {
-
-	public FormaDePagamento() {
-	}
-
-	public FormaDePagamento(Long id, @NotNull Tipo tipo, @NotBlank @Size(max = 100) String nome) {
-		this.id = id;
-		this.tipo = tipo;
-		this.nome = nome;
-	}
-
-	public static enum Tipo {
-		CARTAO_CREDITO, CARTAO_DEBITO, VALE_REFEICAO;
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,5 +37,36 @@ public class FormaDePagamento {
 
 	public String getNome() {
 		return nome;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FormaDePagamento other = (FormaDePagamento) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
 	}
 }

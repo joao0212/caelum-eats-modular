@@ -2,31 +2,31 @@ package br.com.caelum.eats.pagamento.entidade;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-import br.com.caelum.eats.administrativo.entidade.FormaDePagamento;
-import br.com.caelum.eats.pedido.entidade.Pedido;
+import br.com.caelum.eats.pagamento.enums.Status;
 
 @Entity
 public class Pagamento {
 
 	public Pagamento() {
+
 	}
 
 	public Pagamento(Long id, @NotNull @Positive BigDecimal valor, @NotBlank @Size(max = 100) String nome,
 			@NotBlank @Size(max = 19) String numero, @NotBlank @Size(max = 7) String expiracao,
-			@NotBlank @Size(min = 3, max = 3) String codigo, @NotNull Status status, Pedido pedido,
-			FormaDePagamento formaDePagamento) {
+			@NotBlank @Size(min = 3, max = 3) String codigo, @NotNull Status status, Long pedidoId,
+			Long formaDePagamentoId) {
 		this.id = id;
 		this.valor = valor;
 		this.nome = nome;
@@ -34,12 +34,8 @@ public class Pagamento {
 		this.expiracao = expiracao;
 		this.codigo = codigo;
 		this.status = status;
-		this.pedido = pedido;
-		this.formaDePagamento = formaDePagamento;
-	}
-
-	public static enum Status {
-		CRIADO, CONFIRMADO, CANCELADO;
+		this.pedidoId = pedidoId;
+		this.formaDePagamentoId = formaDePagamentoId;
 	}
 
 	@Id
@@ -70,11 +66,11 @@ public class Pagamento {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 
-	@ManyToOne(optional = false)
-	private Pedido pedido;
+	@Column(name = "pedido_id")
+	private Long pedidoId;
 
-	@ManyToOne(optional = false)
-	private FormaDePagamento formaDePagamento;
+	@Column(name = "forma_de_pagamento_id")
+	private Long formaDePagamentoId;
 
 	public Long getId() {
 		return id;
@@ -108,11 +104,42 @@ public class Pagamento {
 		this.status = status;
 	}
 
-	public Pedido getPedido() {
-		return pedido;
+	public Long getPedidoId() {
+		return pedidoId;
 	}
 
-	public FormaDePagamento getFormaDePagamento() {
-		return formaDePagamento;
+	public Long getFormaDePagamentoId() {
+		return formaDePagamentoId;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pagamento other = (Pagamento) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
 	}
 }

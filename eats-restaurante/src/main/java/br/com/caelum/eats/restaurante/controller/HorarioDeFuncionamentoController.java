@@ -1,7 +1,6 @@
 package br.com.caelum.eats.restaurante.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,44 +12,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.caelum.eats.restaurante.dto.HorarioDeFuncionamentoDto;
-import br.com.caelum.eats.restaurante.entidade.HorarioDeFuncionamento;
-import br.com.caelum.eats.restaurante.entidade.Restaurante;
-import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
-import br.com.caelum.eats.restaurante.repository.HorarioDeFuncionamentoRepository;
+import br.com.caelum.eats.restaurante.service.HorarioDeFuncionamentoService;
 
 @RestController
 public class HorarioDeFuncionamentoController {
 
 	@Autowired
-	private HorarioDeFuncionamentoRepository repo;
+	private HorarioDeFuncionamentoService horarioDeFuncionamentoService;
 
 	@GetMapping("/restaurantes/{idRestaurante}/horarios-de-funcionamento/{id}")
 	public HorarioDeFuncionamentoDto detalha(@PathVariable("id") Long id) {
-		HorarioDeFuncionamento horario = repo.findById(id).orElseThrow(() -> new ResourceNotFoundException());
-		return new HorarioDeFuncionamentoDto(horario);
+		return horarioDeFuncionamentoService.detalha(id);
 	}
 
 	@GetMapping("/restaurantes/{idRestaurante}/horarios-de-funcionamento")
 	public List<HorarioDeFuncionamentoDto> lista(@PathVariable("idRestaurante") Long idRestaurante) {
-		Restaurante restaurante = new Restaurante();
-		restaurante.setId(idRestaurante);
-		List<HorarioDeFuncionamento> horariosDoRestaurante = repo.findAllByRestaurante(restaurante);
-		return horariosDoRestaurante.stream().map(h -> new HorarioDeFuncionamentoDto(h)).collect(Collectors.toList());
+		return horarioDeFuncionamentoService.lista(idRestaurante);
 	}
 
 	@PostMapping("/parceiros/restaurantes/{idRestaurante}/horarios-de-funcionamento")
-	public HorarioDeFuncionamento adiciona(@RequestBody HorarioDeFuncionamento horarioDeFuncionamento) {
-		return repo.save(horarioDeFuncionamento);
+	public HorarioDeFuncionamentoDto adiciona(@RequestBody HorarioDeFuncionamentoDto horarioDeFuncionamentoDto) {
+		return horarioDeFuncionamentoService.adiciona(horarioDeFuncionamentoDto);
 	}
 
 	@PutMapping("/parceiros/restaurantes/{idRestaurante}/horarios-de-funcionamento/{id}")
-	public HorarioDeFuncionamento atualiza(@RequestBody HorarioDeFuncionamento horarioDeFuncionamento) {
-		return repo.save(horarioDeFuncionamento);
+	public HorarioDeFuncionamentoDto atualiza(@RequestBody HorarioDeFuncionamentoDto horarioDeFuncionamentoDto) {
+		return horarioDeFuncionamentoService.atualiza(horarioDeFuncionamentoDto);
 	}
 
 	@DeleteMapping("/parceiros/restaurantes/{idRestaurante}/horarios-de-funcionamento/{id}")
 	public void remove(@PathVariable("id") Long id) {
-		repo.deleteById(id);
+		horarioDeFuncionamentoService.remove(id);
 	}
-
 }

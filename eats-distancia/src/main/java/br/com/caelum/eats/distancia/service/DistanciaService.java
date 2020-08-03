@@ -9,10 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.caelum.eats.administrativo.entidade.TipoDeCozinha;
 import br.com.caelum.eats.distancia.dto.RestauranteComDistanciaDto;
-import br.com.caelum.eats.restaurante.entidade.Restaurante;
-import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
+import br.com.caelum.eats.restaurante.dto.RestauranteDto;
 import br.com.caelum.eats.restaurante.service.RestauranteService;
 
 /*
@@ -26,31 +24,28 @@ public class DistanciaService {
 	private static final Pageable LIMIT = PageRequest.of(0, 5);
 
 	@Autowired
-	private RestauranteService restaurantes;
+	private RestauranteService restauranteService;
 
 	public List<RestauranteComDistanciaDto> restaurantesMaisProximosAoCep(String cep) {
-		List<Restaurante> aprovados = restaurantes.findAllByAprovado(true, LIMIT).getContent();
+		List<RestauranteDto> aprovados = restauranteService.findAllByAprovado(true, LIMIT).getContent();
 		return calculaDistanciaParaOsRestaurantes(aprovados, cep);
 	}
 
 	public List<RestauranteComDistanciaDto> restaurantesDoTipoDeCozinhaMaisProximosAoCep(Long tipoDeCozinhaId,
 			String cep) {
-		TipoDeCozinha tipo = new TipoDeCozinha();
-		tipo.setId(tipoDeCozinhaId);
-		List<Restaurante> aprovadosDoTipoDeCozinha = restaurantes.findAllByAprovadoAndTipoDeCozinha(true, tipo, LIMIT)
-				.getContent();
+		List<RestauranteDto> aprovadosDoTipoDeCozinha = restauranteService
+				.findAllByAprovadoAndTipoDeCozinha(true, tipoDeCozinhaId, LIMIT).getContent();
 		return calculaDistanciaParaOsRestaurantes(aprovadosDoTipoDeCozinha, cep);
 	}
 
 	public RestauranteComDistanciaDto restauranteComDistanciaDoCep(Long restauranteId, String cep) {
-		Restaurante restaurante = restaurantes.findById(restauranteId)
-				.orElseThrow(() -> new ResourceNotFoundException());
+		RestauranteDto restaurante = restauranteService.findById(restauranteId);
 		String cepDoRestaurante = restaurante.getCep();
 		BigDecimal distancia = distanciaDoCep(cepDoRestaurante, cep);
 		return new RestauranteComDistanciaDto(restauranteId, distancia);
 	}
 
-	private List<RestauranteComDistanciaDto> calculaDistanciaParaOsRestaurantes(List<Restaurante> restaurantes,
+	private List<RestauranteComDistanciaDto> calculaDistanciaParaOsRestaurantes(List<RestauranteDto> restaurantes,
 			String cep) {
 		return restaurantes.stream().map(restaurante -> {
 			String cepDoRestaurante = restaurante.getCep();
@@ -79,5 +74,4 @@ public class DistanciaService {
 			throw new RuntimeException(e);
 		}
 	}
-
 }

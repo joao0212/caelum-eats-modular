@@ -9,19 +9,18 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
-import br.com.caelum.eats.administrativo.entidade.FormaDePagamento;
-
 @Entity
 public class RestauranteFormaDePagamento {
 
 	public RestauranteFormaDePagamento(RestauranteFormaDePagamentoId id, Restaurante restaurante,
-			FormaDePagamento formaDePagamento) {
+			Long idFormaDePagamento) {
 		this.id = id;
 		this.restaurante = restaurante;
-		this.formaDePagamento = formaDePagamento;
+		this.idFormaDePagamento = idFormaDePagamento;
 	}
 
 	public RestauranteFormaDePagamento() {
+
 	}
 
 	@EmbeddedId
@@ -31,9 +30,8 @@ public class RestauranteFormaDePagamento {
 	@MapsId("restauranteId")
 	private Restaurante restaurante;
 
-	@ManyToOne
-	@MapsId("formaDePagamentoId")
-	private FormaDePagamento formaDePagamento;
+	@Column(name = "forma_de_pagamento_id")
+	private Long idFormaDePagamento;
 
 	public RestauranteFormaDePagamentoId getId() {
 		return id;
@@ -43,8 +41,8 @@ public class RestauranteFormaDePagamento {
 		return restaurante;
 	}
 
-	public FormaDePagamento getFormaDePagamento() {
-		return formaDePagamento;
+	public Long getIdFormaDePagamento() {
+		return idFormaDePagamento;
 	}
 
 	@Embeddable
@@ -53,7 +51,6 @@ public class RestauranteFormaDePagamento {
 
 		public RestauranteFormaDePagamentoId(Long restauranteId, Long formaDePagamentoId) {
 			this.restauranteId = restauranteId;
-			this.formaDePagamentoId = formaDePagamentoId;
 		}
 
 		public RestauranteFormaDePagamentoId() {
@@ -63,15 +60,8 @@ public class RestauranteFormaDePagamento {
 		@Column(name = "restaurante_id")
 		private Long restauranteId;
 
-		@Column(name = "forma_de_pagamento_id")
-		private Long formaDePagamentoId;
-
 		public Long getRestauranteId() {
 			return restauranteId;
-		}
-
-		public Long getFormaDePagamentoId() {
-			return formaDePagamentoId;
 		}
 	}
 }

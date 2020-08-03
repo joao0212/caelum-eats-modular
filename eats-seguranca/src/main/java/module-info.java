@@ -1,15 +1,10 @@
 module br.com.caelum.eats.seguranca {
-	exports br.com.caelum.eats.seguranca.entidade
-			to br.com.caelum.eats, br.com.caelum.eats.restaurante, com.fasterxml.jackson.databind, spring.beans;
-	exports br.com.caelum.eats.seguranca.dto to br.com.caelum.eats, br.com.caelum.eats.restaurante;
-	exports br.com.caelum.eats.seguranca.controller to br.com.caelum.eats, br.com.caelum.eats.restaurante, spring.web;
+	exports br.com.caelum.eats.seguranca.entidade;
+	exports br.com.caelum.eats.seguranca.dto;
 
-	requires com.fasterxml.jackson.annotation;
 	requires java.persistence;
 	requires java.validation;
-	requires jjwt;
-	requires org.apache.tomcat.embed.core;
-	requires org.slf4j;
+
 	requires spring.beans;
 	requires spring.context;
 	requires spring.core;
@@ -19,10 +14,15 @@ module br.com.caelum.eats.seguranca {
 	requires transitive spring.security.core;
 	requires spring.security.web;
 	requires spring.web;
+
+	requires com.fasterxml.jackson.annotation;
 	requires net.bytebuddy;
 	requires com.fasterxml.classmate;
 	requires com.fasterxml.jackson.databind;
 	requires java.xml.bind;
+	requires org.apache.tomcat.embed.core;
+	requires org.slf4j;
+	requires jjwt;
 
 	opens br.com.caelum.eats.seguranca to spring.context, spring.beans, spring.core;
 	opens br.com.caelum.eats.seguranca.entidade to org.hibernate.orm.core, spring.core, org.hibernate.validator;

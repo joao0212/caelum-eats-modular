@@ -10,34 +10,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.caelum.eats.restaurante.dto.ItemDoCardapioDto;
-import br.com.caelum.eats.restaurante.entidade.ItemDoCardapio;
-import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
-import br.com.caelum.eats.restaurante.repository.ItemDoCardapioRepository;
+import br.com.caelum.eats.restaurante.service.ItemDoCardapioService;
 
 @RestController
 public class ItemDoCardapioController {
 
 	@Autowired
-	private ItemDoCardapioRepository repo;
+	private ItemDoCardapioService itemDoCardapioService;
 
 	@PostMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}/item")
-	public ItemDoCardapioDto adicionaItem(@RequestBody ItemDoCardapio item) {
-		return new ItemDoCardapioDto(repo.save(item));
+	public ItemDoCardapioDto adicionaItem(@RequestBody ItemDoCardapioDto item) {
+		return itemDoCardapioService.adicionaItem(item);
 	}
 
 	@PutMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}/item/{idItem}")
-	public ItemDoCardapioDto atualizaItem(@RequestBody ItemDoCardapio item) {
-		return new ItemDoCardapioDto(repo.save(item));
+	public ItemDoCardapioDto atualizaItem(@RequestBody ItemDoCardapioDto item) {
+		return itemDoCardapioService.atualizaItem(item);
 	}
 
 	@GetMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}/item/{idItem}")
 	public ItemDoCardapioDto itemPorId(@PathVariable("idItem") Long idItem) {
-		ItemDoCardapio item = repo.findById(idItem).orElseThrow(() -> new ResourceNotFoundException());
-		return new ItemDoCardapioDto(item);
+		return itemDoCardapioService.itemPorId(idItem);
 	}
 
 	@DeleteMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}/item/{idItem}")
 	public void removeItem(@PathVariable("idItem") Long idItem) {
-		repo.deleteById(idItem);
+		itemDoCardapioService.removeItem(idItem);
 	}
 }

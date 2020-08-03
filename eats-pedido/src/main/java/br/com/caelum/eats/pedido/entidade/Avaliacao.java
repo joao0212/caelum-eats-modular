@@ -13,16 +13,20 @@ import javax.validation.constraints.Size;
 @Entity
 public class Avaliacao {
 
-	public Avaliacao(Long id, @NotNull @PositiveOrZero @Max(5) Integer nota, @Size(max = 255) String comentario,
-			Pedido pedido) {
+	public Avaliacao() {
+
+	}
+
+	public Avaliacao(Long id, @NotNull @PositiveOrZero @Max(5) Integer nota, @Size(max = 255) String comentario) {
 		this.id = id;
 		this.nota = nota;
 		this.comentario = comentario;
-		this.pedido = pedido;
 	}
 
-	public Avaliacao() {
-		super();
+	public Avaliacao(Long id, @NotNull @PositiveOrZero @Max(5) Integer nota, @Size(max = 255) String comentario,
+			Pedido pedido) {
+		this(id, nota, comentario);
+		this.pedido = pedido;
 	}
 
 	@Id
@@ -54,5 +58,30 @@ public class Avaliacao {
 
 	public Pedido getPedido() {
 		return pedido;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Avaliacao other = (Avaliacao) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 }

@@ -8,26 +8,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.caelum.eats.restaurante.dto.CategoriaDoCardapioDto;
-import br.com.caelum.eats.restaurante.entidade.CategoriaDoCardapio;
-import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
-import br.com.caelum.eats.restaurante.repository.CategoriaDoCardapioRepository;
+import br.com.caelum.eats.restaurante.service.CategoriaDoCardapioService;
 
 @RestController
 public class CategoriaDoCardapioController {
 
 	@Autowired
-	private CategoriaDoCardapioRepository repo;
+	private CategoriaDoCardapioService categoriaDoCardapioService;
 
 	@GetMapping("/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}")
 	CategoriaDoCardapioDto categoriaPorId(@PathVariable("idCategoria") Long idCategoria) {
-		CategoriaDoCardapio categoria = repo.findById(idCategoria).orElseThrow(() -> new ResourceNotFoundException());
-		return new CategoriaDoCardapioDto(categoria);
+		return categoriaDoCardapioService.categoriaPorId(idCategoria);
 	}
 
 	@PostMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria")
 	CategoriaDoCardapioDto cardapioDoRestaurante(@PathVariable("idCardapio") Long idCardapio,
-			@RequestBody CategoriaDoCardapio categoria) {
-		return new CategoriaDoCardapioDto(repo.save(categoria));
+			@RequestBody CategoriaDoCardapioDto categoriaDoCardapioDto) {
+		return categoriaDoCardapioService.cardapioDoRestaurante(idCardapio, categoriaDoCardapioDto);
 	}
-
 }

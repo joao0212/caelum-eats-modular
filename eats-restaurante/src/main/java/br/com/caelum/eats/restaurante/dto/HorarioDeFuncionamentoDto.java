@@ -3,19 +3,13 @@ package br.com.caelum.eats.restaurante.dto;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
-import br.com.caelum.eats.restaurante.entidade.HorarioDeFuncionamento;
-
 public class HorarioDeFuncionamentoDto {
 
 	private Long id;
 	private DayOfWeek diaDaSemana;
 	private LocalTime horarioDeAbertura;
 	private LocalTime horarioDeFechamento;
-
-	public HorarioDeFuncionamentoDto(HorarioDeFuncionamento horario) {
-		this(horario.getId(), horario.getDiaDaSemana(), horario.getHorarioDeAbertura(),
-				horario.getHorarioDeFechamento());
-	}
+	private Long restauranteId;
 
 	public HorarioDeFuncionamentoDto(Long id, DayOfWeek diaDaSemana, LocalTime horarioDeAbertura,
 			LocalTime horarioDeFechamento) {
@@ -39,5 +33,9 @@ public class HorarioDeFuncionamentoDto {
 
 	public LocalTime getHorarioDeFechamento() {
 		return horarioDeFechamento;
+	}
+
+	public Long getRestauranteId() {
+		return restauranteId;
 	}
 }

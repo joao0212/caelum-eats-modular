@@ -1,7 +1,6 @@
 package br.com.caelum.eats.restaurante.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,68 +14,52 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.caelum.eats.restaurante.dto.RestauranteDto;
-import br.com.caelum.eats.restaurante.entidade.Cardapio;
-import br.com.caelum.eats.restaurante.entidade.Restaurante;
-import br.com.caelum.eats.restaurante.exception.ResourceNotFoundException;
-import br.com.caelum.eats.restaurante.repository.CardapioRepository;
-import br.com.caelum.eats.restaurante.repository.RestauranteRepository;
+import br.com.caelum.eats.restaurante.service.RestauranteService;
 
 @RestController
 public class RestauranteController {
 
 	@Autowired
-	private RestauranteRepository restauranteRepo;
-	@Autowired
-	private CardapioRepository cardapioRepo;
+	private RestauranteService restauranteService;
 
 	@GetMapping("/restaurantes/{id}")
 	RestauranteDto detalha(@PathVariable("id") Long id) {
-		Restaurante restaurante = restauranteRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException());
-		return new RestauranteDto(restaurante);
+		return restauranteService.detalha(id);
 	}
 
 	@GetMapping("/parceiros/restaurantes/do-usuario/{username}")
 	public RestauranteDto detalhaParceiro(@PathVariable("username") String username) {
-		Restaurante restaurante = restauranteRepo.findByUsername(username);
-		return new RestauranteDto(restaurante);
+		return restauranteService.detalhaParceiro(username);
 	}
 
 	@GetMapping("/restaurantes")
 	List<RestauranteDto> detalhePorIds(@RequestParam("ids") List<Long> ids) {
-		return restauranteRepo.findAllById(ids).stream().map(RestauranteDto::new).collect(Collectors.toList());
+		return restauranteService.detalhePorIds(ids);
 	}
 
 	@GetMapping("/parceiros/restaurantes/{id}")
 	RestauranteDto detalhaParceiro(@PathVariable("id") Long id) {
-		Restaurante restaurante = restauranteRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException());
-		return new RestauranteDto(restaurante);
+		return restauranteService.detalhaParceiro(id);
 	}
 
 	@PostMapping("/parceiros/restaurantes")
-	Restaurante adiciona(@RequestBody Restaurante restaurante) {
-		restaurante.setAprovado(false);
-		Restaurante restauranteSalvo = restauranteRepo.save(restaurante);
-		Cardapio cardapio = new Cardapio();
-		cardapio.setRestaurante(restauranteSalvo);
-		cardapioRepo.save(cardapio);
-		return restauranteSalvo;
+	RestauranteDto adiciona(@RequestBody RestauranteDto restaurante) {
+		return restauranteService.adiciona(restaurante);
 	}
 
 	@PutMapping("/parceiros/restaurantes/{id}")
 	public RestauranteDto atualiza(@RequestBody RestauranteDto restaurante) {
-		Restaurante doBD = restauranteRepo.getOne(restaurante.getId());
-		restaurante.populaRestaurante(doBD);
-		return new RestauranteDto(restauranteRepo.save(doBD));
+		return restauranteService.atualiza(restaurante);
 	}
 
 	@GetMapping("/admin/restaurantes/em-aprovacao")
 	List<RestauranteDto> emAprovacao() {
-		return restauranteRepo.findAllByAprovado(false).stream().map(RestauranteDto::new).collect(Collectors.toList());
+		return restauranteService.emAprovacao();
 	}
 
 	@Transactional
 	@PatchMapping("/admin/restaurantes/{id}")
 	public void aprova(@PathVariable("id") Long id) {
-		restauranteRepo.aprovaPorId(id);
+		restauranteService.aprova(id);
 	}
 }

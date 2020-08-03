@@ -2,7 +2,6 @@ package br.com.caelum.eats.administrativo.controller;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,37 +13,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.caelum.eats.administrativo.dto.FormaDePagamentoDto;
-import br.com.caelum.eats.administrativo.entidade.FormaDePagamento;
-import br.com.caelum.eats.administrativo.repository.FormaDePagamentoRepository;
+import br.com.caelum.eats.administrativo.enums.Tipo;
+import br.com.caelum.eats.administrativo.service.FormaDePagamentoService;
 
 @RestController
 public class FormaDePagamentoController {
 
 	@Autowired
-	private FormaDePagamentoRepository formaRepo;
+	private FormaDePagamentoService formaDePagamentoService;
 
 	@GetMapping("/formas-de-pagamento")
 	List<FormaDePagamentoDto> lista() {
-		return formaRepo.findAllByOrderByNomeAsc().stream().map(FormaDePagamentoDto::new).collect(Collectors.toList());
+		return formaDePagamentoService.lista();
 	}
 
 	@GetMapping("/admin/formas-de-pagamento/tipos")
-	List<FormaDePagamento.Tipo> tipos() {
-		return Arrays.asList(FormaDePagamento.Tipo.values());
+	List<Tipo> tipos() {
+		return Arrays.asList(Tipo.values());
 	}
 
 	@PostMapping("/admin/formas-de-pagamento")
-	FormaDePagamentoDto adiciona(@RequestBody FormaDePagamento tipoDeCozinha) {
-		return new FormaDePagamentoDto(formaRepo.save(tipoDeCozinha));
+	FormaDePagamentoDto adiciona(@RequestBody FormaDePagamentoDto formaDePagamentoDto) {
+		return formaDePagamentoService.adiciona(formaDePagamentoDto);
 	}
 
 	@PutMapping("/admin/formas-de-pagamento/{id}")
-	FormaDePagamentoDto atualiza(@RequestBody FormaDePagamento tipoDeCozinha) {
-		return new FormaDePagamentoDto(formaRepo.save(tipoDeCozinha));
+	FormaDePagamentoDto atualiza(@RequestBody FormaDePagamentoDto formaDePagamentoDto) {
+		return formaDePagamentoService.atualiza(formaDePagamentoDto);
 	}
 
 	@DeleteMapping("/admin/formas-de-pagamento/{id}")
 	void remove(@PathVariable("id") Long id) {
-		formaRepo.deleteById(id);
+		formaDePagamentoService.remove(id);
 	}
 }

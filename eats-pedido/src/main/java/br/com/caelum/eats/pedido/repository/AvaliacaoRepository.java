@@ -7,14 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import br.com.caelum.eats.pedido.entidade.Avaliacao;
-import br.com.caelum.eats.restaurante.entidade.Restaurante;
 
 public interface AvaliacaoRepository extends JpaRepository<Avaliacao, Long> {
 
-	@Query("select avg(a.nota) from Avaliacao a where a.pedido.restaurante.id =:restauranteId")
+	@Query("select avg(a.nota) from Avaliacao a where a.pedido.restauranteId =:restauranteId")
 	Double mediaDoRestaurantePeloId(@Param("restauranteId") Long restauranteId);
 
-	@Query("select a from Avaliacao a where a.pedido.restaurante = :restaurante")
-	List<Avaliacao> findAllByRestaurante(@Param("restaurante") Restaurante restaurante);
-
+	@Query("select a from Avaliacao a where a.pedido.restauranteId =: restauranteId")
+	List<Avaliacao> findAllByRestaurante(@Param("restauranteId") Long restauranteId);
 }

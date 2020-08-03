@@ -2,8 +2,6 @@ package br.com.caelum.eats.restaurante.dto;
 
 import java.math.BigDecimal;
 
-import br.com.caelum.eats.restaurante.entidade.ItemDoCardapio;
-
 public class ItemDoCardapioDto {
 
 	private Long id;
@@ -11,10 +9,7 @@ public class ItemDoCardapioDto {
 	private String descricao;
 	private BigDecimal preco;
 	private BigDecimal precoPromocional;
-
-	public ItemDoCardapioDto(ItemDoCardapio item) {
-		this(item.getId(), item.getNome(), item.getDescricao(), item.getPreco(), item.getPrecoPromocional());
-	}
+	private Long categoriaDoCardapioId;
 
 	public ItemDoCardapioDto(Long id, String nome, String descricao, BigDecimal preco, BigDecimal precoPromocional) {
 		this.id = id;
@@ -45,5 +40,9 @@ public class ItemDoCardapioDto {
 
 	public BigDecimal getPrecoPromocional() {
 		return precoPromocional;
+	}
+
+	public Long getCategoriaDoCardapioId() {
+		return categoriaDoCardapioId;
 	}
 }

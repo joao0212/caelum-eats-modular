@@ -1,15 +1,14 @@
 package br.com.caelum.eats.pedido.dto;
 
-import br.com.caelum.eats.pedido.entidade.ItemDoPedido;
 import br.com.caelum.eats.restaurante.dto.ItemDoCardapioDto;
 
 public class ItemDoPedidoDto {
 
-	public ItemDoPedidoDto(Long id, Integer quantidade, String observacao, ItemDoCardapioDto itemDoCardapio) {
+	public ItemDoPedidoDto(Long id, Integer quantidade, String observacao, ItemDoCardapioDto itemDoCardapioDto) {
 		this.id = id;
 		this.quantidade = quantidade;
 		this.observacao = observacao;
-		this.itemDoCardapio = itemDoCardapio;
+		this.itemDoCardapioDto = itemDoCardapioDto;
 	}
 
 	public ItemDoPedidoDto() {
@@ -19,11 +18,7 @@ public class ItemDoPedidoDto {
 	private Long id;
 	private Integer quantidade;
 	private String observacao;
-	private ItemDoCardapioDto itemDoCardapio;
-
-	public ItemDoPedidoDto(ItemDoPedido item) {
-		this(item.getId(), item.getQuantidade(), item.getObservacao(), new ItemDoCardapioDto(item.getItemDoCardapio()));
-	}
+	private ItemDoCardapioDto itemDoCardapioDto;
 
 	public Long getId() {
 		return id;
@@ -37,7 +32,7 @@ public class ItemDoPedidoDto {
 		return observacao;
 	}
 
-	public ItemDoCardapioDto getItemDoCardapio() {
-		return itemDoCardapio;
+	public ItemDoCardapioDto getItemDoCardapioDto() {
+		return itemDoCardapioDto;
 	}
 }
