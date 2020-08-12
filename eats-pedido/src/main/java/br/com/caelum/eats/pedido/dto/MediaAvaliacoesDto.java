@@ -2,13 +2,13 @@ package br.com.caelum.eats.pedido.dto;
 
 public class MediaAvaliacoesDto {
 
+	public MediaAvaliacoesDto() {
+		super();
+	}
+
 	public MediaAvaliacoesDto(Long restauranteId, Double media) {
 		this.restauranteId = restauranteId;
 		this.media = media;
-	}
-
-	public MediaAvaliacoesDto() {
-		super();
 	}
 
 	private Long restauranteId;
@@ -20,5 +20,13 @@ public class MediaAvaliacoesDto {
 
 	public Double getMedia() {
 		return media;
+	}
+
+	public void setMedia(Double media) {
+		this.media = media;
+	}
+
+	public void setRestauranteId(Long restauranteId) {
+		this.restauranteId = restauranteId;
 	}
 }

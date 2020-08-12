@@ -38,4 +38,24 @@ public class HorarioDeFuncionamentoDto {
 	public Long getRestauranteId() {
 		return restauranteId;
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setDiaDaSemana(DayOfWeek diaDaSemana) {
+		this.diaDaSemana = diaDaSemana;
+	}
+
+	public void setHorarioDeAbertura(LocalTime horarioDeAbertura) {
+		this.horarioDeAbertura = horarioDeAbertura;
+	}
+
+	public void setHorarioDeFechamento(LocalTime horarioDeFechamento) {
+		this.horarioDeFechamento = horarioDeFechamento;
+	}
+
+	public void setRestauranteId(Long restauranteId) {
+		this.restauranteId = restauranteId;
+	}
 }

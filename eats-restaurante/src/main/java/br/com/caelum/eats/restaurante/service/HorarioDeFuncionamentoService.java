@@ -22,7 +22,7 @@ public class HorarioDeFuncionamentoService {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	public HorarioDeFuncionamentoDto detalha(Long id) {
+	public HorarioDeFuncionamentoDto detalhar(Long id) {
 		Optional<HorarioDeFuncionamento> horarioDeFuncionamento = horarioDeFuncionamentoRepository.findById(id);
 		if (!horarioDeFuncionamento.isPresent()) {
 			throw new ResourceNotFoundException();
@@ -30,25 +30,25 @@ public class HorarioDeFuncionamentoService {
 		return this.transformarEmDto(horarioDeFuncionamento.get());
 	}
 
-	public List<HorarioDeFuncionamentoDto> lista(Long idRestaurante) {
+	public List<HorarioDeFuncionamentoDto> listar(Long idRestaurante) {
 		List<HorarioDeFuncionamento> horariosDoRestaurante = horarioDeFuncionamentoRepository
 				.findAllByRestauranteId(idRestaurante);
 		return horariosDoRestaurante.stream().map(h -> this.transformarEmDto(h)).collect(Collectors.toList());
 	}
 
-	public HorarioDeFuncionamentoDto adiciona(HorarioDeFuncionamentoDto horarioDeFuncionamentoDto) {
+	public HorarioDeFuncionamentoDto adicionar(HorarioDeFuncionamentoDto horarioDeFuncionamentoDto) {
 		HorarioDeFuncionamento horarioDeFuncionamento = horarioDeFuncionamentoRepository
 				.save(this.transformarEmObjeto(horarioDeFuncionamentoDto));
 		return this.transformarEmDto(horarioDeFuncionamento);
 	}
 
-	public HorarioDeFuncionamentoDto atualiza(HorarioDeFuncionamentoDto horarioDeFuncionamentoDto) {
+	public HorarioDeFuncionamentoDto atualizar(HorarioDeFuncionamentoDto horarioDeFuncionamentoDto) {
 		HorarioDeFuncionamento horarioDeFuncionamento = horarioDeFuncionamentoRepository
 				.save(this.transformarEmObjeto(horarioDeFuncionamentoDto));
 		return this.transformarEmDto(horarioDeFuncionamento);
 	}
 
-	public void remove(Long id) {
+	public void remover(Long id) {
 		horarioDeFuncionamentoRepository.deleteById(id);
 	}
 

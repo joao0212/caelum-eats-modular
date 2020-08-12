@@ -1,20 +1,16 @@
 package br.com.caelum.eats.restaurante.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriaDoCardapioDto {
 
 	private Long id;
 	private String nome;
-	private Long cardapioId;
-	private List<ItemDoCardapioDto> itens = new ArrayList<>();
 
 	public CategoriaDoCardapioDto(Long id, String nome, List<ItemDoCardapioDto> itens) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.itens = itens;
 	}
 
 	public CategoriaDoCardapioDto() {
@@ -29,11 +25,11 @@ public class CategoriaDoCardapioDto {
 		return nome;
 	}
 
-	public Long getCardapioId() {
-		return cardapioId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public List<ItemDoCardapioDto> getItens() {
-		return itens;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 }

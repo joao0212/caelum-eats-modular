@@ -6,12 +6,12 @@ import java.util.List;
 public class CardapioDto {
 
 	private Long id;
-	private List<CategoriaDoCardapioDto> categorias = new ArrayList<>();
+	private List<CategoriaDoCardapioDto> categoriasDoCardapioDto = new ArrayList<>();
 
-	public CardapioDto(Long id, List<CategoriaDoCardapioDto> categorias) {
+	public CardapioDto(Long id, List<CategoriaDoCardapioDto> categoriasDoCardapioDto) {
 		super();
 		this.id = id;
-		this.categorias = categorias;
+		this.categoriasDoCardapioDto = categoriasDoCardapioDto;
 	}
 
 	public CardapioDto() {
@@ -22,7 +22,15 @@ public class CardapioDto {
 		return id;
 	}
 
-	public List<CategoriaDoCardapioDto> getCategorias() {
-		return categorias;
+	public List<CategoriaDoCardapioDto> getCategoriasDoCardapioDto() {
+		return categoriasDoCardapioDto;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setCategoriasDoCardapioDto(List<CategoriaDoCardapioDto> categoriasDoCardapioDto) {
+		this.categoriasDoCardapioDto = categoriasDoCardapioDto;
 	}
 }

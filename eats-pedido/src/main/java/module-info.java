@@ -4,6 +4,9 @@ module br.com.caelum.eats.pedido {
 	exports br.com.caelum.eats.pedido.service;
 	exports br.com.caelum.eats.pedido.enums;
 
+	// Export de entidade apenas para Model Mapper
+	exports br.com.caelum.eats.pedido.entidade to modelmapper;
+
 	requires transitive br.com.caelum.eats.restaurante;
 
 	requires java.persistence;

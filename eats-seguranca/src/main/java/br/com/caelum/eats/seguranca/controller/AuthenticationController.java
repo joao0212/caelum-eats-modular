@@ -24,8 +24,10 @@ public class AuthenticationController {
 
 	@Autowired
 	private AuthenticationManager authManager;
+
 	@Autowired
 	private JwtTokenManager jwtTokenManager;
+
 	@Autowired
 	private UserService userService;
 
@@ -43,7 +45,6 @@ public class AuthenticationController {
 		} catch (AuthenticationException e) {
 			return ResponseEntity.badRequest().build();
 		}
-
 	}
 
 	@PostMapping("/parceiro")

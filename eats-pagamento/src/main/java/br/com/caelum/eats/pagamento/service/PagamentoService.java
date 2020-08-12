@@ -1,13 +1,14 @@
 package br.com.caelum.eats.pagamento.service;
 
 import java.net.URI;
+import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.caelum.eats.administrativo.dto.FormaDePagamentoDto;
 import br.com.caelum.eats.administrativo.service.FormaDePagamentoService;
 import br.com.caelum.eats.pagamento.dto.PagamentoDto;
 import br.com.caelum.eats.pagamento.entidade.Pagamento;
@@ -29,45 +30,57 @@ public class PagamentoService {
 	@Autowired
 	private FormaDePagamentoService formaDePagamentoService;
 
-	public PagamentoDto detalha(Long id) {
-		Pagamento pagamento = pagamentoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
-		FormaDePagamentoDto formaDePagamentoDto = formaDePagamentoService
-				.buscarPorId(pagamento.getFormaDePagamentoId());
-		PedidoDto pedidoDto = pedidoService.buscarPorId(pagamento.getPedidoId());
-		return new PagamentoDto(pagamento, formaDePagamentoDto, pedidoDto);
+	@Autowired
+	private ModelMapper modelMapper;
+
+	public PagamentoDto detalhar(Long id) {
+		Optional<Pagamento> pagamento = pagamentoRepository.findById(id);
+		if (!pagamento.isPresent()) {
+			throw new ResourceNotFoundException();
+		}
+		return transformarParaDto(pagamento.get());
 	}
 
-	public ResponseEntity<PagamentoDto> cria(Pagamento pagamento, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<PagamentoDto> criar(PagamentoDto pagamentoDto, UriComponentsBuilder uriBuilder) {
+		Pagamento pagamento = this.transformarParaObjeto(pagamentoDto);
 		pagamento.setStatus(Status.CRIADO);
 		Pagamento pagamentoSalvo = pagamentoRepository.save(pagamento);
-		FormaDePagamentoDto formaDePagamentoDto = formaDePagamentoService
-				.buscarPorId(pagamentoSalvo.getFormaDePagamentoId());
-		PedidoDto pedidoDto = pedidoService.buscarPorId(pagamentoSalvo.getPedidoId());
 		URI path = uriBuilder.path("/pagamentos/{id}").buildAndExpand(pagamentoSalvo.getId()).toUri();
-		return ResponseEntity.created(path).body(new PagamentoDto(pagamentoSalvo, formaDePagamentoDto, pedidoDto));
+		return ResponseEntity.created(path).body(this.transformarParaDto(pagamentoSalvo));
 	}
 
 	// TODO Entender esse método e refatorar. Muita responsabilidade.
-	public PagamentoDto confirma(Long id) {
-		Pagamento pagamento = pagamentoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
-		pagamento.setStatus(Status.CONFIRMADO);
-		FormaDePagamentoDto formaDePagamentoDto = formaDePagamentoService
-				.buscarPorId(pagamento.getFormaDePagamentoId());
-		PedidoDto pedidoDto = pedidoService.buscarPorId(pagamento.getPedidoId());
-		pagamentoRepository.save(pagamento);
-		Long pedidoId = pagamento.getPedidoId();
+	public PagamentoDto confirmar(Long id) {
+		Optional<Pagamento> pagamento = pagamentoRepository.findById(id);
+		if (!pagamento.isPresent()) {
+			throw new ResourceNotFoundException();
+		}
+		pagamento.get().setStatus(Status.CONFIRMADO);
+		pagamentoRepository.save(pagamento.get());
+		Long pedidoId = pagamento.get().getPedidoId();
 		PedidoDto pedidoDtoPorIdComItens = pedidoService.buscarPorIdComItens(pedidoId);
-		pedidoService.atualizaStatus(pedidoDtoPorIdComItens);
-		return new PagamentoDto(pagamento, formaDePagamentoDto, pedidoDto);
+		pedidoService.atualizarStatus(pedidoDtoPorIdComItens);
+		return this.transformarParaDto(pagamento.get());
 	}
 
-	public PagamentoDto cancela(Long id) {
-		Pagamento pagamento = pagamentoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
-		pagamento.setStatus(Status.CANCELADO);
-		FormaDePagamentoDto formaDePagamentoDto = formaDePagamentoService
-				.buscarPorId(pagamento.getFormaDePagamentoId());
-		PedidoDto pedidoDto = pedidoService.buscarPorId(pagamento.getPedidoId());
-		pagamentoRepository.save(pagamento);
-		return new PagamentoDto(pagamento, formaDePagamentoDto, pedidoDto);
+	public PagamentoDto cancelar(Long id) {
+		Optional<Pagamento> pagamento = pagamentoRepository.findById(id);
+		if (!pagamento.isPresent()) {
+			throw new ResourceNotFoundException();
+		}
+		pagamento.get().setStatus(Status.CANCELADO);
+		pagamentoRepository.save(pagamento.get());
+		return this.transformarParaDto(pagamento.get());
+	}
+
+	private Pagamento transformarParaObjeto(PagamentoDto pagamentoDto) {
+		return modelMapper.map(pagamentoDto, Pagamento.class);
+	}
+
+	private PagamentoDto transformarParaDto(Pagamento pagamento) {
+		PagamentoDto pagamentoDto = modelMapper.map(pagamento, PagamentoDto.class);
+		pagamentoDto.setPedidoDto(pedidoService.buscarPorId(pagamento.getPedidoId()));
+		pagamentoDto.setFormaDePagamentoDto(formaDePagamentoService.buscarPorId(pagamento.getFormaDePagamentoId()));
+		return pagamentoDto;
 	}
 }

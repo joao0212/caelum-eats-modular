@@ -23,27 +23,27 @@ public class FormaDePagamentoController {
 	private FormaDePagamentoService formaDePagamentoService;
 
 	@GetMapping("/formas-de-pagamento")
-	List<FormaDePagamentoDto> lista() {
-		return formaDePagamentoService.lista();
+	List<FormaDePagamentoDto> listar() {
+		return formaDePagamentoService.listar();
 	}
 
 	@GetMapping("/admin/formas-de-pagamento/tipos")
-	List<Tipo> tipos() {
+	List<Tipo> listarTipos() {
 		return Arrays.asList(Tipo.values());
 	}
 
 	@PostMapping("/admin/formas-de-pagamento")
-	FormaDePagamentoDto adiciona(@RequestBody FormaDePagamentoDto formaDePagamentoDto) {
-		return formaDePagamentoService.adiciona(formaDePagamentoDto);
+	FormaDePagamentoDto adicionar(@RequestBody FormaDePagamentoDto formaDePagamentoDto) {
+		return formaDePagamentoService.adicionar(formaDePagamentoDto);
 	}
 
 	@PutMapping("/admin/formas-de-pagamento/{id}")
-	FormaDePagamentoDto atualiza(@RequestBody FormaDePagamentoDto formaDePagamentoDto) {
-		return formaDePagamentoService.atualiza(formaDePagamentoDto);
+	FormaDePagamentoDto atualizar(@RequestBody FormaDePagamentoDto formaDePagamentoDto) {
+		return formaDePagamentoService.atualizar(formaDePagamentoDto);
 	}
 
 	@DeleteMapping("/admin/formas-de-pagamento/{id}")
-	void remove(@PathVariable("id") Long id) {
-		formaDePagamentoService.remove(id);
+	void remover(@PathVariable("id") Long id) {
+		formaDePagamentoService.remover(id);
 	}
 }

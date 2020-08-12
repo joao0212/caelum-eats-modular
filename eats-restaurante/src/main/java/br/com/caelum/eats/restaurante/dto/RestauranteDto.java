@@ -85,4 +85,44 @@ public class RestauranteDto {
 	public void setTipoDeCozinha(TipoDeCozinhaDto tipoDeCozinha) {
 		this.tipoDeCozinha = tipoDeCozinha;
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public void setTaxaDeEntregaEmReais(BigDecimal taxaDeEntregaEmReais) {
+		this.taxaDeEntregaEmReais = taxaDeEntregaEmReais;
+	}
+
+	public void setTempoDeEntregaMinimoEmMinutos(Integer tempoDeEntregaMinimoEmMinutos) {
+		this.tempoDeEntregaMinimoEmMinutos = tempoDeEntregaMinimoEmMinutos;
+	}
+
+	public void setTempoDeEntregaMaximoEmMinutos(Integer tempoDeEntregaMaximoEmMinutos) {
+		this.tempoDeEntregaMaximoEmMinutos = tempoDeEntregaMaximoEmMinutos;
+	}
+
+	public void setAprovado(Boolean aprovado) {
+		this.aprovado = aprovado;
+	}
 }

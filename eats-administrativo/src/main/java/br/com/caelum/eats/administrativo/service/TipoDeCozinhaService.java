@@ -21,17 +21,17 @@ public class TipoDeCozinhaService {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	public List<TipoDeCozinhaDto> lista() {
+	public List<TipoDeCozinhaDto> listar() {
 		return tipoDeCozinhaRepository.findAll().stream().map(tipoDeCozinha -> this.transformarParaDto(tipoDeCozinha))
 				.collect(Collectors.toList());
 	}
 
-	public TipoDeCozinhaDto adiciona(TipoDeCozinhaDto tipoDeCozinhaDto) {
+	public TipoDeCozinhaDto adicionar(TipoDeCozinhaDto tipoDeCozinhaDto) {
 		TipoDeCozinha tipoDeCozinha = tipoDeCozinhaRepository.save(this.transformarParaObjeto(tipoDeCozinhaDto));
 		return this.transformarParaDto(tipoDeCozinha);
 	}
 
-	public TipoDeCozinhaDto atualiza(TipoDeCozinhaDto tipoDeCozinhaDto) {
+	public TipoDeCozinhaDto atualizar(TipoDeCozinhaDto tipoDeCozinhaDto) {
 		TipoDeCozinha tipoDeCozinha = tipoDeCozinhaRepository.save(this.transformarParaObjeto(tipoDeCozinhaDto));
 		return this.transformarParaDto(tipoDeCozinha);
 	}
@@ -44,7 +44,7 @@ public class TipoDeCozinhaService {
 		return transformarParaDto(tipoDeCozinha.get());
 	}
 
-	public void remove(Long id) {
+	public void remover(Long id) {
 		tipoDeCozinhaRepository.deleteById(id);
 	}
 

@@ -27,6 +27,6 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
 
 	@Modifying(clearAutomatically = true)
 	@Query("update Restaurante r set r.aprovado = true where r.id = :id")
-	void aprovaPorId(@Param("id") Long id);
+	void aprovarPorId(@Param("id") Long id);
 
 }

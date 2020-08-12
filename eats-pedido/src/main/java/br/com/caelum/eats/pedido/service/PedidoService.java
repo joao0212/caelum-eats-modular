@@ -15,6 +15,7 @@ import br.com.caelum.eats.pedido.entidade.Pedido;
 import br.com.caelum.eats.pedido.enums.Status;
 import br.com.caelum.eats.pedido.exception.ResourceNotFoundException;
 import br.com.caelum.eats.pedido.repository.PedidoRepository;
+import br.com.caelum.eats.restaurante.service.RestauranteService;
 
 @Service
 public class PedidoService {
@@ -23,9 +24,18 @@ public class PedidoService {
 	private PedidoRepository pedidoRepository;
 
 	@Autowired
-	ModelMapper modelMapper;
+	private RestauranteService restauranteService;
 
-	public List<PedidoDto> lista() {
+	@Autowired
+	private EntregaService entregaService;
+
+	@Autowired
+	private ModelMapper modelMapper;
+
+	@Autowired
+	private ItemDoPedidoService itemDoPedidoService;
+
+	public List<PedidoDto> listar() {
 		return pedidoRepository.findAll().stream().map(pedido -> this.transformarParaDto(pedido))
 				.collect(Collectors.toList());
 	}
@@ -38,21 +48,21 @@ public class PedidoService {
 		return this.transformarParaDto(pedido.get());
 	}
 
-	public PedidoDto adiciona(PedidoDto pedidoDto) {
+	public PedidoDto adicionar(PedidoDto pedidoDto) {
 		Pedido pedido = this.transformarParaObjeto(pedidoDto);
 		pedido.setDataHora(LocalDateTime.now());
 		pedido.setStatus(Status.REALIZADO);
-		pedido.getItens().forEach(item -> item.setPedido(pedido));
+		pedido.getItensDoPedido().forEach(item -> item.setPedido(pedido));
 		pedido.getEntrega().setPedido(pedido);
 		Pedido pedidoSalvo = pedidoRepository.save(pedido);
 		return this.transformarParaDto(pedidoSalvo);
 	}
 
-	public void atualizaStatus(PedidoDto pedidoDto) {
-		pedidoRepository.atualizaStatus(pedidoDto.getStatus(), pedidoDto.getId());
+	public void atualizarStatus(PedidoDto pedidoDto) {
+		pedidoRepository.atualizarStatus(pedidoDto.getStatus(), pedidoDto.getId());
 	}
 
-	public List<PedidoDto> pendentes(Long restauranteId) {
+	public List<PedidoDto> listarPendentes(Long restauranteId) {
 		return pedidoRepository
 				.doRestauranteSemOsStatus(restauranteId, Arrays.asList(Status.REALIZADO, Status.ENTREGUE)).stream()
 				.map(pedido -> this.transformarParaDto(pedido)).collect(Collectors.toList());
@@ -67,6 +77,13 @@ public class PedidoService {
 	}
 
 	private PedidoDto transformarParaDto(Pedido pedido) {
-		return modelMapper.map(pedido, PedidoDto.class);
+		PedidoDto pedidoDto = modelMapper.map(pedido, PedidoDto.class);
+		pedidoDto.setRestauranteDto(restauranteService.findById(pedido.getRestauranteId()));
+		pedidoDto.setEntregaDto(entregaService.buscarPorId(pedido.getEntrega().getId()));
+		pedidoDto.setItensDoPedidoDto(pedido.getItensDoPedido().stream()
+				.map(itemDoPedido -> itemDoPedidoService.buscar(itemDoPedido.getId(), itemDoPedido.getQuantidade(),
+						itemDoPedido.getObservacao(), itemDoPedido.getItemDoCardapioId()))
+				.collect(Collectors.toList()));
+		return pedidoDto;
 	}
 }

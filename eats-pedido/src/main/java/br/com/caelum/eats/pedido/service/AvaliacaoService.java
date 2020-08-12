@@ -22,20 +22,20 @@ public class AvaliacaoService {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	public List<AvaliacaoDto> listaDoRestaurante(Long restauranteId) {
+	public List<AvaliacaoDto> listarAvaliacaoDoRestaurante(Long restauranteId) {
 		return avaliacaoRepository.findAllByRestaurante(restauranteId).stream()
 				.map(avaliacao -> this.transformarParaDto(avaliacao)).collect(Collectors.toList());
 	}
 
-	public AvaliacaoDto adiciona(AvaliacaoDto avaliacaoDto) {
+	public AvaliacaoDto adicionar(AvaliacaoDto avaliacaoDto) {
 		Avaliacao avaliacao = avaliacaoRepository.save(this.transformarParaObjeto(avaliacaoDto));
 		return this.transformarParaDto(avaliacao);
 	}
 
-	public List<MediaAvaliacoesDto> mediaDasAvaliacoesDosRestaurantes(List<Long> idsDosRestaurantes) {
+	public List<MediaAvaliacoesDto> listarMediaDasAvaliacoesDosRestaurantes(List<Long> idsDosRestaurantes) {
 		List<MediaAvaliacoesDto> medias = new ArrayList<>();
 		for (Long restauranteId : idsDosRestaurantes) {
-			Double media = avaliacaoRepository.mediaDoRestaurantePeloId(restauranteId);
+			Double media = avaliacaoRepository.buscarMediaDoRestaurantePeloId(restauranteId);
 			medias.add(new MediaAvaliacoesDto(restauranteId, media));
 		}
 		return medias;

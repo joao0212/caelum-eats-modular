@@ -3,29 +3,10 @@ package br.com.caelum.eats.pagamento.dto;
 import java.math.BigDecimal;
 
 import br.com.caelum.eats.administrativo.dto.FormaDePagamentoDto;
-import br.com.caelum.eats.pagamento.entidade.Pagamento;
 import br.com.caelum.eats.pagamento.enums.Status;
 import br.com.caelum.eats.pedido.dto.PedidoDto;
 
 public class PagamentoDto {
-
-	public PagamentoDto(Long id, BigDecimal valor, String nome, String numero, String expiracao, String codigo,
-			Status status, FormaDePagamentoDto formaDePagamento, PedidoDto pedido) {
-		this.id = id;
-		this.valor = valor;
-		this.nome = nome;
-		this.numero = numero;
-		this.expiracao = expiracao;
-		this.codigo = codigo;
-		this.status = status;
-		this.formaDePagamento = formaDePagamento;
-		this.pedido = pedido;
-	}
-
-	public PagamentoDto(Pagamento p, FormaDePagamentoDto formaDePagamentoDto, PedidoDto pedidoDto) {
-		this(p.getId(), p.getValor(), p.getNome(), p.getNumero(), p.getExpiracao(), p.getCodigo(), p.getStatus(),
-				formaDePagamentoDto, pedidoDto);
-	}
 
 	private Long id;
 	private BigDecimal valor;
@@ -34,8 +15,8 @@ public class PagamentoDto {
 	private String expiracao;
 	private String codigo;
 	private Status status;
-	private FormaDePagamentoDto formaDePagamento;
-	private PedidoDto pedido;
+	private FormaDePagamentoDto formaDePagamentoDto;
+	private PedidoDto pedidoDto;
 
 	public Long getId() {
 		return id;
@@ -65,12 +46,12 @@ public class PagamentoDto {
 		return status;
 	}
 
-	public FormaDePagamentoDto getFormaDePagamento() {
-		return formaDePagamento;
+	public FormaDePagamentoDto getFormaDePagamentoDto() {
+		return formaDePagamentoDto;
 	}
 
-	public PedidoDto getPedido() {
-		return pedido;
+	public PedidoDto getPedidoDto() {
+		return pedidoDto;
 	}
 
 	public void setId(Long id) {
@@ -101,11 +82,11 @@ public class PagamentoDto {
 		this.status = status;
 	}
 
-	public void setFormaDePagamento(FormaDePagamentoDto formaDePagamento) {
-		this.formaDePagamento = formaDePagamento;
+	public void setFormaDePagamentoDto(FormaDePagamentoDto formaDePagamentoDto) {
+		this.formaDePagamentoDto = formaDePagamentoDto;
 	}
 
-	public void setPedido(PedidoDto pedido) {
-		this.pedido = pedido;
+	public void setPedidoDto(PedidoDto pedidoDto) {
+		this.pedidoDto = pedidoDto;
 	}
 }

@@ -20,7 +20,7 @@ public class CardapioService {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	public CardapioDto cardapioDoRestaurante(Long idRestaurante) {
+	public CardapioDto buscarCardapioDoRestaurante(Long idRestaurante) {
 		return this.transformarParaDto(cardapioRepository.buscarPorIdRestaurante(idRestaurante));
 	}
 

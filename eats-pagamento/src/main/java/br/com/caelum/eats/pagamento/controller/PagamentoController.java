@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.caelum.eats.pagamento.dto.PagamentoDto;
-import br.com.caelum.eats.pagamento.entidade.Pagamento;
 import br.com.caelum.eats.pagamento.service.PagamentoService;
 
 @RestController
@@ -24,22 +23,22 @@ public class PagamentoController {
 	private PagamentoService pagamentoService;
 
 	@GetMapping("/{id}")
-	PagamentoDto detalha(@PathVariable("id") Long id) {
-		return pagamentoService.detalha(id);
+	PagamentoDto detalhar(@PathVariable("id") Long id) {
+		return pagamentoService.detalhar(id);
 	}
 
 	@PostMapping
-	ResponseEntity<PagamentoDto> cria(@RequestBody Pagamento pagamento, UriComponentsBuilder uriBuilder) {
-		return pagamentoService.cria(pagamento, uriBuilder);
+	ResponseEntity<PagamentoDto> criar(@RequestBody PagamentoDto pagamentoDto, UriComponentsBuilder uriBuilder) {
+		return pagamentoService.criar(pagamentoDto, uriBuilder);
 	}
 
 	@PutMapping("/{id}")
-	PagamentoDto confirma(@PathVariable("id") Long id) {
-		return pagamentoService.confirma(id);
+	PagamentoDto confirmar(@PathVariable("id") Long id) {
+		return pagamentoService.confirmar(id);
 	}
 
 	@DeleteMapping("/{id}")
-	PagamentoDto cancela(@PathVariable("id") Long id) {
-		return pagamentoService.cancela(id);
+	PagamentoDto cancelar(@PathVariable("id") Long id) {
+		return pagamentoService.cancelar(id);
 	}
 }

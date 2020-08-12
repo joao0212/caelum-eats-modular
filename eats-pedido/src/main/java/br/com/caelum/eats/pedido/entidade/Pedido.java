@@ -22,13 +22,13 @@ import br.com.caelum.eats.pedido.enums.Status;
 public class Pedido {
 
 	public Pedido(Long id, @NotNull LocalDateTime dataHora, @NotNull Status status, Long restauranteId, Entrega entrega,
-			List<ItemDoPedido> itens) {
+			List<ItemDoPedido> itensDoPedido) {
 		this.id = id;
 		this.dataHora = dataHora;
 		this.status = status;
 		this.restauranteId = restauranteId;
 		this.entrega = entrega;
-		this.itens = itens;
+		this.itensDoPedido = itensDoPedido;
 	}
 
 	public Pedido() {
@@ -53,7 +53,7 @@ public class Pedido {
 	private Entrega entrega;
 
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pedido")
-	private List<ItemDoPedido> itens = new ArrayList<>();
+	private List<ItemDoPedido> itensDoPedido = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -83,8 +83,8 @@ public class Pedido {
 		return entrega;
 	}
 
-	public List<ItemDoPedido> getItens() {
-		return itens;
+	public List<ItemDoPedido> getItensDoPedido() {
+		return itensDoPedido;
 	}
 
 	@Override

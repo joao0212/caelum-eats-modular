@@ -17,19 +17,19 @@ public class RestaurantesMaisProximosController {
 	private DistanciaService distanciaService;
 
 	@GetMapping("/restaurantes/mais-proximos/{cep}")
-	List<RestauranteComDistanciaDto> maisProximos(@PathVariable("cep") String cep) {
-		return distanciaService.restaurantesMaisProximosAoCep(cep);
+	List<RestauranteComDistanciaDto> listarMaisProximos(@PathVariable("cep") String cep) {
+		return distanciaService.listarRestaurantesMaisProximosAoCep(cep);
 	}
 
 	@GetMapping("/restaurantes/mais-proximos/{cep}/tipos-de-cozinha/{tipoDeCozinhaId}")
-	List<RestauranteComDistanciaDto> maisProximos(@PathVariable("cep") String cep,
+	List<RestauranteComDistanciaDto> listarMaisProximos(@PathVariable("cep") String cep,
 			@PathVariable("tipoDeCozinhaId") Long tipoDeCozinhaId) {
-		return distanciaService.restaurantesDoTipoDeCozinhaMaisProximosAoCep(tipoDeCozinhaId, cep);
+		return distanciaService.listarRestaurantesDoTipoDeCozinhaMaisProximosAoCep(tipoDeCozinhaId, cep);
 	}
 
 	@GetMapping("/restaurantes/{cep}/restaurante/{restauranteId}")
-	RestauranteComDistanciaDto comDistanciaPorId(@PathVariable("cep") String cep,
+	RestauranteComDistanciaDto buscarComDistanciaPorId(@PathVariable("cep") String cep,
 			@PathVariable("restauranteId") Long restauranteId) {
-		return distanciaService.restauranteComDistanciaDoCep(restauranteId, cep);
+		return distanciaService.buscarRestauranteComDistanciaDoCep(restauranteId, cep);
 	}
 }

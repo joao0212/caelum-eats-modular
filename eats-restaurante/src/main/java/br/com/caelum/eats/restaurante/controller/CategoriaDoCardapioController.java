@@ -17,13 +17,13 @@ public class CategoriaDoCardapioController {
 	private CategoriaDoCardapioService categoriaDoCardapioService;
 
 	@GetMapping("/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}")
-	CategoriaDoCardapioDto categoriaPorId(@PathVariable("idCategoria") Long idCategoria) {
-		return categoriaDoCardapioService.categoriaPorId(idCategoria);
+	CategoriaDoCardapioDto buscarCategoriaPorId(@PathVariable("idCategoria") Long idCategoria) {
+		return categoriaDoCardapioService.buscarCategoriaPorId(idCategoria);
 	}
 
 	@PostMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria")
-	CategoriaDoCardapioDto cardapioDoRestaurante(@PathVariable("idCardapio") Long idCardapio,
+	CategoriaDoCardapioDto buscarCardapioDoRestaurante(@PathVariable("idCardapio") Long idCardapio,
 			@RequestBody CategoriaDoCardapioDto categoriaDoCardapioDto) {
-		return categoriaDoCardapioService.cardapioDoRestaurante(idCardapio, categoriaDoCardapioDto);
+		return categoriaDoCardapioService.buscarCardapioDoRestaurante(idCardapio, categoriaDoCardapioDto);
 	}
 }

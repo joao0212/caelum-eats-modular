@@ -1,38 +1,19 @@
 package br.com.caelum.eats.pedido.dto;
 
-import br.com.caelum.eats.pedido.entidade.Entrega;
-
 public class EntregaDto {
 
-	public EntregaDto(Long id, ClienteDto cliente, String cep, String endereco, String complemento) {
-		this.id = id;
-		this.cliente = cliente;
-		this.cep = cep;
-		this.endereco = endereco;
-		this.complemento = complemento;
-	}
-
-	public EntregaDto() {
-		super();
-	}
-
 	private Long id;
-	private ClienteDto cliente;
+	private ClienteDto clienteDto;
 	private String cep;
 	private String endereco;
 	private String complemento;
-
-	EntregaDto(Entrega entrega) {
-		this(entrega.getId(), new ClienteDto(entrega.getCliente()), entrega.getCep(), entrega.getEndereco(),
-				entrega.getComplemento());
-	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public ClienteDto getCliente() {
-		return cliente;
+	public ClienteDto getClienteDto() {
+		return clienteDto;
 	}
 
 	public String getCep() {
@@ -45,5 +26,25 @@ public class EntregaDto {
 
 	public String getComplemento() {
 		return complemento;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setClienteDto(ClienteDto clienteDto) {
+		this.clienteDto = clienteDto;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 }

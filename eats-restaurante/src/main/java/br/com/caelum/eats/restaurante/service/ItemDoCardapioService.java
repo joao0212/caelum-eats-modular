@@ -18,19 +18,30 @@ public class ItemDoCardapioService {
 	private ItemDoCardapioRepository itemDoCardapioRepository;
 
 	@Autowired
+	private CategoriaDoCardapioService categoriaDoCardapioService;
+
+	@Autowired
 	private ModelMapper modelMapper;
 
-	public ItemDoCardapioDto adicionaItem(ItemDoCardapioDto item) {
+	public ItemDoCardapioDto adicionarItem(ItemDoCardapioDto item) {
 		ItemDoCardapio itemDoCardapio = itemDoCardapioRepository.save(this.transformarParaObjeto(item));
 		return this.transformarParaDto(itemDoCardapio);
 	}
 
-	public ItemDoCardapioDto atualizaItem(ItemDoCardapioDto item) {
+	public ItemDoCardapioDto buscarPorId(Long id) {
+		Optional<ItemDoCardapio> itemDoCardapio = itemDoCardapioRepository.findById(id);
+		if (!itemDoCardapio.isPresent()) {
+			throw new ResourceNotFoundException();
+		}
+		return this.transformarParaDto(itemDoCardapio.get());
+	}
+
+	public ItemDoCardapioDto atualizarItem(ItemDoCardapioDto item) {
 		ItemDoCardapio itemDoCardapio = itemDoCardapioRepository.save(this.transformarParaObjeto(item));
 		return this.transformarParaDto(itemDoCardapio);
 	}
 
-	public ItemDoCardapioDto itemPorId(Long idItem) {
+	public ItemDoCardapioDto buscarItemPorId(Long idItem) {
 		Optional<ItemDoCardapio> item = itemDoCardapioRepository.findById(idItem);
 		if (!item.isPresent()) {
 			throw new ResourceNotFoundException();
@@ -38,7 +49,7 @@ public class ItemDoCardapioService {
 		return this.transformarParaDto(item.get());
 	}
 
-	public void removeItem(Long idItem) {
+	public void removerItem(Long idItem) {
 		itemDoCardapioRepository.deleteById(idItem);
 	}
 
@@ -47,6 +58,9 @@ public class ItemDoCardapioService {
 	}
 
 	private ItemDoCardapioDto transformarParaDto(ItemDoCardapio itemDoCardapio) {
-		return modelMapper.map(itemDoCardapio, ItemDoCardapioDto.class);
+		ItemDoCardapioDto itemDoCardapioDto = modelMapper.map(itemDoCardapio, ItemDoCardapioDto.class);
+		itemDoCardapioDto.setCategoriaDoCardapioDto(
+				categoriaDoCardapioService.buscarCategoriaPorId(itemDoCardapio.getCategoriaDoCardapio().getId()));
+		return itemDoCardapioDto;
 	}
 }

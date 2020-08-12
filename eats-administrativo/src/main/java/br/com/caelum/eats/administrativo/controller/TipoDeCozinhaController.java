@@ -21,22 +21,22 @@ public class TipoDeCozinhaController {
 	private TipoDeCozinhaService tipoDeCozinhaService;
 
 	@GetMapping("/tipos-de-cozinha")
-	List<TipoDeCozinhaDto> lista() {
-		return tipoDeCozinhaService.lista();
+	List<TipoDeCozinhaDto> listar() {
+		return tipoDeCozinhaService.listar();
 	}
 
 	@PostMapping("/admin/tipos-de-cozinha")
-	TipoDeCozinhaDto adiciona(@RequestBody TipoDeCozinhaDto tipoDeCozinhaDto) {
-		return tipoDeCozinhaService.adiciona(tipoDeCozinhaDto);
+	TipoDeCozinhaDto adicionar(@RequestBody TipoDeCozinhaDto tipoDeCozinhaDto) {
+		return tipoDeCozinhaService.adicionar(tipoDeCozinhaDto);
 	}
 
 	@PutMapping("/admin/tipos-de-cozinha/{id}")
-	TipoDeCozinhaDto atualiza(@RequestBody TipoDeCozinhaDto tipoDeCozinhaDto) {
-		return tipoDeCozinhaService.atualiza(tipoDeCozinhaDto);
+	TipoDeCozinhaDto atualizar(@RequestBody TipoDeCozinhaDto tipoDeCozinhaDto) {
+		return tipoDeCozinhaService.atualizar(tipoDeCozinhaDto);
 	}
 
 	@DeleteMapping("/admin/tipos-de-cozinha/{id}")
-	void remove(@PathVariable("id") Long id) {
-		tipoDeCozinhaService.remove(id);
+	void remover(@PathVariable("id") Long id) {
+		tipoDeCozinhaService.remover(id);
 	}
 }

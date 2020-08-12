@@ -20,7 +20,7 @@ public class CategoriaDoCardapioService {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	public CategoriaDoCardapioDto categoriaPorId(Long idCategoria) {
+	public CategoriaDoCardapioDto buscarCategoriaPorId(Long idCategoria) {
 		Optional<CategoriaDoCardapio> categoriaDoCardapio = categoriaDoCardapioRepository.findById(idCategoria);
 		if (!categoriaDoCardapio.isPresent()) {
 			throw new ResourceNotFoundException();
@@ -28,7 +28,7 @@ public class CategoriaDoCardapioService {
 		return this.transformarParaDto(categoriaDoCardapio.get());
 	}
 
-	public CategoriaDoCardapioDto cardapioDoRestaurante(Long idCardapio,
+	public CategoriaDoCardapioDto buscarCardapioDoRestaurante(Long idCardapio,
 			CategoriaDoCardapioDto categoriaDoCardapioDto) {
 		CategoriaDoCardapio categoriaDoCardapio = categoriaDoCardapioRepository
 				.save(this.transformarParaObjeto(categoriaDoCardapioDto));

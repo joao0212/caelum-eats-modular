@@ -22,7 +22,7 @@ public class RestauranteFormaDePagamentoService {
 	@Autowired
 	private FormaDePagamentoService formaDePagamentoService;
 
-	public void adiciona(Long idRestaurante, Long idFormaDePagamento) {
+	public void adicionar(Long idRestaurante, Long idFormaDePagamento) {
 		RestauranteFormaDePagamentoId id = new RestauranteFormaDePagamentoId(idRestaurante, idFormaDePagamento);
 		Restaurante restaurante = new Restaurante();
 		restaurante.setId(idRestaurante);
@@ -31,12 +31,12 @@ public class RestauranteFormaDePagamentoService {
 		restauranteFormaDePagamentoRepository.save(restauranteFormaDePagamento);
 	}
 
-	public void removeDoRestaurante(Long idRestaurante, Long idFormaDePagamento) {
+	public void removerDoRestaurante(Long idRestaurante, Long idFormaDePagamento) {
 		RestauranteFormaDePagamentoId id = new RestauranteFormaDePagamentoId(idRestaurante, idFormaDePagamento);
 		restauranteFormaDePagamentoRepository.deleteById(id);
 	}
 
-	public List<FormaDePagamentoDto> lista(Long idRestaurante) {
+	public List<FormaDePagamentoDto> listar(Long idRestaurante) {
 		List<RestauranteFormaDePagamento> listaRestauranteFormaDePagamentos = restauranteFormaDePagamentoRepository
 				.findAllByRestauranteOrderByNomeAsc(idRestaurante);
 		List<Long> ids = new ArrayList<Long>();

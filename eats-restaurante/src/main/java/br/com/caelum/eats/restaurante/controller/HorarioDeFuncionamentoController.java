@@ -21,27 +21,27 @@ public class HorarioDeFuncionamentoController {
 	private HorarioDeFuncionamentoService horarioDeFuncionamentoService;
 
 	@GetMapping("/restaurantes/{idRestaurante}/horarios-de-funcionamento/{id}")
-	public HorarioDeFuncionamentoDto detalha(@PathVariable("id") Long id) {
-		return horarioDeFuncionamentoService.detalha(id);
+	public HorarioDeFuncionamentoDto detalhar(@PathVariable("id") Long id) {
+		return horarioDeFuncionamentoService.detalhar(id);
 	}
 
 	@GetMapping("/restaurantes/{idRestaurante}/horarios-de-funcionamento")
-	public List<HorarioDeFuncionamentoDto> lista(@PathVariable("idRestaurante") Long idRestaurante) {
-		return horarioDeFuncionamentoService.lista(idRestaurante);
+	public List<HorarioDeFuncionamentoDto> listar(@PathVariable("idRestaurante") Long idRestaurante) {
+		return horarioDeFuncionamentoService.listar(idRestaurante);
 	}
 
 	@PostMapping("/parceiros/restaurantes/{idRestaurante}/horarios-de-funcionamento")
-	public HorarioDeFuncionamentoDto adiciona(@RequestBody HorarioDeFuncionamentoDto horarioDeFuncionamentoDto) {
-		return horarioDeFuncionamentoService.adiciona(horarioDeFuncionamentoDto);
+	public HorarioDeFuncionamentoDto adicionar(@RequestBody HorarioDeFuncionamentoDto horarioDeFuncionamentoDto) {
+		return horarioDeFuncionamentoService.adicionar(horarioDeFuncionamentoDto);
 	}
 
 	@PutMapping("/parceiros/restaurantes/{idRestaurante}/horarios-de-funcionamento/{id}")
-	public HorarioDeFuncionamentoDto atualiza(@RequestBody HorarioDeFuncionamentoDto horarioDeFuncionamentoDto) {
-		return horarioDeFuncionamentoService.atualiza(horarioDeFuncionamentoDto);
+	public HorarioDeFuncionamentoDto atualizar(@RequestBody HorarioDeFuncionamentoDto horarioDeFuncionamentoDto) {
+		return horarioDeFuncionamentoService.atualizar(horarioDeFuncionamentoDto);
 	}
 
 	@DeleteMapping("/parceiros/restaurantes/{idRestaurante}/horarios-de-funcionamento/{id}")
-	public void remove(@PathVariable("id") Long id) {
-		horarioDeFuncionamentoService.remove(id);
+	public void remover(@PathVariable("id") Long id) {
+		horarioDeFuncionamentoService.remover(id);
 	}
 }

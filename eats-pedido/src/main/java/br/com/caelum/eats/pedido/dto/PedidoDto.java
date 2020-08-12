@@ -1,6 +1,5 @@
 package br.com.caelum.eats.pedido.dto;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,38 +9,12 @@ import br.com.caelum.eats.restaurante.dto.RestauranteDto;
 
 public class PedidoDto {
 
-	public PedidoDto() {
-
-	}
-
-	public PedidoDto(Long id, LocalDateTime dataHora, Status status, RestauranteDto restaurante, EntregaDto entrega,
-			List<ItemDoPedidoDto> itens) {
-		this.id = id;
-		this.dataHora = dataHora;
-		this.status = status;
-		this.restaurante = restaurante;
-		this.entrega = entrega;
-		this.itens = itens;
-	}
-
 	private Long id;
 	private LocalDateTime dataHora;
 	private Status status;
-	private RestauranteDto restaurante;
-	private EntregaDto entrega;
-	private List<ItemDoPedidoDto> itens = new ArrayList<>();
-
-	public BigDecimal getTotal() {
-		BigDecimal total = restaurante.getTaxaDeEntregaEmReais() != null ? restaurante.getTaxaDeEntregaEmReais()
-				: BigDecimal.ZERO;
-		for (ItemDoPedidoDto item : itens) {
-			BigDecimal preco = item.getItemDoCardapioDto().getPrecoPromocional() != null
-					? item.getItemDoCardapioDto().getPrecoPromocional()
-					: item.getItemDoCardapioDto().getPreco();
-			total = total.add(preco.multiply(new BigDecimal(item.getQuantidade())));
-		}
-		return total;
-	}
+	private RestauranteDto restauranteDto;
+	private EntregaDto entregaDto;
+	private List<ItemDoPedidoDto> itensDoPedidoDto = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -55,15 +28,39 @@ public class PedidoDto {
 		return status;
 	}
 
-	public RestauranteDto getRestaurante() {
-		return restaurante;
+	public RestauranteDto getRestauranteDto() {
+		return restauranteDto;
 	}
 
-	public EntregaDto getEntrega() {
-		return entrega;
+	public EntregaDto getEntregaDto() {
+		return entregaDto;
 	}
 
-	public List<ItemDoPedidoDto> getItens() {
-		return itens;
+	public List<ItemDoPedidoDto> getItensDoPedidoDto() {
+		return itensDoPedidoDto;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setDataHora(LocalDateTime dataHora) {
+		this.dataHora = dataHora;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public void setRestauranteDto(RestauranteDto restauranteDto) {
+		this.restauranteDto = restauranteDto;
+	}
+
+	public void setEntregaDto(EntregaDto entregaDto) {
+		this.entregaDto = entregaDto;
+	}
+
+	public void setItensDoPedidoDto(List<ItemDoPedidoDto> itensDoPedidoDto) {
+		this.itensDoPedidoDto = itensDoPedidoDto;
 	}
 }

@@ -20,18 +20,18 @@ public class RestauranteFormaDePagamentoController {
 	private RestauranteFormaDePagamentoService restauranteFormaDePagamentoService;
 
 	@PostMapping("/parceiros/restaurantes/{idRestaurante}/formas-de-pagamento")
-	void adiciona(@PathVariable("idRestaurante") Long idRestaurante, @RequestBody Long idFormaDePagamento) {
-		restauranteFormaDePagamentoService.adiciona(idRestaurante, idFormaDePagamento);
+	void adicionar(@PathVariable("idRestaurante") Long idRestaurante, @RequestBody Long idFormaDePagamento) {
+		restauranteFormaDePagamentoService.adicionar(idRestaurante, idFormaDePagamento);
 	}
 
 	@DeleteMapping("/parceiros/restaurantes/{idRestaurante}/formas-de-pagamento/{idFormaDePagamento}")
-	void removeDoRestaurante(@PathVariable("idRestaurante") Long idRestaurante,
+	void removerDoRestaurante(@PathVariable("idRestaurante") Long idRestaurante,
 			@PathVariable("idFormaDePagamento") Long idFormaDePagamento) {
-		restauranteFormaDePagamentoService.removeDoRestaurante(idRestaurante, idFormaDePagamento);
+		restauranteFormaDePagamentoService.removerDoRestaurante(idRestaurante, idFormaDePagamento);
 	}
 
 	@GetMapping("/restaurantes/{idRestaurante}/formas-de-pagamento")
-	List<FormaDePagamentoDto> lista(@PathVariable("idRestaurante") Long idRestaurante) {
-		return restauranteFormaDePagamentoService.lista(idRestaurante);
+	List<FormaDePagamentoDto> listar(@PathVariable("idRestaurante") Long idRestaurante) {
+		return restauranteFormaDePagamentoService.listar(idRestaurante);
 	}
 }

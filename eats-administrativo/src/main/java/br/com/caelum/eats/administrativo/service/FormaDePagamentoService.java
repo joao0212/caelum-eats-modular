@@ -1,6 +1,5 @@
 package br.com.caelum.eats.administrativo.service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.caelum.eats.administrativo.dto.FormaDePagamentoDto;
 import br.com.caelum.eats.administrativo.entidade.FormaDePagamento;
-import br.com.caelum.eats.administrativo.enums.Tipo;
 import br.com.caelum.eats.administrativo.repository.FormaDePagamentoRepository;
 
 @Service
@@ -23,22 +21,18 @@ public class FormaDePagamentoService {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	public List<FormaDePagamentoDto> lista() {
+	public List<FormaDePagamentoDto> listar() {
 		return formaDePagamentoRepository.findAll().stream()
 				.map(formaDePagamento -> this.transformarParaDto(formaDePagamento)).collect(Collectors.toList());
 	}
 
-	public List<Tipo> tipos() {
-		return Arrays.asList(Tipo.values());
-	}
-
-	public FormaDePagamentoDto adiciona(FormaDePagamentoDto formaDePagamentoDto) {
+	public FormaDePagamentoDto adicionar(FormaDePagamentoDto formaDePagamentoDto) {
 		FormaDePagamento formaDePagamento = formaDePagamentoRepository
 				.save(this.transformarParaObjeto(formaDePagamentoDto));
 		return this.transformarParaDto(formaDePagamento);
 	}
 
-	public FormaDePagamentoDto atualiza(FormaDePagamentoDto formaDePagamentoDto) {
+	public FormaDePagamentoDto atualizar(FormaDePagamentoDto formaDePagamentoDto) {
 		FormaDePagamento formaDePagamento = formaDePagamentoRepository
 				.save(this.transformarParaObjeto(formaDePagamentoDto));
 		return this.transformarParaDto(formaDePagamento);
@@ -57,7 +51,7 @@ public class FormaDePagamentoService {
 				.map(formaDePagamento -> this.transformarParaDto(formaDePagamento)).collect(Collectors.toList());
 	}
 
-	public void remove(Long id) {
+	public void remover(Long id) {
 		formaDePagamentoRepository.deleteById(id);
 	}
 

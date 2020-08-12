@@ -15,8 +15,8 @@ public class CardapioController {
 	private CardapioService cardapioService;
 
 	@GetMapping("/restaurantes/{idRestaurante}/cardapio")
-	CardapioDto cardapioDoRestaurante(@PathVariable("idRestaurante") Long idRestaurante) {
-		return cardapioService.cardapioDoRestaurante(idRestaurante);
+	CardapioDto buscarCardapioDoRestaurante(@PathVariable("idRestaurante") Long idRestaurante) {
+		return cardapioService.buscarCardapioDoRestaurante(idRestaurante);
 	}
 
 	@GetMapping("/restaurantes/{idRestaurante}/cardapio/{idCardapio}")

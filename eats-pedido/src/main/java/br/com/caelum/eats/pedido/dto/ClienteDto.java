@@ -4,6 +4,10 @@ import br.com.caelum.eats.pedido.entidade.Cliente;
 
 public class ClienteDto {
 
+	public ClienteDto() {
+		super();
+	}
+
 	public ClienteDto(String nome, String cpf, String email, String telefone) {
 		this.nome = nome;
 		this.cpf = cpf;
@@ -11,18 +15,14 @@ public class ClienteDto {
 		this.telefone = telefone;
 	}
 
-	public ClienteDto() {
-		super();
+	ClienteDto(Cliente cliente) {
+		this(cliente.getNome(), cliente.getCpf(), cliente.getEmail(), cliente.getTelefone());
 	}
 
 	private String nome;
 	private String cpf;
 	private String email;
 	private String telefone;
-
-	ClienteDto(Cliente cliente) {
-		this(cliente.getNome(), cliente.getCpf(), cliente.getEmail(), cliente.getTelefone());
-	}
 
 	public String getNome() {
 		return nome;
@@ -38,5 +38,21 @@ public class ClienteDto {
 
 	public String getTelefone() {
 		return telefone;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 }

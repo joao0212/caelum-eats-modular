@@ -21,18 +21,18 @@ public class AvaliacaoController {
 	private AvaliacaoService avaliacaoService;
 
 	@GetMapping("/restaurantes/{restauranteId}/avaliacoes")
-	List<AvaliacaoDto> listaDoRestaurante(@PathVariable("restauranteId") Long restauranteId) {
-		return avaliacaoService.listaDoRestaurante(restauranteId);
+	List<AvaliacaoDto> listarAvaliacaoDoRestaurante(@PathVariable("restauranteId") Long restauranteId) {
+		return avaliacaoService.listarAvaliacaoDoRestaurante(restauranteId);
 	}
 
 	@PostMapping("/restaurantes/{restauranteId}/avaliacoes")
-	AvaliacaoDto adiciona(@RequestBody AvaliacaoDto avaliacaoDto) {
-		return avaliacaoService.adiciona(avaliacaoDto);
+	AvaliacaoDto adicionar(@RequestBody AvaliacaoDto avaliacaoDto) {
+		return avaliacaoService.adicionar(avaliacaoDto);
 	}
 
 	@GetMapping("/restaurantes/media-avaliacoes")
-	List<MediaAvaliacoesDto> mediaDasAvaliacoesDosRestaurantes(
+	List<MediaAvaliacoesDto> listarMediaDasAvaliacoesDosRestaurantes(
 			@RequestParam("idsDosRestaurantes") List<Long> idsDosRestaurantes) {
-		return avaliacaoService.mediaDasAvaliacoesDosRestaurantes(idsDosRestaurantes);
+		return avaliacaoService.listarMediaDasAvaliacoesDosRestaurantes(idsDosRestaurantes);
 	}
 }

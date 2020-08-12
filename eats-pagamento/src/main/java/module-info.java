@@ -3,6 +3,9 @@ module br.com.caelum.eats.pagamento {
 	exports br.com.caelum.eats.pagamento.dto;
 	exports br.com.caelum.eats.pagamento.enums;
 
+	// Export de entidade apenas para Model Mapper
+	exports br.com.caelum.eats.pagamento.entidade to modelmapper;
+
 	requires transitive br.com.caelum.eats.administrativo;
 	requires transitive br.com.caelum.eats.pedido;
 
@@ -19,6 +22,7 @@ module br.com.caelum.eats.pagamento {
 	requires net.bytebuddy;
 	requires com.fasterxml.classmate;
 	requires com.fasterxml.jackson.databind;
+	requires modelmapper;
 
 	opens br.com.caelum.eats.pagamento.controller to spring.beans, spring.context, spring.core;
 	opens br.com.caelum.eats.pagamento.entidade

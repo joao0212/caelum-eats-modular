@@ -19,22 +19,22 @@ public class ItemDoCardapioController {
 	private ItemDoCardapioService itemDoCardapioService;
 
 	@PostMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}/item")
-	public ItemDoCardapioDto adicionaItem(@RequestBody ItemDoCardapioDto item) {
-		return itemDoCardapioService.adicionaItem(item);
+	public ItemDoCardapioDto adicionarItem(@RequestBody ItemDoCardapioDto item) {
+		return itemDoCardapioService.adicionarItem(item);
 	}
 
 	@PutMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}/item/{idItem}")
-	public ItemDoCardapioDto atualizaItem(@RequestBody ItemDoCardapioDto item) {
-		return itemDoCardapioService.atualizaItem(item);
+	public ItemDoCardapioDto atualizarItem(@RequestBody ItemDoCardapioDto item) {
+		return itemDoCardapioService.atualizarItem(item);
 	}
 
 	@GetMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}/item/{idItem}")
-	public ItemDoCardapioDto itemPorId(@PathVariable("idItem") Long idItem) {
-		return itemDoCardapioService.itemPorId(idItem);
+	public ItemDoCardapioDto buscarItemPorId(@PathVariable("idItem") Long idItem) {
+		return itemDoCardapioService.buscarItemPorId(idItem);
 	}
 
 	@DeleteMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}/item/{idItem}")
-	public void removeItem(@PathVariable("idItem") Long idItem) {
-		itemDoCardapioService.removeItem(idItem);
+	public void removerItem(@PathVariable("idItem") Long idItem) {
+		itemDoCardapioService.removerItem(idItem);
 	}
 }

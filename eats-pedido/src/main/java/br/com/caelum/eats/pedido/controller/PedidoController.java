@@ -20,8 +20,8 @@ public class PedidoController {
 	private PedidoService pedidoService;
 
 	@GetMapping("/pedidos")
-	List<PedidoDto> lista() {
-		return pedidoService.lista();
+	List<PedidoDto> listar() {
+		return pedidoService.listar();
 	}
 
 	@GetMapping("/pedidos/{id}")
@@ -30,17 +30,17 @@ public class PedidoController {
 	}
 
 	@PostMapping("/pedidos")
-	PedidoDto adiciona(@RequestBody PedidoDto pedidoDto) {
-		return pedidoService.adiciona(pedidoDto);
+	PedidoDto adicionar(@RequestBody PedidoDto pedidoDto) {
+		return pedidoService.adicionar(pedidoDto);
 	}
 
 	@PutMapping("/pedidos/{id}/status")
-	void atualizaStatus(@RequestBody PedidoDto pedidoDto) {
-		pedidoService.atualizaStatus(pedidoDto);
+	void atualizarStatus(@RequestBody PedidoDto pedidoDto) {
+		pedidoService.atualizarStatus(pedidoDto);
 	}
 
 	@GetMapping("/parceiros/restaurantes/{restauranteId}/pedidos/pendentes")
-	List<PedidoDto> pendentes(@PathVariable("restauranteId") Long restauranteId) {
-		return pedidoService.pendentes(restauranteId);
+	List<PedidoDto> listarPendentes(@PathVariable("restauranteId") Long restauranteId) {
+		return pedidoService.listarPendentes(restauranteId);
 	}
 }

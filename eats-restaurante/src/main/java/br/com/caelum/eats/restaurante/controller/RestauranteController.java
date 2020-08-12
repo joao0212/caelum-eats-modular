@@ -23,43 +23,43 @@ public class RestauranteController {
 	private RestauranteService restauranteService;
 
 	@GetMapping("/restaurantes/{id}")
-	RestauranteDto detalha(@PathVariable("id") Long id) {
-		return restauranteService.detalha(id);
+	RestauranteDto detalhar(@PathVariable("id") Long id) {
+		return restauranteService.detalhar(id);
 	}
 
 	@GetMapping("/parceiros/restaurantes/do-usuario/{username}")
-	public RestauranteDto detalhaParceiro(@PathVariable("username") String username) {
-		return restauranteService.detalhaParceiro(username);
+	public RestauranteDto detalharParceiro(@PathVariable("username") String username) {
+		return restauranteService.detalharParceiro(username);
 	}
 
 	@GetMapping("/restaurantes")
-	List<RestauranteDto> detalhePorIds(@RequestParam("ids") List<Long> ids) {
-		return restauranteService.detalhePorIds(ids);
+	List<RestauranteDto> detalharPorIds(@RequestParam("ids") List<Long> ids) {
+		return restauranteService.detalharPorIds(ids);
 	}
 
 	@GetMapping("/parceiros/restaurantes/{id}")
-	RestauranteDto detalhaParceiro(@PathVariable("id") Long id) {
-		return restauranteService.detalhaParceiro(id);
+	RestauranteDto detalharParceiro(@PathVariable("id") Long id) {
+		return restauranteService.detalharParceiro(id);
 	}
 
 	@PostMapping("/parceiros/restaurantes")
-	RestauranteDto adiciona(@RequestBody RestauranteDto restaurante) {
-		return restauranteService.adiciona(restaurante);
+	RestauranteDto adicionar(@RequestBody RestauranteDto restaurante) {
+		return restauranteService.adicionar(restaurante);
 	}
 
 	@PutMapping("/parceiros/restaurantes/{id}")
-	public RestauranteDto atualiza(@RequestBody RestauranteDto restaurante) {
-		return restauranteService.atualiza(restaurante);
+	public RestauranteDto atualizar(@RequestBody RestauranteDto restaurante) {
+		return restauranteService.atualizar(restaurante);
 	}
 
 	@GetMapping("/admin/restaurantes/em-aprovacao")
-	List<RestauranteDto> emAprovacao() {
-		return restauranteService.emAprovacao();
+	List<RestauranteDto> listarPorEmAprovacao() {
+		return restauranteService.listarPoremAprovacao();
 	}
 
 	@Transactional
 	@PatchMapping("/admin/restaurantes/{id}")
-	public void aprova(@PathVariable("id") Long id) {
-		restauranteService.aprova(id);
+	public void aprovar(@PathVariable("id") Long id) {
+		restauranteService.aprovar(id);
 	}
 }
