@@ -38,8 +38,8 @@ public class FormaDePagamentoController {
 	}
 
 	@PutMapping("/admin/formas-de-pagamento/{id}")
-	FormaDePagamentoDto atualizar(@RequestBody FormaDePagamentoDto formaDePagamentoDto) {
-		return formaDePagamentoService.atualizar(formaDePagamentoDto);
+	FormaDePagamentoDto atualizar(@PathVariable("id") Long id, @RequestBody FormaDePagamentoDto formaDePagamentoDto) {
+		return formaDePagamentoService.atualizar(id, formaDePagamentoDto);
 	}
 
 	@DeleteMapping("/admin/formas-de-pagamento/{id}")

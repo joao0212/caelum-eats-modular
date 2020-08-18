@@ -30,6 +30,10 @@ public class FormaDePagamento {
 	public Long getId() {
 		return id;
 	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Tipo getTipo() {
 		return tipo;
@@ -37,6 +41,14 @@ public class FormaDePagamento {
 
 	public String getNome() {
 		return nome;
+	}
+
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	@Override

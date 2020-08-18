@@ -32,9 +32,15 @@ public class FormaDePagamentoService {
 		return this.transformarParaDto(formaDePagamento);
 	}
 
-	public FormaDePagamentoDto atualizar(FormaDePagamentoDto formaDePagamentoDto) {
+	public FormaDePagamentoDto atualizar(Long id, FormaDePagamentoDto formaDePagamentoDto) {
+		FormaDePagamentoDto formaDePagamentoDtoSalvo = buscarPorId(id);
+
+		formaDePagamentoDtoSalvo.setNome(formaDePagamentoDto.getNome());
+		formaDePagamentoDtoSalvo.setTipo(formaDePagamentoDto.getTipo());
+
 		FormaDePagamento formaDePagamento = formaDePagamentoRepository
-				.save(this.transformarParaObjeto(formaDePagamentoDto));
+				.save(this.transformarParaObjeto(formaDePagamentoDtoSalvo));
+
 		return this.transformarParaDto(formaDePagamento);
 	}
 
