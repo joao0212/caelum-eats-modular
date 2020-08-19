@@ -170,7 +170,7 @@ public class Restaurante {
 		return tipoDeCozinhaId;
 	}
 
-	public void setTipoDeCozinha(Long tipoDeCozinhaId) {
+	public void setTipoDeCozinhaId(Long tipoDeCozinhaId) {
 		this.tipoDeCozinhaId = tipoDeCozinhaId;
 	}
 

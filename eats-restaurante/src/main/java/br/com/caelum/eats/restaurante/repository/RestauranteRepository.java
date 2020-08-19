@@ -16,7 +16,7 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
 
 	List<Restaurante> findAllByAprovado(boolean aprovado);
 
-	Page<Restaurante> findAllByAprovadoAndTipoDeCozinha(boolean aprovado, Long tipoDeCozinhaId, Pageable limit);
+	Page<Restaurante> findAllByAprovadoAndTipoDeCozinhaId(boolean aprovado, Long tipoDeCozinhaId, Pageable limit);
 
 	Page<Restaurante> findAllByAprovado(boolean aprovado, Pageable limit);
 

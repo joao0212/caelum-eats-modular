@@ -47,7 +47,7 @@ public class RestauranteService {
 	public Page<RestauranteDto> findAllByAprovadoAndTipoDeCozinha(boolean aprovado, Long tipoDeCozinhaId,
 			Pageable limit) {
 		List<RestauranteDto> listaDeRestaurantesDto = restauranteRepository
-				.findAllByAprovadoAndTipoDeCozinha(aprovado, tipoDeCozinhaId, limit).getContent().stream()
+				.findAllByAprovadoAndTipoDeCozinhaId(aprovado, tipoDeCozinhaId, limit).getContent().stream()
 				.map(restaurante -> this.transformarParaDto(restaurante)).collect(Collectors.toList());
 		Page<RestauranteDto> restauranteDtoPage = new PageImpl<RestauranteDto>(listaDeRestaurantesDto);
 		return restauranteDtoPage;

@@ -31,8 +31,12 @@ public class TipoDeCozinhaService {
 		return this.transformarParaDto(tipoDeCozinha);
 	}
 
-	public TipoDeCozinhaDto atualizar(TipoDeCozinhaDto tipoDeCozinhaDto) {
-		TipoDeCozinha tipoDeCozinha = tipoDeCozinhaRepository.save(this.transformarParaObjeto(tipoDeCozinhaDto));
+	public TipoDeCozinhaDto atualizar(Long id, TipoDeCozinhaDto tipoDeCozinhaDto) {
+		TipoDeCozinhaDto tipoDeCozinhaDtoSalvo = this.buscarPorId(id);
+
+		tipoDeCozinhaDtoSalvo.setNome(tipoDeCozinhaDto.getNome());
+
+		TipoDeCozinha tipoDeCozinha = tipoDeCozinhaRepository.save(this.transformarParaObjeto(tipoDeCozinhaDtoSalvo));
 		return this.transformarParaDto(tipoDeCozinha);
 	}
 

@@ -31,8 +31,8 @@ public class TipoDeCozinhaController {
 	}
 
 	@PutMapping("/admin/tipos-de-cozinha/{id}")
-	TipoDeCozinhaDto atualizar(@RequestBody TipoDeCozinhaDto tipoDeCozinhaDto) {
-		return tipoDeCozinhaService.atualizar(tipoDeCozinhaDto);
+	TipoDeCozinhaDto atualizar(@PathVariable("id") Long id, @RequestBody TipoDeCozinhaDto tipoDeCozinhaDto) {
+		return tipoDeCozinhaService.atualizar(id, tipoDeCozinhaDto);
 	}
 
 	@DeleteMapping("/admin/tipos-de-cozinha/{id}")
