@@ -27,7 +27,8 @@ module br.com.caelum.eats.restaurante {
 	requires modelmapper;
 
 	opens br.com.caelum.eats.restaurante.dto to com.fasterxml.jackson.databind;
-	opens br.com.caelum.eats.restaurante.controller to spring.beans, spring.context, spring.core, spring.aop;
+	opens br.com.caelum.eats.restaurante.controller
+			to spring.beans, spring.context, spring.core, spring.aop, spring.web;
 	opens br.com.caelum.eats.restaurante.service to spring.beans, spring.context, spring.core;
 	opens br.com.caelum.eats.restaurante.entidade
 			to org.hibernate.orm.core, spring.core, org.hibernate.validator, com.fasterxml.jackson.databind;

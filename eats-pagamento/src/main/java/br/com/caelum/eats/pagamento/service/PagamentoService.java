@@ -59,7 +59,7 @@ public class PagamentoService {
 		pagamentoRepository.save(pagamento.get());
 		Long pedidoId = pagamento.get().getPedidoId();
 		PedidoDto pedidoDtoPorIdComItens = pedidoService.buscarPorIdComItens(pedidoId);
-		pedidoService.atualizarStatus(pedidoDtoPorIdComItens);
+		pedidoService.atualizarStatus(id, pedidoDtoPorIdComItens);
 		return this.transformarParaDto(pagamento.get());
 	}
 

@@ -60,6 +60,18 @@ public class Avaliacao {
 		return pedido;
 	}
 
+	public void setNota(Integer nota) {
+		this.nota = nota;
+	}
+
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

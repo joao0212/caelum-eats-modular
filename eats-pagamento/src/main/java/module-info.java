@@ -25,7 +25,7 @@ module br.com.caelum.eats.pagamento {
 	requires modelmapper;
 
 	opens br.com.caelum.eats.pagamento.controller to spring.beans, spring.context, spring.core;
-	opens br.com.caelum.eats.pagamento.entidade
-			to org.hibernate.orm.core, spring.core, org.hibernate.validator, com.fasterxml.jackson.databind;
+	opens br.com.caelum.eats.pagamento.entidade to org.hibernate.orm.core, spring.core, org.hibernate.validator,
+			com.fasterxml.jackson.databind, spring.beans;
 	opens br.com.caelum.eats.pagamento.service to spring.beans, spring.core;
 }

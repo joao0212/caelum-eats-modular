@@ -65,6 +65,22 @@ public class ItemDoPedido {
 		return itemDoCardapioId;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+	public void setItemDoCardapioId(Long itemDoCardapioId) {
+		this.itemDoCardapioId = itemDoCardapioId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

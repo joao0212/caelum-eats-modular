@@ -5,6 +5,7 @@ public class AvaliacaoDto {
 	private Long id;
 	private Integer nota;
 	private String comentario;
+	private Long pedidoId;
 
 	public Long getId() {
 		return id;
@@ -28,5 +29,13 @@ public class AvaliacaoDto {
 
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+
+	public Long getPedidoId() {
+		return pedidoId;
+	}
+
+	public void setPedidoId(Long pedidoId) {
+		this.pedidoId = pedidoId;
 	}
 }

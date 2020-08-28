@@ -58,8 +58,8 @@ public class PedidoService {
 		return this.transformarParaDto(pedidoSalvo);
 	}
 
-	public void atualizarStatus(PedidoDto pedidoDto) {
-		pedidoRepository.atualizarStatus(pedidoDto.getStatus(), pedidoDto.getId());
+	public void atualizarStatus(Long id, PedidoDto pedidoDto) {
+		pedidoRepository.atualizarStatus(pedidoDto.getStatus(), id);
 	}
 
 	public List<PedidoDto> listarPendentes(Long restauranteId) {

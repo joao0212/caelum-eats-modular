@@ -111,6 +111,40 @@ public class Pagamento {
 	public Long getFormaDePagamentoId() {
 		return formaDePagamentoId;
 	}
+	
+	
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public void setExpiracao(String expiracao) {
+		this.expiracao = expiracao;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public void setPedidoId(Long pedidoId) {
+		this.pedidoId = pedidoId;
+	}
+
+	public void setFormaDePagamentoId(Long formaDePagamentoId) {
+		this.formaDePagamentoId = formaDePagamentoId;
+	}
 
 	@Override
 	public int hashCode() {

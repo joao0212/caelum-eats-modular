@@ -25,8 +25,8 @@ module br.com.caelum.eats.pedido {
 	requires com.fasterxml.jackson.databind;
 	requires modelmapper;
 
-	opens br.com.caelum.eats.pedido.entidade
-			to org.hibernate.orm.core, spring.core, org.hibernate.validator, com.fasterxml.jackson.databind;
+	opens br.com.caelum.eats.pedido.entidade to org.hibernate.orm.core, spring.core, org.hibernate.validator,
+			com.fasterxml.jackson.databind, spring.beans;
 	opens br.com.caelum.eats.pedido.controller to spring.beans, spring.context, spring.core;
 	opens br.com.caelum.eats.pedido.service to spring.core;
 }

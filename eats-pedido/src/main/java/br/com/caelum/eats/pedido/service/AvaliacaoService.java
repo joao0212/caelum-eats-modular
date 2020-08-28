@@ -23,7 +23,7 @@ public class AvaliacaoService {
 	private ModelMapper modelMapper;
 
 	public List<AvaliacaoDto> listarAvaliacaoDoRestaurante(Long restauranteId) {
-		return avaliacaoRepository.findAllByRestaurante(restauranteId).stream()
+		return avaliacaoRepository.findAllByRestauranteId(restauranteId).stream()
 				.map(avaliacao -> this.transformarParaDto(avaliacao)).collect(Collectors.toList());
 	}
 

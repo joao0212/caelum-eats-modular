@@ -35,8 +35,8 @@ public class PedidoController {
 	}
 
 	@PutMapping("/pedidos/{id}/status")
-	void atualizarStatus(@RequestBody PedidoDto pedidoDto) {
-		pedidoService.atualizarStatus(pedidoDto);
+	void atualizarStatus(@PathVariable("id") Long id, @RequestBody PedidoDto pedidoDto) {
+		pedidoService.atualizarStatus(id, pedidoDto);
 	}
 
 	@GetMapping("/parceiros/restaurantes/{restauranteId}/pedidos/pendentes")

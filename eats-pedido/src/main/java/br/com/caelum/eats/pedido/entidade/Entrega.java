@@ -75,6 +75,26 @@ public class Entrega {
 		this.pedido = pedido;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

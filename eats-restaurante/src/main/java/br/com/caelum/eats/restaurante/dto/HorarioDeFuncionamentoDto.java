@@ -11,6 +11,10 @@ public class HorarioDeFuncionamentoDto {
 	private LocalTime horarioDeFechamento;
 	private Long restauranteId;
 
+	public HorarioDeFuncionamentoDto() {
+
+	}
+
 	public HorarioDeFuncionamentoDto(Long id, DayOfWeek diaDaSemana, LocalTime horarioDeAbertura,
 			LocalTime horarioDeFechamento) {
 		this.id = id;
