@@ -19,25 +19,6 @@ import br.com.caelum.eats.pagamento.enums.Status;
 @Entity
 public class Pagamento {
 
-	public Pagamento() {
-
-	}
-
-	public Pagamento(Long id, @NotNull @Positive BigDecimal valor, @NotBlank @Size(max = 100) String nome,
-			@NotBlank @Size(max = 19) String numero, @NotBlank @Size(max = 7) String expiracao,
-			@NotBlank @Size(min = 3, max = 3) String codigo, @NotNull Status status, Long pedidoId,
-			Long formaDePagamentoId) {
-		this.id = id;
-		this.valor = valor;
-		this.nome = nome;
-		this.numero = numero;
-		this.expiracao = expiracao;
-		this.codigo = codigo;
-		this.status = status;
-		this.pedidoId = pedidoId;
-		this.formaDePagamentoId = formaDePagamentoId;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -111,8 +92,6 @@ public class Pagamento {
 	public Long getFormaDePagamentoId() {
 		return formaDePagamentoId;
 	}
-	
-	
 
 	public void setId(Long id) {
 		this.id = id;

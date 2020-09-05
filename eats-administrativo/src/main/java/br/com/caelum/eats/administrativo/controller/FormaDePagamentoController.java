@@ -3,7 +3,6 @@ package br.com.caelum.eats.administrativo.controller;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +18,11 @@ import br.com.caelum.eats.administrativo.service.FormaDePagamentoService;
 @RestController
 public class FormaDePagamentoController {
 
-	@Autowired
 	private FormaDePagamentoService formaDePagamentoService;
+
+	public FormaDePagamentoController(FormaDePagamentoService formaDePagamentoService) {
+		this.formaDePagamentoService = formaDePagamentoService;
+	}
 
 	@GetMapping("/formas-de-pagamento")
 	List<FormaDePagamentoDto> listar() {

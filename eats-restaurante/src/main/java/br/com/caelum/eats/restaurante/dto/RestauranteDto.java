@@ -6,26 +6,6 @@ import br.com.caelum.eats.administrativo.dto.TipoDeCozinhaDto;
 
 public class RestauranteDto {
 
-	public RestauranteDto() {
-
-	}
-
-	public RestauranteDto(Long id, String cnpj, String nome, String descricao, String cep, String endereco,
-			BigDecimal taxaDeEntregaEmReais, Integer tempoDeEntregaMinimoEmMinutos,
-			Integer tempoDeEntregaMaximoEmMinutos, Boolean aprovado, TipoDeCozinhaDto tipoDeCozinha) {
-		this.id = id;
-		this.cnpj = cnpj;
-		this.nome = nome;
-		this.descricao = descricao;
-		this.cep = cep;
-		this.endereco = endereco;
-		this.taxaDeEntregaEmReais = taxaDeEntregaEmReais;
-		this.tempoDeEntregaMinimoEmMinutos = tempoDeEntregaMinimoEmMinutos;
-		this.tempoDeEntregaMaximoEmMinutos = tempoDeEntregaMaximoEmMinutos;
-		this.aprovado = aprovado;
-		this.tipoDeCozinha = tipoDeCozinha;
-	}
-
 	private Long id;
 	private String cnpj;
 	private String nome;
@@ -37,6 +17,7 @@ public class RestauranteDto {
 	private Integer tempoDeEntregaMaximoEmMinutos;
 	private Boolean aprovado;
 	private TipoDeCozinhaDto tipoDeCozinha;
+	private Long userId;
 
 	public Long getId() {
 		return id;
@@ -125,4 +106,13 @@ public class RestauranteDto {
 	public void setAprovado(Boolean aprovado) {
 		this.aprovado = aprovado;
 	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
 }

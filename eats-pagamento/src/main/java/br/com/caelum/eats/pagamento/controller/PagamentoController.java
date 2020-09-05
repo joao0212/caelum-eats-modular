@@ -1,6 +1,5 @@
 package br.com.caelum.eats.pagamento.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +18,11 @@ import br.com.caelum.eats.pagamento.service.PagamentoService;
 @RequestMapping("/pagamentos")
 public class PagamentoController {
 
-	@Autowired
 	private PagamentoService pagamentoService;
+
+	public PagamentoController(PagamentoService pagamentoService) {
+		this.pagamentoService = pagamentoService;
+	}
 
 	@GetMapping("/{id}")
 	PagamentoDto detalhar(@PathVariable("id") Long id) {

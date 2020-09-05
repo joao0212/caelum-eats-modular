@@ -9,7 +9,7 @@ public class ItemDoCardapioDto {
 	private String descricao;
 	private BigDecimal preco;
 	private BigDecimal precoPromocional;
-	private CategoriaDoCardapioDto categoriaDoCardapioDto;
+	private Long categoriaDoCardapioId;
 
 	public Long getId() {
 		return id;
@@ -31,8 +31,8 @@ public class ItemDoCardapioDto {
 		return precoPromocional;
 	}
 
-	public CategoriaDoCardapioDto getCategoriaDoCardapioDto() {
-		return categoriaDoCardapioDto;
+	public Long getCategoriaDoCardapioId() {
+		return categoriaDoCardapioId;
 	}
 
 	public void setId(Long id) {
@@ -55,7 +55,7 @@ public class ItemDoCardapioDto {
 		this.precoPromocional = precoPromocional;
 	}
 
-	public void setCategoriaDoCardapioDto(CategoriaDoCardapioDto categoriaDoCardapioDto) {
-		this.categoriaDoCardapioDto = categoriaDoCardapioDto;
+	public void setCategoriaDoCardapioId(Long categoriaDoCardapioId) {
+		this.categoriaDoCardapioId = categoriaDoCardapioId;
 	}
 }

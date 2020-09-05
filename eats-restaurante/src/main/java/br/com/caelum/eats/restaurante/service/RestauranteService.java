@@ -69,14 +69,6 @@ public class RestauranteService {
 		return restauranteDto;
 	}
 
-	public RestauranteDto detalharParceiro(String username) {
-		RestauranteDto restauranteDto = this.transformarParaDto(restauranteRepository.findByUsername(username));
-		TipoDeCozinhaDto tipoDeCozinhaDto = this.tipoDeCozinhaService
-				.buscarPorId(restauranteDto.getTipoDeCozinha().getId());
-		restauranteDto.setTipoDeCozinha(tipoDeCozinhaDto);
-		return restauranteDto;
-	}
-
 	public List<RestauranteDto> detalharPorIds(List<Long> ids) {
 		return restauranteRepository.findAllById(ids).stream().map(restaurante -> this.transformarParaDto(restaurante))
 				.collect(Collectors.toList());
@@ -100,14 +92,21 @@ public class RestauranteService {
 		return this.transformarParaDto(restauranteSalvo);
 	}
 
-	public RestauranteDto atualizar(RestauranteDto restauranteDto) {
-		Restaurante doBD = restauranteRepository.getOne(restauranteDto.getId());
-		// restauranteDto.populaRestaurante(doBD);
-		RestauranteDto restauranteSalvo = this.transformarParaDto(restauranteRepository.save(doBD));
-		TipoDeCozinhaDto tipoDeCozinhaDto = this.tipoDeCozinhaService
-				.buscarPorId(restauranteSalvo.getTipoDeCozinha().getId());
-		restauranteSalvo.setTipoDeCozinha(tipoDeCozinhaDto);
-		return restauranteSalvo;
+	public RestauranteDto atualizar(Long id, RestauranteDto restauranteDto) {
+		RestauranteDto restauranteDtoSalvo = this.findById(id);
+
+		restauranteDtoSalvo.setCep(restauranteDto.getCep());
+		restauranteDtoSalvo.setCnpj(restauranteDto.getCnpj());
+		restauranteDtoSalvo.setDescricao(restauranteDto.getDescricao());
+		restauranteDtoSalvo.setEndereco(restauranteDto.getEndereco());
+		restauranteDtoSalvo.setNome(restauranteDto.getNome());
+		restauranteDtoSalvo.setTaxaDeEntregaEmReais(restauranteDto.getTaxaDeEntregaEmReais());
+		restauranteDtoSalvo.setTempoDeEntregaMaximoEmMinutos(restauranteDto.getTempoDeEntregaMaximoEmMinutos());
+		restauranteDtoSalvo.setTempoDeEntregaMinimoEmMinutos(restauranteDto.getTempoDeEntregaMinimoEmMinutos());
+		restauranteDtoSalvo.setTipoDeCozinha(restauranteDto.getTipoDeCozinha());
+
+		Restaurante restaurante = restauranteRepository.save(this.transformarParaObjeto(restauranteDtoSalvo));
+		return this.transformarParaDto(restaurante);
 	}
 
 	public List<RestauranteDto> listarPoremAprovacao() {
@@ -117,6 +116,10 @@ public class RestauranteService {
 
 	public void aprovar(@PathVariable("id") Long id) {
 		restauranteRepository.aprovarPorId(id);
+	}
+
+	public RestauranteDto buscarPorIdUsuario(Long userId) {
+		return this.transformarParaDto(this.restauranteRepository.findByUserId(userId));
 	}
 
 	private RestauranteDto transformarParaDto(Restaurante restaurante) {

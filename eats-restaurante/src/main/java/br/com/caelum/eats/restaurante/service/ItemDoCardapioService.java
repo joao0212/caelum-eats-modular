@@ -18,9 +18,6 @@ public class ItemDoCardapioService {
 	private ItemDoCardapioRepository itemDoCardapioRepository;
 
 	@Autowired
-	private CategoriaDoCardapioService categoriaDoCardapioService;
-
-	@Autowired
 	private ModelMapper modelMapper;
 
 	public ItemDoCardapioDto adicionarItem(ItemDoCardapioDto item) {
@@ -36,8 +33,16 @@ public class ItemDoCardapioService {
 		return this.transformarParaDto(itemDoCardapio.get());
 	}
 
-	public ItemDoCardapioDto atualizarItem(ItemDoCardapioDto item) {
-		ItemDoCardapio itemDoCardapio = itemDoCardapioRepository.save(this.transformarParaObjeto(item));
+	public ItemDoCardapioDto atualizarItem(Long id, ItemDoCardapioDto item) {
+		ItemDoCardapioDto itemDoCardapioDtoSalvo = this.buscarItemPorId(id);
+
+		itemDoCardapioDtoSalvo.setDescricao(item.getDescricao());
+		itemDoCardapioDtoSalvo.setNome(item.getNome());
+		itemDoCardapioDtoSalvo.setPreco(item.getPreco());
+		itemDoCardapioDtoSalvo.setPrecoPromocional(item.getPrecoPromocional());
+
+		ItemDoCardapio itemDoCardapio = itemDoCardapioRepository
+				.save(this.transformarParaObjeto(itemDoCardapioDtoSalvo));
 		return this.transformarParaDto(itemDoCardapio);
 	}
 
@@ -59,8 +64,6 @@ public class ItemDoCardapioService {
 
 	private ItemDoCardapioDto transformarParaDto(ItemDoCardapio itemDoCardapio) {
 		ItemDoCardapioDto itemDoCardapioDto = modelMapper.map(itemDoCardapio, ItemDoCardapioDto.class);
-		itemDoCardapioDto.setCategoriaDoCardapioDto(
-				categoriaDoCardapioService.buscarCategoriaPorId(itemDoCardapio.getCategoriaDoCardapio().getId()));
 		return itemDoCardapioDto;
 	}
 }

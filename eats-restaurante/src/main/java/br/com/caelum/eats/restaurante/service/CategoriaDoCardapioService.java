@@ -18,6 +18,9 @@ public class CategoriaDoCardapioService {
 	private CategoriaDoCardapioRepository categoriaDoCardapioRepository;
 
 	@Autowired
+	private CardapioService cardapioService;
+
+	@Autowired
 	private ModelMapper modelMapper;
 
 	public CategoriaDoCardapioDto buscarCategoriaPorId(Long idCategoria) {
@@ -28,15 +31,18 @@ public class CategoriaDoCardapioService {
 		return this.transformarParaDto(categoriaDoCardapio.get());
 	}
 
-	public CategoriaDoCardapioDto buscarCardapioDoRestaurante(Long idCardapio,
+	public CategoriaDoCardapioDto salvarCardapioDoRestaurantePorCategoria(
 			CategoriaDoCardapioDto categoriaDoCardapioDto) {
-		CategoriaDoCardapio categoriaDoCardapio = categoriaDoCardapioRepository
-				.save(this.transformarParaObjeto(categoriaDoCardapioDto));
+		CategoriaDoCardapio categoriaDoCardapio = this.transformarParaObjeto(categoriaDoCardapioDto);
+		categoriaDoCardapioRepository.save(categoriaDoCardapio);
 		return this.transformarParaDto(categoriaDoCardapio);
 	}
 
 	private CategoriaDoCardapioDto transformarParaDto(CategoriaDoCardapio categoriaDoCardapio) {
-		return modelMapper.map(categoriaDoCardapio, CategoriaDoCardapioDto.class);
+		CategoriaDoCardapioDto categoriaDoCardapioDto = modelMapper.map(categoriaDoCardapio,
+				CategoriaDoCardapioDto.class);
+		categoriaDoCardapioDto.setCardapioDto(this.cardapioService.porId(categoriaDoCardapio.getCardapioId()));
+		return categoriaDoCardapioDto;
 	}
 
 	private CategoriaDoCardapio transformarParaObjeto(CategoriaDoCardapioDto categoriaDoCardapioDto) {

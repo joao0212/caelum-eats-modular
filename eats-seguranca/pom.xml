@@ -35,5 +35,10 @@
 			<artifactId>modelmapper</artifactId>
 			<version>2.3.8</version>
 		</dependency>
+		<dependency>
+			<groupId>br.com.caelum</groupId>
+			<artifactId>eats-restaurante</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 </project>

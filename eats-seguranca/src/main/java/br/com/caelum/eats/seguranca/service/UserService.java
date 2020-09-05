@@ -2,7 +2,6 @@ package br.com.caelum.eats.seguranca.service;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,11 +14,13 @@ import br.com.caelum.eats.seguranca.repository.UserRepository;
 @Service
 public class UserService implements UserDetailsService {
 
-	@Autowired
 	private UserRepository userRepository;
-	
-	@Autowired
 	private PasswordEncoder encoder;
+
+	public UserService(UserRepository userRepository, PasswordEncoder encoder) {
+		this.userRepository = userRepository;
+		this.encoder = encoder;
+	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -2,11 +2,11 @@ package br.com.caelum.eats.restaurante.entidade;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -14,20 +14,6 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class ItemDoCardapio {
-
-	public ItemDoCardapio(Long id, @NotBlank @Size(max = 150) String nome, String descricao,
-			@NotNull @Positive BigDecimal preco, @Positive BigDecimal precoPromocional, CategoriaDoCardapio categoria) {
-		this.id = id;
-		this.nome = nome;
-		this.descricao = descricao;
-		this.preco = preco;
-		this.precoPromocional = precoPromocional;
-		this.categoria = categoria;
-	}
-
-	public ItemDoCardapio() {
-
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,8 +32,8 @@ public class ItemDoCardapio {
 	@Positive
 	private BigDecimal precoPromocional;
 
-	@ManyToOne(optional = false)
-	private CategoriaDoCardapio categoria;
+	@Column(name = "categoria_id")
+	private Long categoriaId;
 
 	public BigDecimal getPrecoEfetivo() {
 		return precoPromocional != null ? precoPromocional : preco;
@@ -73,8 +59,32 @@ public class ItemDoCardapio {
 		return precoPromocional;
 	}
 
-	public CategoriaDoCardapio getCategoriaDoCardapio() {
-		return categoria;
+	public Long getCategoriaId() {
+		return categoriaId;
+	}
+
+	public void setCategoriaId(Long categoriaId) {
+		this.categoriaId = categoriaId;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
+	}
+
+	public void setPrecoPromocional(BigDecimal precoPromocional) {
+		this.precoPromocional = precoPromocional;
 	}
 
 	@Override

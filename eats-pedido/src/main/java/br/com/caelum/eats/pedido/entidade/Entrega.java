@@ -12,20 +12,6 @@ import javax.validation.constraints.Size;
 @Entity
 public class Entrega {
 
-	public Entrega() {
-
-	}
-
-	public Entrega(Long id, Cliente cliente, @NotBlank @Size(max = 9) String cep,
-			@NotBlank @Size(max = 255) String endereco, @Size(max = 255) String complemento, Pedido pedido) {
-		this.id = id;
-		this.cliente = cliente;
-		this.cep = cep;
-		this.endereco = endereco;
-		this.complemento = complemento;
-		this.pedido = pedido;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

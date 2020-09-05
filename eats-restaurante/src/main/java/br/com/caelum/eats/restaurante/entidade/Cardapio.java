@@ -13,16 +13,6 @@ import javax.persistence.OneToOne;
 @Entity
 public class Cardapio {
 
-	public Cardapio() {
-
-	}
-
-	public Cardapio(Long id, Restaurante restaurante, List<CategoriaDoCardapio> categorias) {
-		this.id = id;
-		this.restaurante = restaurante;
-		this.categorias = categorias;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -30,7 +20,7 @@ public class Cardapio {
 	@OneToOne(optional = false)
 	private Restaurante restaurante;
 
-	@OneToMany(mappedBy = "cardapio")
+	@OneToMany(mappedBy = "cardapioId")
 	private List<CategoriaDoCardapio> categorias = new ArrayList<>();
 
 	public Long getId() {

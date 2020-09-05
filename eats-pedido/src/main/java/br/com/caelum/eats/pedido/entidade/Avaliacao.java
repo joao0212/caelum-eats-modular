@@ -13,22 +13,6 @@ import javax.validation.constraints.Size;
 @Entity
 public class Avaliacao {
 
-	public Avaliacao() {
-
-	}
-
-	public Avaliacao(Long id, @NotNull @PositiveOrZero @Max(5) Integer nota, @Size(max = 255) String comentario) {
-		this.id = id;
-		this.nota = nota;
-		this.comentario = comentario;
-	}
-
-	public Avaliacao(Long id, @NotNull @PositiveOrZero @Max(5) Integer nota, @Size(max = 255) String comentario,
-			Pedido pedido) {
-		this(id, nota, comentario);
-		this.pedido = pedido;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

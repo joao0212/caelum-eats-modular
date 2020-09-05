@@ -9,5 +9,4 @@ import br.com.caelum.eats.seguranca.entidade.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	Optional<User> findByName(String name);
-
 }

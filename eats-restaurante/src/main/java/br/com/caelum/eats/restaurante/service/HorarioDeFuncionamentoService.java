@@ -42,10 +42,24 @@ public class HorarioDeFuncionamentoService {
 		return this.transformarEmDto(horarioDeFuncionamento);
 	}
 
-	public HorarioDeFuncionamentoDto atualizar(HorarioDeFuncionamentoDto horarioDeFuncionamentoDto) {
+	public HorarioDeFuncionamentoDto atualizar(Long id, HorarioDeFuncionamentoDto horarioDeFuncionamentoDto) {
+		HorarioDeFuncionamentoDto horarioDeFuncionamentoDtoSalvo = this.buscarPorId(id);
+
+		horarioDeFuncionamentoDtoSalvo.setDiaDaSemana(horarioDeFuncionamentoDto.getDiaDaSemana());
+		horarioDeFuncionamentoDtoSalvo.setHorarioDeAbertura(horarioDeFuncionamentoDto.getHorarioDeAbertura());
+		horarioDeFuncionamentoDtoSalvo.setHorarioDeFechamento(horarioDeFuncionamentoDto.getHorarioDeFechamento());
+
 		HorarioDeFuncionamento horarioDeFuncionamento = horarioDeFuncionamentoRepository
-				.save(this.transformarEmObjeto(horarioDeFuncionamentoDto));
+				.save(this.transformarEmObjeto(horarioDeFuncionamentoDtoSalvo));
 		return this.transformarEmDto(horarioDeFuncionamento);
+	}
+
+	public HorarioDeFuncionamentoDto buscarPorId(Long id) {
+		Optional<HorarioDeFuncionamento> horarioDeFuncionamento = horarioDeFuncionamentoRepository.findById(id);
+		if (!horarioDeFuncionamento.isPresent()) {
+			throw new ResourceNotFoundException();
+		}
+		return transformarEmDto(horarioDeFuncionamento.get());
 	}
 
 	public void remover(Long id) {

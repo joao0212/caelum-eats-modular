@@ -2,7 +2,6 @@ package br.com.caelum.eats.pedido.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,8 +15,11 @@ import br.com.caelum.eats.pedido.service.PedidoService;
 @RestController
 public class PedidoController {
 
-	@Autowired
 	private PedidoService pedidoService;
+
+	public PedidoController(PedidoService pedidoService) {
+		this.pedidoService = pedidoService;
+	}
 
 	@GetMapping("/pedidos")
 	List<PedidoDto> listar() {

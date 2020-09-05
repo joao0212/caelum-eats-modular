@@ -12,19 +12,6 @@ import javax.validation.constraints.Positive;
 @Entity
 public class ItemDoPedido {
 
-	public ItemDoPedido() {
-
-	}
-
-	public ItemDoPedido(Long id, @NotNull @Positive Integer quantidade, String observacao, Pedido pedido,
-			Long itemDoCardapioId) {
-		this.id = id;
-		this.quantidade = quantidade;
-		this.observacao = observacao;
-		this.pedido = pedido;
-		this.itemDoCardapioId = itemDoCardapioId;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

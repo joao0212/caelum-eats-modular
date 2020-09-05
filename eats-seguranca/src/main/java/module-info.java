@@ -1,6 +1,5 @@
 module br.com.caelum.eats.seguranca {
-	exports br.com.caelum.eats.seguranca.entidade;
-	exports br.com.caelum.eats.seguranca.dto;
+	requires br.com.caelum.eats.restaurante;
 
 	requires java.persistence;
 	requires java.validation;
@@ -25,8 +24,9 @@ module br.com.caelum.eats.seguranca {
 	requires jjwt;
 
 	opens br.com.caelum.eats.seguranca to spring.context, spring.beans, spring.core;
-	opens br.com.caelum.eats.seguranca.entidade to org.hibernate.orm.core, spring.core, org.hibernate.validator;
+	opens br.com.caelum.eats.seguranca.entidade
+			to spring.beans, org.hibernate.orm.core, spring.core, org.hibernate.validator;
 	opens br.com.caelum.eats.seguranca.controller to spring.core, spring.beans, spring.web;
-	opens br.com.caelum.eats.seguranca.service to spring.beans, spring.core;
+	opens br.com.caelum.eats.seguranca.service to spring.beans, spring.core, spring.expression;
 	opens br.com.caelum.eats.seguranca.dto to com.fasterxml.jackson.databind;
 }

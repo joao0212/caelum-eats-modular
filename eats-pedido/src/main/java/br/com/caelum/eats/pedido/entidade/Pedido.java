@@ -21,20 +21,6 @@ import br.com.caelum.eats.pedido.enums.Status;
 @Entity
 public class Pedido {
 
-	public Pedido(Long id, @NotNull LocalDateTime dataHora, @NotNull Status status, Long restauranteId, Entrega entrega,
-			List<ItemDoPedido> itensDoPedido) {
-		this.id = id;
-		this.dataHora = dataHora;
-		this.status = status;
-		this.restauranteId = restauranteId;
-		this.entrega = entrega;
-		this.itensDoPedido = itensDoPedido;
-	}
-
-	public Pedido() {
-		super();
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

@@ -11,18 +11,6 @@ public class HorarioDeFuncionamentoDto {
 	private LocalTime horarioDeFechamento;
 	private Long restauranteId;
 
-	public HorarioDeFuncionamentoDto() {
-
-	}
-
-	public HorarioDeFuncionamentoDto(Long id, DayOfWeek diaDaSemana, LocalTime horarioDeAbertura,
-			LocalTime horarioDeFechamento) {
-		this.id = id;
-		this.diaDaSemana = diaDaSemana;
-		this.horarioDeAbertura = horarioDeAbertura;
-		this.horarioDeFechamento = horarioDeFechamento;
-	}
-
 	public Long getId() {
 		return id;
 	}

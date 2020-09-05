@@ -2,7 +2,6 @@ package br.com.caelum.eats.restaurante.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -19,17 +18,15 @@ import br.com.caelum.eats.restaurante.service.RestauranteService;
 @RestController
 public class RestauranteController {
 
-	@Autowired
 	private RestauranteService restauranteService;
+
+	public RestauranteController(RestauranteService restauranteService) {
+		this.restauranteService = restauranteService;
+	}
 
 	@GetMapping("/restaurantes/{id}")
 	RestauranteDto detalhar(@PathVariable("id") Long id) {
 		return restauranteService.detalhar(id);
-	}
-
-	@GetMapping("/parceiros/restaurantes/do-usuario/{username}")
-	public RestauranteDto detalharParceiro(@PathVariable("username") String username) {
-		return restauranteService.detalharParceiro(username);
 	}
 
 	@GetMapping("/restaurantes")
@@ -48,8 +45,8 @@ public class RestauranteController {
 	}
 
 	@PutMapping("/parceiros/restaurantes/{id}")
-	public RestauranteDto atualizar(@RequestBody RestauranteDto restaurante) {
-		return restauranteService.atualizar(restaurante);
+	public RestauranteDto atualizar(@PathVariable("id") Long id, @RequestBody RestauranteDto restaurante) {
+		return restauranteService.atualizar(id, restaurante);
 	}
 
 	@GetMapping("/admin/restaurantes/em-aprovacao")

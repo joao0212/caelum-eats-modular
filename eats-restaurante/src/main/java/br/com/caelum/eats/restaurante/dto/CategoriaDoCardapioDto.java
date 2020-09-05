@@ -6,16 +6,8 @@ public class CategoriaDoCardapioDto {
 
 	private Long id;
 	private String nome;
-
-	public CategoriaDoCardapioDto(Long id, String nome, List<ItemDoCardapioDto> itens) {
-		super();
-		this.id = id;
-		this.nome = nome;
-	}
-
-	public CategoriaDoCardapioDto() {
-		super();
-	}
+	private CardapioDto cardapioDto;
+	private List<ItemDoCardapioDto> itens;
 
 	public Long getId() {
 		return id;
@@ -31,5 +23,21 @@ public class CategoriaDoCardapioDto {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public CardapioDto getCardapioDto() {
+		return cardapioDto;
+	}
+
+	public void setCardapioDto(CardapioDto cardapioDto) {
+		this.cardapioDto = cardapioDto;
+	}
+
+	public List<ItemDoCardapioDto> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<ItemDoCardapioDto> itens) {
+		this.itens = itens;
 	}
 }

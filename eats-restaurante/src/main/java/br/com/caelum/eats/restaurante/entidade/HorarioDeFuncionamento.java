@@ -15,19 +15,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class HorarioDeFuncionamento {
 
-	public HorarioDeFuncionamento(Long id, @NotNull DayOfWeek diaDaSemana, @NotNull LocalTime horarioDeAbertura,
-			@NotNull LocalTime horarioDeFechamento, Long restauranteId) {
-		this.id = id;
-		this.diaDaSemana = diaDaSemana;
-		this.horarioDeAbertura = horarioDeAbertura;
-		this.horarioDeFechamento = horarioDeFechamento;
-		this.restauranteId = restauranteId;
-	}
-
-	public HorarioDeFuncionamento() {
-
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -63,6 +50,26 @@ public class HorarioDeFuncionamento {
 
 	public Long getRestauranteId() {
 		return restauranteId;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setDiaDaSemana(DayOfWeek diaDaSemana) {
+		this.diaDaSemana = diaDaSemana;
+	}
+
+	public void setHorarioDeAbertura(LocalTime horarioDeAbertura) {
+		this.horarioDeAbertura = horarioDeAbertura;
+	}
+
+	public void setHorarioDeFechamento(LocalTime horarioDeFechamento) {
+		this.horarioDeFechamento = horarioDeFechamento;
+	}
+
+	public void setRestauranteId(Long restauranteId) {
+		this.restauranteId = restauranteId;
 	}
 
 	@Override

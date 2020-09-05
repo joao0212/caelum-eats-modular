@@ -7,40 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-import br.com.caelum.eats.seguranca.entidade.User;
-
 @Entity
 public class Restaurante {
-
-	public Restaurante(Long id, @NotBlank @Size(max = 18) String cnpj, @NotBlank @Size(max = 255) String nome,
-			@Size(max = 1000) String descricao, @NotBlank @Size(max = 9) String cep,
-			@NotBlank @Size(max = 300) String endereco, @Positive BigDecimal taxaDeEntregaEmReais,
-			@Positive @Min(10) @Max(180) Integer tempoDeEntregaMinimoEmMinutos,
-			@Positive @Min(10) @Max(180) Integer tempoDeEntregaMaximoEmMinutos, Boolean aprovado, Long tipoDeCozinhaId,
-			User user) {
-		this.id = id;
-		this.cnpj = cnpj;
-		this.nome = nome;
-		this.descricao = descricao;
-		this.cep = cep;
-		this.endereco = endereco;
-		this.taxaDeEntregaEmReais = taxaDeEntregaEmReais;
-		this.tempoDeEntregaMinimoEmMinutos = tempoDeEntregaMinimoEmMinutos;
-		this.tempoDeEntregaMaximoEmMinutos = tempoDeEntregaMaximoEmMinutos;
-		this.aprovado = aprovado;
-		this.tipoDeCozinhaId = tipoDeCozinhaId;
-		this.user = user;
-	}
-
-	public Restaurante() {
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -83,8 +57,8 @@ public class Restaurante {
 	@Column(name = "tipo_de_cozinha_id")
 	private Long tipoDeCozinhaId;
 
-	@OneToOne
-	private User user;
+	@Column(name = "user_id")
+	private Long userId;
 
 	public Long getId() {
 		return id;
@@ -174,8 +148,12 @@ public class Restaurante {
 		this.tipoDeCozinhaId = tipoDeCozinhaId;
 	}
 
-	public User getUser() {
-		return user;
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	@Override

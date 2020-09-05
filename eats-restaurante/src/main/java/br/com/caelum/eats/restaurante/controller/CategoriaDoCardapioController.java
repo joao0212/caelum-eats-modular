@@ -1,6 +1,5 @@
 package br.com.caelum.eats.restaurante.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,8 +12,11 @@ import br.com.caelum.eats.restaurante.service.CategoriaDoCardapioService;
 @RestController
 public class CategoriaDoCardapioController {
 
-	@Autowired
 	private CategoriaDoCardapioService categoriaDoCardapioService;
+
+	public CategoriaDoCardapioController(CategoriaDoCardapioService categoriaDoCardapioService) {
+		this.categoriaDoCardapioService = categoriaDoCardapioService;
+	}
 
 	@GetMapping("/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria/{idCategoria}")
 	CategoriaDoCardapioDto buscarCategoriaPorId(@PathVariable("idCategoria") Long idCategoria) {
@@ -22,8 +24,8 @@ public class CategoriaDoCardapioController {
 	}
 
 	@PostMapping("/parceiros/restaurantes/{idRestaurante}/cardapio/{idCardapio}/categoria")
-	CategoriaDoCardapioDto buscarCardapioDoRestaurante(@PathVariable("idCardapio") Long idCardapio,
+	CategoriaDoCardapioDto salvarCardapioDoRestaurantePorCategoria(
 			@RequestBody CategoriaDoCardapioDto categoriaDoCardapioDto) {
-		return categoriaDoCardapioService.buscarCardapioDoRestaurante(idCardapio, categoriaDoCardapioDto);
+		return categoriaDoCardapioService.salvarCardapioDoRestaurantePorCategoria(categoriaDoCardapioDto);
 	}
 }
