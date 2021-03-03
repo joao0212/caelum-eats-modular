@@ -22,5 +22,12 @@ services:
       RABBITMQ_DEFAULT_USER: root
       RABBITMQ_DEFAULT_PASS: root
 
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - "9410:9410"
+      - "9411:9411"
+
+
 volumes:
   mysql.eats.monolito:
